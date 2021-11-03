@@ -1,3 +1,17 @@
-# - david is here and ready to code ;)
-# - guxim's gun is ready to fire some code :)
-# - Nautilus hook is ready to catch some bugs :)
+![fcse_logo](https://2018.skopje.wordcamp.org/files/2018/09/Logo_FINKI_UKIM_EN.jpg)
+# [insert website name here]
+
+**Предмет:** Дизајн и архитектура на софтвер
+
+
+**Автори:**
+- Марко Спасеновски (191128)
+- Јетон Рамадани (191017)
+- Давид Трајковски (191027)
+- Гуѕим Селмани (191016)
+- Славе Стаменов ()
+
+
+**Ментори:** 
+- проф. д-р Љупчо Антовски
+- проф. д-р Петре Ламески

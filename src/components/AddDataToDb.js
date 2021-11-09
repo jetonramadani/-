@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import data2 from "../dataWithAddress.json";
-
+import { dataActions } from "../store/data-slice";
 const AddDataToDb = () => {
   const pick = (obj, keys) =>
     Object.keys(obj)
@@ -48,10 +49,12 @@ const AddDataToDb = () => {
       });
   };
   useEffect(() => {}, []);
+  const dispatch = useDispatch();
   return (
     <div>
       <button
         onClick={() => {
+          dispatch(dataActions.addPlaces(getNeededData()));
           console.log(getNeededData());
         }}
       >

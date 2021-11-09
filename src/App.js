@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import logins from "./logins.json";
 import Login from "./components/Login";
 import AddDataToDb from "./components/AddDataToDb";
+import Places from "./components/places/Places";
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
@@ -37,6 +38,7 @@ function App() {
             </button>
           </h1>
           <AddDataToDb />
+          <Places />
         </>
       ) : (
         <>

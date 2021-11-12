@@ -20,17 +20,22 @@ public class ShopController {
     }
 
     @PostMapping("/create")
-    public String createShop(@RequestBody Shop shop) throws InterruptedException, ExecutionException{
+    public String createShop(@RequestBody Shop shop) throws InterruptedException, ExecutionException {
         return shopService.createShop(shop);
     }
 
     @GetMapping("/get/{id}")
-    public Shop getShop(@PathVariable String id)throws InterruptedException, ExecutionException{
+    public Shop getShop(@PathVariable String id) throws InterruptedException, ExecutionException {
         return shopService.getShop(id);
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> testGetEndpoint(){
-        return ResponseEntity.ok("Test Get Endpoint is working");
+    @DeleteMapping("/delete/{id}")
+    public String deleteShop(@PathVariable String id) {
+        return shopService.deleteShop(id);
+    }
+
+    @PutMapping("/update/{id}")
+    public String updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
+        return shopService.updateShop(shop);
     }
 }

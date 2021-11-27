@@ -34,7 +34,7 @@ function Map({markers}) {
         mapContainerStyle={{width: "60vw", height: "100vh"}}
         center={{lat: 41.6086, lng: 21.7453}}
       >
-        {markers.map(({id, name, position}) => (
+        {markers?.map(({id, name, position}) => (
           //   <MarkerClusterer options={options}>
           <Marker
             key={id}

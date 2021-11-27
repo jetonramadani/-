@@ -8,16 +8,39 @@ import {useSelector} from "react-redux";
 import useTranslate from "../../hooks/useTranslate";
 const StoreContainer = () => {
   const places = useSelector((state) => state.data.places);
+  const [filteredPlaces, setFilteredPlaces] = useState([]);
   const translate = useTranslate();
+  useEffect(() => {
+    setFilteredPlaces([...places]);
+  }, [places?.length]);
+  const applyFilter = (filterData) => {
+    let helpArr = [...places];
+    if (filterData.category) {
+    }
+    if (filterData.city) {
+    }
+    if (filterData.nameOrAddres) {
+      helpArr = helpArr.filter(
+        (place) =>
+          translate(place.name)
+            .toLowerCase()
+            .includes(filterData.nameOrAddres) ||
+          translate(place.address)
+            .toLowerCase()
+            .includes(filterData.nameOrAddres)
+      );
+    }
+    setFilteredPlaces(helpArr);
+  };
   return (
     <div className={classes.main}>
       <div className={classes.mydata}>
-        <Filters />
-        <Places />
+        <Filters applyFilter={applyFilter} />
+        <Places places={filteredPlaces} />
       </div>
       <div className={classes.mydata}>
         <Map
-          markers={places.map((place, index) => ({
+          markers={filteredPlaces?.map((place, index) => ({
             id: index,
             ...place,
             position: {

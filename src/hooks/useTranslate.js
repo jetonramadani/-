@@ -1,5 +1,6 @@
 const useTranslate = () => {
   const latcyr = (car) => {
+    car = car.replace(/q/g, "ќ");
     car = car.replace(/h/g, "х");
     car = car.replace(/a/g, "а");
     car = car.replace(/b/g, "б");

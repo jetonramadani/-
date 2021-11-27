@@ -3,7 +3,7 @@ import axios from "axios";
 // Next we make an 'instance' of it
 const instance = axios.create({
   // .. where we make our configurations
-  baseURL: "localhost:9999",
+  baseURL: "http://localhost:9999",
 });
 
 // Where you would set stuff like your 'Authorization' header, etc ...
@@ -12,5 +12,4 @@ const instance = axios.create({
 // Also add/ configure interceptors && all the other cool stuff
 
 // # instance.interceptors.request...
-
 export default instance;

@@ -1,0 +1,31 @@
+.main {
+  display: flex;
+  background: "#BDBDBD";
+  //   flex-direction: column; MEDIA QUERY FOR SMALL DEVICE
+  margin-left: 3%;
+  .mydata {
+    flex: 1;
+  }
+}
+.topHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .topHeaderContent {
+    margin-right: 5%;
+  }
+}
+.searchBar {
+  .textField {
+    width: 94%;
+  }
+}
+.checkBoxes {
+  display: flex;
+  flex-direction: row;
+  margin-top: 11px;
+}
+.checkBoxStyle {
+  width: 35%;
+  margin-right: 5px;
+}

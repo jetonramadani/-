@@ -135,7 +135,7 @@
     "lon": "22.6485615",
     "name": "Technomarket",
     "category": "supermarket",
-    "address": "A4, Strumicë, Македонија"
+    "address": "A4, Струмица, Македонија"
   },
   {
     "lat": "42.2058039",
@@ -312,7 +312,7 @@
     "lon": "21.0151314",
     "name": "KAM market",
     "category": "supermarket",
-    "address": "A3, Resnja, Македонија"
+    "address": "A3, Ресња, Македонија"
   },
   {
     "lat": "41.9913718",
@@ -326,7 +326,7 @@
     "lon": "21.0114216",
     "name": "Макпетрол",
     "category": "kiosk",
-    "address": "A3 197, Resnja, Македонија"
+    "address": "A3 197, Ресња, Македонија"
   },
   {
     "lat": "41.4327823",
@@ -376,7 +376,7 @@
     "name": "Автонова",
     "category": "car_repair",
     "addr:street": "Краварски пат",
-    "address": "E65, Manastiri, Македонија"
+    "address": "E65, Битола, Македонија"
   },
   {
     "lat": "41.0101843",
@@ -384,7 +384,7 @@
     "name": "Аутомобиле СК",
     "category": "car_repair",
     "addr:street": "Краварски пат",
-    "address": "A3 1, Manastiri, Македонија"
+    "address": "A3 1, Битола, Македонија"
   },
   {
     "lat": "41.02582",
@@ -497,7 +497,7 @@
     "lon": "21.3520867",
     "name": "Аутомакедонија",
     "category": "car",
-    "address": "E65, Manastiri, Македонија"
+    "address": "E65, Битола, Македонија"
   },
   {
     "lat": "42.0046326",
@@ -518,7 +518,7 @@
     "lon": "22.5146289",
     "name": "Nasev",
     "category": "bakery",
-    "address": "Partizanska 48, Виница, Македонија"
+    "address": "Партизанска 48, Виница, Македонија"
   },
   {
     "lat": "41.8866184",
@@ -549,7 +549,7 @@
     "category": "car",
     "website": "https://www.citroen.com.mk/",
     "addr:street": "Краварски пат",
-    "address": "E65, Manastiri, Македонија"
+    "address": "E65, Битола, Македонија"
   },
   {
     "lat": "41.995119",

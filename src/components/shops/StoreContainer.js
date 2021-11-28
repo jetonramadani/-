@@ -15,9 +15,9 @@ const StoreContainer = () => {
   }, [places?.length]);
   const applyFilter = (filterData) => {
     let helpArr = [...places];
-    if (filterData.category) {
+    if (filterData.categories) {
     }
-    if (filterData.city) {
+    if (filterData.cities) {
     }
     if (filterData.nameOrAddres) {
       helpArr = helpArr.filter(

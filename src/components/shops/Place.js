@@ -8,6 +8,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import photo from "../../assets/supermarket.jpg"
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,17 +18,28 @@ const useStyles = makeStyles((theme) => ({
         border: "1px solid black",
         maxWidth: "93%",
         backgroundColor: '#CFFFF6',
+        boxShadow: "rgba(0, 0, 0, 0.3) 0px 5px 20px, rgba(0, 0, 0, 0.22) 0px 2px 2px",
         "&:hover": {
             boxShadow: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
             opacity: 1,
             transition: '0.5s',
             cursor: 'pointer',
-            backgroundColor: 'lightgreen'
-        }
-
+            // backgroundColor: 'lightgreen'
+            background: "linear-gradient(transparent, #00C6FF)"
+        },
     },
     inline: {
         display: "inline"
+    },
+    titleName: {
+        fontWeight: "bold",
+        fontSize: "2rem"
+    },
+    addresStyle: {
+        fontSize: "1rem"
+    },
+    kmAway: {
+        fontSize: '2rem'
     }
 }));
 
@@ -36,29 +49,44 @@ const Place = (props) => {
     return (
         <List className={classes.root}>
             <ListItem alignItems="flex-start">
-                <ListItemAvatar>
+                <ListItemAvatar >
                     <Avatar
                         alt="Remy Sharp"
-                        src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fillustrations%2Fone-click-shopping&psig=AOvVaw25QsFlL8d4kbE988OADYcZ&ust=1638185994686000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLjGiMT8uvQCFQAAAAAdAAAAABAw"
+                        src={photo}
                     />
                 </ListItemAvatar>
                 <ListItemText
-                    primary="Brunch this weekend?"
+                    primary={
+                        <span className={classes.titleName}>
+                            {props.name}
+                        </span>
+                    }
                     secondary={
                         <React.Fragment>
                             <Typography
                                 component="span"
-                                variant="body2"
+                                variant="body1"
                                 className={classes.inline}
                                 color="textPrimary"
                             >
-                                Ali Connors
+                                {props.category}
                             </Typography>
                             <br />
-                            {" — I'll be in your neighborhood doing errands this…"}
+                            <span className={classes.addresStyle}>
+                                {props.address}
+                            </span>
                         </React.Fragment>
                     }
                 />
+                <ListItemAvatar >
+                    <ListItemText secondary={
+                        <React.Fragment>
+                            <span className={classes.kmAway}>
+                                15 km
+                            </span>
+                        </React.Fragment>
+                    } />
+                </ListItemAvatar>
             </ListItem>
         </List>
     );

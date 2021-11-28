@@ -15,7 +15,14 @@ const useStyles = makeStyles((theme) => ({
         width: "100%",
         border: "1px solid black",
         maxWidth: "93%",
-        backgroundColor: theme.palette.background.paper,
+        backgroundColor: '#CFFFF6',
+        "&:hover": {
+            boxShadow: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
+            opacity: 1,
+            transition: '0.5s',
+            cursor: 'pointer',
+            backgroundColor: 'lightgreen'
+        }
 
     },
     inline: {

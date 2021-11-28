@@ -17,7 +17,7 @@ const MultipleCheckboxes = ({onChange, label, value}) => {
       options={top100Films}
       disableCloseOnSelect
       // filterOptions={}
-      limitTags={2}
+      limitTags={1}
       onChange={onChange}
       value={value}
       renderOption={(option, {selected}) => (

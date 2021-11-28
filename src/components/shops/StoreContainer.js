@@ -36,7 +36,9 @@ const StoreContainer = () => {
     <div className={classes.main}>
       <div className={classes.mydata}>
         <Filters applyFilter={applyFilter} />
-        <Places places={filteredPlaces} />
+        <div className={classes.placesDiv}>
+          <Places places={filteredPlaces} />
+        </div>
       </div>
       <div className={classes.mydata}>
         <Map

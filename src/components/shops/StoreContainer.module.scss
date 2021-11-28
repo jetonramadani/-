@@ -7,11 +7,11 @@ body {
   //   flex-direction: column; MEDIA QUERY FOR SMALL DEVICE
   margin-left: 3%;
   .mydata {
+    background-color: "#CFFFF6";
     flex: 1;
     & .placesDiv {
       height: 77vh;
       overflow: auto;
-      background: #fff;
       margin-top: 1rem;
     }
   }

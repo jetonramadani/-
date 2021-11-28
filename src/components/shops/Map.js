@@ -30,7 +30,7 @@ function Map({markers}) {
       <GoogleMap
         onLoad={handleOnLoad}
         onClick={() => setActiveMarker(null)}
-        mapContainerStyle={{width: "60vw", height: "100vh"}}
+        mapContainerStyle={{width: "55vw", height: "100vh"}}
         // center={{lat: 41.6086, lng: 21.7453}}
       >
         {markers?.map(({id, name, position}) => (

@@ -25,14 +25,13 @@ function Map({markers}) {
     markers.forEach(({position}) => bounds.extend(position));
     map.fitBounds(bounds);
   };
-
   return isLoaded ? (
     <>
       <GoogleMap
         onLoad={handleOnLoad}
         onClick={() => setActiveMarker(null)}
         mapContainerStyle={{width: "60vw", height: "100vh"}}
-        center={{lat: 41.6086, lng: 21.7453}}
+        // center={{lat: 41.6086, lng: 21.7453}}
       >
         {markers?.map(({id, name, position}) => (
           //   <MarkerClusterer options={options}>

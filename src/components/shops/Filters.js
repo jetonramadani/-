@@ -10,12 +10,12 @@ const Filters = ({applyFilter}) => {
   const translate = useTranslate();
   return (
     <>
-      <div className={classes.topHeader}>
+      {/* <div className={classes.topHeader}>
         <h1 className={classes.topHeaderContent}>MAPedonija</h1>
         <Button variant="contained" color="primary" size="large">
           + Додади локација
         </Button>
-      </div>
+      </div> */}
 
       <form noValidate autoComplete="off" className={classes.searchBar}>
         <TextField

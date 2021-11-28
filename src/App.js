@@ -13,7 +13,7 @@ function App() {
   }, []);
   return (
     <div>
-      <div style={{height: "100px", background: "red"}}></div>
+      <div style={{height: "50px", background: "red"}}></div>
       <AddDataToDb />
       <StoreContainer />
       {/* <AddDataToDb /> */}

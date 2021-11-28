@@ -20,6 +20,7 @@ const StoreContainer = () => {
     if (filterData.cities) {
     }
     if (filterData.nameOrAddres) {
+      console.log("INSDIDE THIS");
       helpArr = helpArr.filter(
         (place) =>
           translate(place.name)

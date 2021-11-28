@@ -6,10 +6,13 @@ import TextField from "@material-ui/core/TextField";
 import MultipleCheckboxes from "./MultipleCheckboxes";
 import useTranslate from "../../hooks/useTranslate";
 const Filters = ({applyFilter}) => {
-  const [filterData, setFilterData] = useState({
+  const defaultState = {
     nameOrAddres: "",
     categories: [],
     cities: [],
+  };
+  const [filterData, setFilterData] = useState({
+    ...defaultState,
   });
   const translate = useTranslate();
   return (
@@ -85,13 +88,10 @@ const Filters = ({applyFilter}) => {
             color="primary"
             style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
             size="large"
-            onClick={() =>
-              setFilterData({
-                nameOrAddres: "",
-                categories: [],
-                cities: [],
-              })
-            }
+            onClick={() => {
+              setFilterData({...defaultState});
+              applyFilter(defaultState);
+            }}
           >
             CLEAR
           </Button>

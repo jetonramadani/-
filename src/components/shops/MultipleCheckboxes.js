@@ -9,7 +9,7 @@ import classes from "./StoreContainer.module.scss";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const MultipleCheckboxes = ({onChange}) => {
+const MultipleCheckboxes = ({onChange, label, value}) => {
   return (
     <Autocomplete
       multiple
@@ -17,9 +17,9 @@ const MultipleCheckboxes = ({onChange}) => {
       options={top100Films}
       disableCloseOnSelect
       // filterOptions={}
-      // limitTags={1}
+      limitTags={1}
       onChange={onChange}
-      getOptionLabel={(option) => option.title}
+      value={value}
       renderOption={(option, {selected}) => (
         <React.Fragment>
           <Checkbox
@@ -28,7 +28,7 @@ const MultipleCheckboxes = ({onChange}) => {
             style={{marginRight: 8}}
             checked={selected}
           />
-          {option.title}
+          {option}
         </React.Fragment>
       )}
       className={classes.checkBoxStyle}
@@ -36,7 +36,7 @@ const MultipleCheckboxes = ({onChange}) => {
         <TextField
           {...params}
           variant="outlined"
-          label="Cities" /*placeholder="All cities" */
+          label={label} /*placeholder="All cities" */
         />
       )}
     />
@@ -44,38 +44,38 @@ const MultipleCheckboxes = ({onChange}) => {
 };
 
 const top100Films = [
-  {title: "The Shawshank Redemption"},
-  {title: "The Godfather"},
-  {title: "The Godfather: Part II"},
-  {title: "The Dark Knight"},
-  {title: "12 Angry Men"},
-  {title: "Schindler's List"},
-  {title: "Pulp Fiction"},
-  {title: "The Lord of the Rings: The Return of the King"},
-  {title: "The Good, the Bad and the Ugly"},
-  {title: "Fight Club"},
-  {title: "The Lord of the Rings: The Fellowship of the Ring"},
-  {title: "Star Wars: Episode V - The Empire Strikes Back"},
-  {title: "Forrest Gump"},
-  {title: "Inception"},
-  {title: "The Lord of the Rings: The Two Towers"},
-  {title: "One Flew Over the Cuckoo's Nest"},
-  {title: "Goodfellas"},
-  {title: "The Matrix"},
-  {title: "Seven Samurai"},
-  {title: "Star Wars: Episode IV - A New Hope"},
-  {title: "City of God"},
-  {title: "Se7en"},
-  {title: "The Silence of the Lambs"},
-  {title: "It's a Wonderful Life"},
-  {title: "Life Is Beautiful"},
-  {title: "The Usual Suspects"},
-  {title: "Léon: The Professional"},
-  {title: "Spirited Away"},
-  {title: "Saving Private Ryan"},
-  {title: "Once Upon a Time in the West"},
-  {title: "American History X"},
-  {title: "Interstellar"},
+  "The Shawshank Redemption",
+  "The Godfather",
+  "The Godfather: Part II",
+  "The Dark Knight",
+  "12 Angry Men",
+  //   {title: "Schindler's List"},
+  //   {title: "Pulp Fiction"},
+  //   {title: "The Lord of the Rings: The Return of the King"},
+  //   {title: "The Good, the Bad and the Ugly"},
+  //   {title: "Fight Club"},
+  //   {title: "The Lord of the Rings: The Fellowship of the Ring"},
+  //   {title: "Star Wars: Episode V - The Empire Strikes Back"},
+  //   {title: "Forrest Gump"},
+  //   {title: "Inception"},
+  //   {title: "The Lord of the Rings: The Two Towers"},
+  //   {title: "One Flew Over the Cuckoo's Nest"},
+  //   {title: "Goodfellas"},
+  //   {title: "The Matrix"},
+  //   {title: "Seven Samurai"},
+  //   {title: "Star Wars: Episode IV - A New Hope"},
+  //   {title: "City of God"},
+  //   {title: "Se7en"},
+  //   {title: "The Silence of the Lambs"},
+  //   {title: "It's a Wonderful Life"},
+  //   {title: "Life Is Beautiful"},
+  //   {title: "The Usual Suspects"},
+  //   {title: "Léon: The Professional"},
+  //   {title: "Spirited Away"},
+  //   {title: "Saving Private Ryan"},
+  //   {title: "Once Upon a Time in the West"},
+  //   {title: "American History X"},
+  //   {title: "Interstellar"},
 ];
 
 export default MultipleCheckboxes;

@@ -8,6 +8,12 @@ body {
   margin-left: 3%;
   .mydata {
     flex: 1;
+    & .placesDiv {
+      height: 77vh;
+      overflow: auto;
+      background: #fff;
+      margin-top: 1rem;
+    }
   }
 }
 .topHeader {

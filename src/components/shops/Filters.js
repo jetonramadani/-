@@ -8,6 +8,8 @@ import useTranslate from "../../hooks/useTranslate";
 const Filters = ({applyFilter}) => {
   const [filterData, setFilterData] = useState({
     nameOrAddres: "",
+    categories: [],
+    cities: [],
   });
   const translate = useTranslate();
   return (
@@ -42,11 +44,25 @@ const Filters = ({applyFilter}) => {
       </form>
       <div className={classes.checkBoxes}>
         <MultipleCheckboxes
-          onChange={(event) => {
-            console.log(event, "TEST");
+          onChange={(event, values) => {
+            setFilterData((prev) => ({
+              ...prev,
+              cities: values,
+            }));
           }}
+          label="Град"
+          value={filterData.cities}
         />
-        <MultipleCheckboxes />
+        <MultipleCheckboxes
+          onChange={(event, values) => {
+            setFilterData((prev) => ({
+              ...prev,
+              categories: values,
+            }));
+          }}
+          label="Категорија"
+          value={filterData.categories}
+        />
         <div style={{display: "flex", flexDirection: "column", width: "35%"}}>
           <Button
             variant="contained"
@@ -72,6 +88,8 @@ const Filters = ({applyFilter}) => {
             onClick={() =>
               setFilterData({
                 nameOrAddres: "",
+                categories: [],
+                cities: [],
               })
             }
           >

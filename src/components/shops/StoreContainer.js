@@ -15,9 +15,9 @@ const StoreContainer = () => {
   }, [places?.length]);
   const applyFilter = (filterData) => {
     let helpArr = [...places];
-    if (filterData.category) {
+    if (filterData.categories) {
     }
-    if (filterData.city) {
+    if (filterData.cities) {
     }
     if (filterData.nameOrAddres) {
       helpArr = helpArr.filter(
@@ -36,7 +36,9 @@ const StoreContainer = () => {
     <div className={classes.main}>
       <div className={classes.mydata}>
         <Filters applyFilter={applyFilter} />
-        <Places places={filteredPlaces} />
+        <div className={classes.placesDiv}>
+          <Places places={filteredPlaces} />
+        </div>
       </div>
       <div className={classes.mydata}>
         <Map

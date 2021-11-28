@@ -62,7 +62,6 @@ const Place = (props) => {
             </ListItem>
         </List>
     );
-}
-
+};
 
 export default Place;

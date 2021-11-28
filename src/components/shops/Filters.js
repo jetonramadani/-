@@ -6,7 +6,9 @@ import TextField from "@material-ui/core/TextField";
 import MultipleCheckboxes from "./MultipleCheckboxes";
 import useTranslate from "../../hooks/useTranslate";
 const Filters = ({applyFilter}) => {
-  const [filterData, setFilerData] = useState({});
+  const [filterData, setFilterData] = useState({
+    nameOrAddres: "",
+  });
   const translate = useTranslate();
   return (
     <>
@@ -24,38 +26,58 @@ const Filters = ({applyFilter}) => {
           variant="outlined"
           type="search"
           onChange={(event) =>
-            setFilerData((prev) => ({
+            setFilterData((prev) => ({
               ...prev,
               nameOrAddres: event.target.value,
             }))
           }
+          value={filterData.nameOrAddres}
           className={classes.textField}
-          helperText={
-            filterData.nameOrAddres
-              ? `Се бара: ${translate(filterData.nameOrAddres)}`
-              : ""
-          }
+          // helperText={
+          //   filterData.nameOrAddres
+          //     ? `Се бара: ${translate(filterData.nameOrAddres)}`
+          //     : ""
+          // }
         />
       </form>
       <div className={classes.checkBoxes}>
+        <MultipleCheckboxes
+          onChange={(event) => {
+            console.log(event, "TEST");
+          }}
+        />
         <MultipleCheckboxes />
-        <MultipleCheckboxes />
-        <Button
-          variant="contained"
-          color="primary"
-          style={{width: "25%", marginRight: "6%"}}
-          size="large"
-          onClick={() =>
-            applyFilter({
-              ...filterData,
-              nameOrAddres: translate(filterData.nameOrAddres || "")
-                .toLowerCase()
-                .trim(),
-            })
-          }
-        >
-          Apply
-        </Button>
+        <div style={{display: "flex", flexDirection: "column", width: "35%"}}>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
+            size="large"
+            onClick={() =>
+              applyFilter({
+                ...filterData,
+                nameOrAddres: translate(filterData.nameOrAddres || "")
+                  .toLowerCase()
+                  .trim(),
+              })
+            }
+          >
+            Apply
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
+            size="large"
+            onClick={() =>
+              setFilterData({
+                nameOrAddres: "",
+              })
+            }
+          >
+            CLEAR
+          </Button>
+        </div>
       </div>
     </>
   );

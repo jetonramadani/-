@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect } from "react";
 import AddDataToDb from "./components/AddDataToDb";
 // import {default as axios} from "./axiosConfig";
-import StoreContainer from "./components/shops/StoreContainer";
+// import StoreContainer from "./components/shops/StoreContainer";
 import Header from "./components/header/Header";
 import Categories from "./components/homepage/Categories";
 function App() {

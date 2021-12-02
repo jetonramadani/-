@@ -1,27 +1,33 @@
 package dians_project.mapedonija.service;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.WriteResult;
+import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import dians_project.mapedonija.model.Shop;
 import org.springframework.stereotype.Service;
-import com.google.cloud.firestore.Firestore;    //za od google da go zema
+import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @Service
 public class ShopService {
     Firestore dbFirestore = FirestoreClient.getFirestore();
+    private final RestTemplate restTemplate;
 
-    public String createShop(Shop shop) throws ExecutionException, InterruptedException {
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore
-                .collection("shops").document(shop.getId()).set(shop);
-        return collectionsApiFuture.get().getUpdateTime().toString();
+    public ShopService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
     }
 
-    public Shop getShop(String id) throws ExecutionException, InterruptedException {
+    public String createShop(Shop shop) throws ExecutionException, InterruptedException {
+        ApiFuture<DocumentReference> addedDocRef  = dbFirestore.collection("shops").add(shop);
+        System.out.println("Added document with ID: " + addedDocRef.get().getId());
+        return addedDocRef.get().getId();
+    }
+
+    public Shop getShopById(String id) throws ExecutionException, InterruptedException {
         DocumentReference documentReference = dbFirestore.collection("shops").document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
@@ -33,6 +39,31 @@ public class ShopService {
         return null;
     }
 
+    public List<Shop> getShopByName(String name) throws ExecutionException, InterruptedException {
+        CollectionReference shops = dbFirestore.collection("shops");
+        /*
+        The character \uf8ff used in the query is a very high code point in the Unicode range (it is a Private Usage Area [PUA] code).
+        Because it is after most regular characters in Unicode, the query matches all values that start with queryText.
+         */
+        Query query = shops.orderBy("shopName").startAt(name).endAt(name + '~'); // '~' == \uf8ff
+        ApiFuture<QuerySnapshot> querySnapshot = query.get();
+        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
+        return documents.stream().map(i -> i.toObject(Shop.class)).collect(Collectors.toList());
+    }
+
+    public List<Shop> getAllShops() throws Exception {
+        ApiFuture<QuerySnapshot> future = dbFirestore.collection("shops").get();
+        List<QueryDocumentSnapshot> documents = future.get().getDocuments();
+        return documents
+                .stream()
+                .map(i -> {
+            Shop shop = i.toObject(Shop.class);
+            shop.setId(i.getId());
+            return shop;
+        })
+                .collect(Collectors.toList());
+    }
+
     public String updateShop(Shop shop) throws ExecutionException, InterruptedException {
         ApiFuture<WriteResult> writeResultApiFuture = dbFirestore.collection("shops").document(shop.getId()).set(shop);
         return writeResultApiFuture.get().getUpdateTime().toString();
@@ -41,5 +72,22 @@ public class ShopService {
     public String deleteShop(String id) {
         ApiFuture<WriteResult> writeResultApiFuture = dbFirestore.collection("shops").document(id).delete();
         return "Successfully deleted shop with id: " + id;
+    }
+
+    // in the refactor phase of the project this whole backend architecture is getting a makeover :P
+    public List<String> getCategories() {
+        String [] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/categories.json", String[].class);
+        if (cats == null) {
+            throw new NullPointerException("No categories found");
+        }
+        return Arrays.asList(cats);
+    }
+
+    public List<String> getCities() {
+        String [] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/cities.json", String[].class);
+        if (cats == null) {
+            throw new NullPointerException("No categories found");
+        }
+        return Arrays.asList(cats);
     }
 }

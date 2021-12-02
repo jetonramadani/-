@@ -1,16 +1,12 @@
 package dians_project.mapedonija.model;
 
 import lombok.*;
-//import javax.persistence.*;
 
-//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class Shop {
-    //@Id
-    //@Column(name = "id", nullable = false)
     private String id;  //zaradi document_id
     private String streetAddress;
     private String emailAddress;

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react'
 import "./desktopHeader.css";
 import {
@@ -5,8 +6,8 @@ import {
 } from "react-router-dom";
 const Header = (props) => {
     return (
-        <>
-            <nav>
+        < >
+            <nav className='backgroundHeader'>
                 <Link to="/" onClick={() => props.onClick("home")}>HOME</Link>
                 <Link to="/stores" onClick={() => props.onClick("store")}>STORES</Link>
                 <Link to="/about" onClick={() => props.onClick("about")}>ABOUT</Link>

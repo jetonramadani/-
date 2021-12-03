@@ -1,3 +1,4 @@
+/* eslint-disable*/
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import AddDataToDb from "./components/AddDataToDb";
@@ -37,7 +38,7 @@ function App() {
   return (
     <>
       {activeTab !== "404" && <DesktopHeader onClick={(value) => setActiveTab(value)} />}
-      <div style={{ height: "80px", background: "transparent" }}></div>
+      <div className="headerStyle"></div>
       <AddDataToDb />
       <Routes>
         <Route path="/about" element={<About />} />

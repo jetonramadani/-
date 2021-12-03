@@ -106,8 +106,11 @@ nav a:nth-child(3):hover ~ #indicator {
   background: linear-gradient(130deg, purple, palevioletred);
   display: block;
 }
-.imgStyle {
+img {
   width: 150px;
   margin-left: 3%;
   margin-top: 0.2%;
+}
+img:hover {
+  content: url("../../assets/whitelogo.png");
 }

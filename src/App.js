@@ -36,9 +36,9 @@ function App() {
     };
   }, []);
   return (
-    <>
+    <><div className="headerStyle">
       {activeTab !== "404" && <DesktopHeader onClick={(value) => setActiveTab(value)} />}
-      <div className="headerStyle"></div>
+    </div>
       <AddDataToDb />
       <Routes>
         <Route path="/about" element={<About />} />

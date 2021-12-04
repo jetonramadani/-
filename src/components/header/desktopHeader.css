@@ -113,4 +113,5 @@ nav a:nth-child(3):hover ~ #indicator {
 }
 .imgStyle:hover {
   content: url("../../assets/whitelogo.png");
+  cursor: pointer;
 }

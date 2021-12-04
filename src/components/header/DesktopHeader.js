@@ -8,7 +8,7 @@ import {
 const Header = (props) => {
     return (
         < >
-            <img src={photoImg} className='imgStyle' />
+            <Link to="/" onClick={() => props.onClick("home")}><img src={photoImg} className='imgStyle' /></Link>
             <nav className='backgroundHeader'>
                 <Link to="/" onClick={() => props.onClick("home")}>HOME</Link>
                 <Link to="/stores" onClick={() => props.onClick("store")}>STORES</Link>

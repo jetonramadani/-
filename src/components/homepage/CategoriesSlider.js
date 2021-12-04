@@ -33,11 +33,12 @@ const categoryIcons = {
     "Авто-делови": <VscTools size="4rem" />,
     "Обувки": <GiSonicShoes size="4rem" />,
     "Сувенири": <BsFillGiftFill size="4rem" />
+
 }
 const mapedCategories = mkCategries.map((category) =>
     <>
-        <div>{categoryIcons[category]}</div>
-        <div>{category}</div>
+        <div className='categories'>{categoryIcons[category]}</div>
+        <div className='categories'>{category}</div>
     </>
 )
 const CategoriesSlider = () => {
@@ -58,12 +59,12 @@ const CategoriesSlider = () => {
 
     return (
         <div className='slider'>
-            <IconButton onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} ><BsArrowLeftSquareFill /></IconButton>
+            <IconButton onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} className='prevnext'><BsArrowLeftSquareFill /></IconButton>
             {siteWidth > 1 && <span className='sliderElement'>{mapedCategories[currentPlace % categoryLength]}</span>}
             {siteWidth > 1 && <span className='sliderElements'>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
             {siteWidth > 2 && <span className='sliderElements'>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
             {siteWidth > 3 && <span className='sliderElement1'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
-            <IconButton onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} ><BsArrowRightSquareFill /></IconButton>
+            <IconButton onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} className='prevnext' ><BsArrowRightSquareFill /></IconButton>
         </div>
     )
 }

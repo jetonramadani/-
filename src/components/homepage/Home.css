@@ -13,9 +13,16 @@
 .sliderElement {
   width: 20%;
   display: inline-block;
-  margin-left: 7%;
 }
 .sliderElement1 {
-  width: 15%;
+  width: 20%;
   display: inline-block;
+}
+.categories {
+  text-align: center;
+}
+.prevnext {
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -70%);
 }

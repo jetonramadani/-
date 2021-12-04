@@ -1,5 +1,9 @@
+/* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import { GrCart } from 'react-icons/gr';
+import IconButton from '@mui/material/IconButton';
+import './Home.css'
+import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
 const mkCategries = [
     "Маркети",
     "Пекари",
@@ -40,13 +44,13 @@ const CategoriesSlider = () => {
     window.addEventListener("resize", resize);
 
     return (
-        <div>
-            <button onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)}>PREV</button>
-            {siteWidth > 1 && <span style={{ width: "20%", display: "inline-block" }}>{mapedCategories[currentPlace % categoryLength]}</span>}
-            {siteWidth > 1 && <span style={{ width: "20%", display: "inline-block" }}>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
-            {siteWidth > 2 && <span style={{ width: "20%", display: "inline-block" }}>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
-            {siteWidth > 3 && <span style={{ width: "20%", display: "inline-block" }}>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
-            <button onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)}>NEXT</button>
+        <div className='slider'>
+            <IconButton onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} ><BsArrowLeftSquareFill /></IconButton>
+            {siteWidth > 1 && <span className='sliderElement'>{mapedCategories[currentPlace % categoryLength]}</span>}
+            {siteWidth > 1 && <span className='sliderElements'>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
+            {siteWidth > 2 && <span className='sliderElements'>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
+            {siteWidth > 3 && <span className='sliderElements'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
+            <IconButton onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} ><BsArrowRightSquareFill /></IconButton>
         </div>
     )
 }

@@ -2,3 +2,16 @@
   width: 100%;
   z-index: 0;
 }
+.sliderElements {
+  width: 15%;
+  display: inline-block;
+}
+.slider {
+  margin-left: 15%;
+  margin-top: 2%;
+}
+.sliderElement {
+  width: 15%;
+  display: inline-block;
+  margin-left: 10%;
+}

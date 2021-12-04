@@ -3,7 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { GrCart } from 'react-icons/gr';
 import IconButton from '@mui/material/IconButton';
 import './Home.css'
-import { BsArrowLeftSquareFill, BsArrowRightSquareFill } from 'react-icons/bs'
+import { BsArrowLeftSquareFill, BsArrowRightSquareFill, BsHeadphones, BsFillGiftFill } from 'react-icons/bs'
+import { MdOutlineBakeryDining, MdChair, MdSportsRugby } from 'react-icons/md'
+import { GiClothes, GiSonicShoes } from 'react-icons/gi'
+import { ImLibrary } from 'react-icons/im'
+import { VscTools } from 'react-icons/vsc'
 const mkCategries = [
     "Маркети",
     "Пекари",
@@ -19,7 +23,16 @@ const mkCategries = [
 
 
 const categoryIcons = {
-    "Маркети": <GrCart size="4rem" />
+    "Маркети": <GrCart size="4rem" />,
+    "Пекари": <MdOutlineBakeryDining size="4rem" />,
+    "Бутицни": <GiClothes size="4rem" />,
+    "Електроника и компјутери": <BsHeadphones size="4rem" />,
+    "Книжарници": <ImLibrary size="4rem" />,
+    "Мебел": <MdChair size="4rem" />,
+    "Спортска опрема": <MdSportsRugby size="4rem" />,
+    "Авто-делови": <VscTools size="4rem" />,
+    "Обувки": <GiSonicShoes size="4rem" />,
+    "Сувенири": <BsFillGiftFill size="4rem" />
 }
 const mapedCategories = mkCategries.map((category) =>
     <>
@@ -49,7 +62,7 @@ const CategoriesSlider = () => {
             {siteWidth > 1 && <span className='sliderElement'>{mapedCategories[currentPlace % categoryLength]}</span>}
             {siteWidth > 1 && <span className='sliderElements'>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
             {siteWidth > 2 && <span className='sliderElements'>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
-            {siteWidth > 3 && <span className='sliderElements'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
+            {siteWidth > 3 && <span className='sliderElement1'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
             <IconButton onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} ><BsArrowRightSquareFill /></IconButton>
         </div>
     )

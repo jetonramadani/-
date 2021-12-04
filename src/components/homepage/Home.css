@@ -3,15 +3,19 @@
   z-index: 0;
 }
 .sliderElements {
-  width: 15%;
+  width: 20%;
   display: inline-block;
 }
 .slider {
-  margin-left: 15%;
+  margin-left: 10%;
   margin-top: 2%;
 }
 .sliderElement {
+  width: 20%;
+  display: inline-block;
+  margin-left: 7%;
+}
+.sliderElement1 {
   width: 15%;
   display: inline-block;
-  margin-left: 10%;
 }

@@ -50,13 +50,13 @@ function App() {
     <><div className="headerStyle">
       {activeTab !== "404" && <DesktopHeader onClick={(value) => setActiveTab(value)} />}
     </div>
-      <AddDataToDb />
+      {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      <AddDataToDb />
+      {/* <AddDataToDb /> */}
       {/* <Places /> */}</>
   );
 }

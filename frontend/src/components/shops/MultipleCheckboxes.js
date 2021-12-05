@@ -9,12 +9,12 @@ import classes from "./StoreContainer.module.scss";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const MultipleCheckboxes = ({onChange, label, value}) => {
+const MultipleCheckboxes = ({onChange, label, value, listValue}) => {
   return (
     <Autocomplete
       multiple
       id="checkboxes-tags-demo"
-      options={top100Films}
+      options={listValue}
       disableCloseOnSelect
       // filterOptions={}
       limitTags={1}

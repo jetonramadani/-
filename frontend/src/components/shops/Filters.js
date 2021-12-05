@@ -5,12 +5,15 @@ import classes from "./StoreContainer.module.scss";
 import TextField from "@material-ui/core/TextField";
 import MultipleCheckboxes from "./MultipleCheckboxes";
 import useTranslate from "../../hooks/useTranslate";
+import {useSelector} from "react-redux";
 const Filters = ({applyFilter}) => {
   const defaultState = {
     nameOrAddres: "",
     categories: [],
     cities: [],
   };
+  const cities = useSelector((state) => state.data.cities);
+  const categories = useSelector((state) => state.data.categories);
   const [filterData, setFilterData] = useState({
     ...defaultState,
   });
@@ -55,6 +58,7 @@ const Filters = ({applyFilter}) => {
           }}
           label="Град"
           value={filterData.cities}
+          listValue={cities}
         />
         <MultipleCheckboxes
           onChange={(event, values) => {
@@ -65,6 +69,7 @@ const Filters = ({applyFilter}) => {
           }}
           label="Категорија"
           value={filterData.categories}
+          listValue={categories}
         />
         <div style={{display: "flex", flexDirection: "column", width: "35%"}}>
           <Button

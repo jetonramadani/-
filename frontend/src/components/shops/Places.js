@@ -4,8 +4,8 @@ import Place from "./Place";
 const Places = ({places}) => {
   return (
     <>
-      {places?.map((data, i) => (
-        <Place key={"T" + i} {...data} />
+      {places?.map((data) => (
+        <Place key={"T" + data.id} {...data} />
       ))}
     </>
   );

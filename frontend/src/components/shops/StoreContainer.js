@@ -15,12 +15,13 @@ const StoreContainer = () => {
   }, [places?.length]);
   const applyFilter = (filterData) => {
     let helpArr = [...places];
-    if (filterData.categories) {
+    if (filterData.categories.length) {
+      helpArr = helpArr.filter((place) => filterData.categories.some((cat) => cat === place.category));
     }
-    if (filterData.cities) {
+    if (filterData.cities.length) {
+      helpArr = helpArr.filter((place) => filterData.cities.some((city) => place.address.includes(city)));
     }
     if (filterData.nameOrAddres) {
-      console.log("INSDIDE THIS");
       helpArr = helpArr.filter(
         (place) =>
           translate(place.name)
@@ -42,16 +43,15 @@ const StoreContainer = () => {
         </div>
       </div>
       <div className={classes.mydata}>
-        <Map
-          markers={filteredPlaces?.map((place, index) => ({
-            id: index,
+        {places.length ? <Map
+          markers={filteredPlaces?.map((place) => ({
             ...place,
             position: {
               lat: +place.lat,
               lng: +place.lon,
             },
           }))}
-        />
+        /> : "Loading..."}
       </div>
     </div>
   );

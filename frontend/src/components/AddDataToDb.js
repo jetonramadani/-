@@ -41,19 +41,12 @@ const AddDataToDb = () => {
     const allCategories = Object.keys(mkCategries);
     return data2
       .filter((item) => allCategories.includes(item.category))
-      .forEach((item, i) => {
-        if (i < 5){
-          console.log("TEST", {
-            ...defaultValue,
-            ...pick(item, tags),
-            category: mkCategries[item.category],
-          });
+      .forEach((item) => {
         axios.post("/shop/create", {
           ...defaultValue,
           ...pick(item, tags),
           category: mkCategries[item.category],
         });
-      }
       });
   };
   useEffect(() => {

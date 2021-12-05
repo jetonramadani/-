@@ -2,9 +2,11 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import AddDataToDb from "./components/AddDataToDb";
-// import {default as axios} from "./axiosConfig";
+import {default as axios} from "./axiosConfig";
 import StoreContainer from "./components/shops/StoreContainer";
 import DesktopHeader from "./components/header/DesktopHeader";
+import {dataActions} from "./store/data-slice";
+import {useDispatch} from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -17,6 +19,7 @@ import About from "./components/about/About";
 function App() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("home");
+  const dispatch = useDispatch();
   useEffect(() => {
     if (location.pathname.startsWith("/store")) {
       setActiveTab("store")
@@ -29,7 +32,15 @@ function App() {
     } else {
       setActiveTab("");
     }
-
+    const loadEffect = async () => {
+      const cities = await axios.get("/shop/cities");
+      dispatch(dataActions.addCities(cities.data || []));
+      const categories = await axios.get("/shop/categories");
+      dispatch(dataActions.addCategories(categories.data || []));
+      const allShops = await axios.get("/shop/all");
+      dispatch(dataActions.addPlaces(allShops.data || []));
+    }
+    loadEffect();
     // ON MOUNT CONSTRUCTOR
     return () => {
       //ON DISMOUNT DESTRUCTOR
@@ -45,7 +56,7 @@ function App() {
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      {/* <AddDataToDb /> */}
+      <AddDataToDb />
       {/* <Places /> */}</>
   );
 }

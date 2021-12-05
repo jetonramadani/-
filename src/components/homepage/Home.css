@@ -1,0 +1,28 @@
+.MapBackgroundStyle {
+  width: 100%;
+  z-index: 0;
+}
+.sliderElements {
+  width: 20%;
+  display: inline-block;
+}
+.slider {
+  margin-left: 10%;
+  margin-top: 2%;
+}
+.sliderElement {
+  width: 20%;
+  display: inline-block;
+}
+.sliderElement1 {
+  width: 20%;
+  display: inline-block;
+}
+.categories {
+  text-align: center;
+}
+.prevnext {
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -70%);
+}

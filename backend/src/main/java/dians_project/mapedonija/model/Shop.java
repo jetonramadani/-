@@ -7,13 +7,13 @@ import lombok.*;
 @Getter
 @Setter
 public class Shop {
-    private String id;  //zaradi document_id
-    private String streetAddress;
-    private String emailAddress;
-    private String shopName;
-    private String phoneNumber;
+    private String id;
+    private String address;
+    private String email;
+    private String name;
+    private String phone;
     private String website;
-    private String workHours;
+    private String opening_hours;
     private String category;
     private double lat;
     private double lon;

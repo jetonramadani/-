@@ -5,10 +5,10 @@ import photoImg from "../../assets/mail.png";
 const About = () => {
   return (
     <div>
-      <h1 className="header">About Us:</h1>
+      <h1 className="header">За нас:</h1>
       <div className="textHeader">
         <div className="textContent">
-          <h3>WHO WE ARE</h3>
+          <h3>КОИ СМЕ НИЕ</h3>
           <p>
             {/* We are a group of students currently studying Computer Science at
                         'Faculty of Computer Science and Engineering - Skopje'. Our mission

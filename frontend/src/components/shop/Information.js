@@ -3,7 +3,7 @@ import React from "react";
 const Information = ({label, value}) => {
   return (
     <div>
-      <div>{label}</div>
+      <strong>{label}</strong>
       <div>{value ? value : "/"}</div>
     </div>
   );

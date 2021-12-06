@@ -34,6 +34,7 @@ public class ShopService {
         Shop shop;
         if (document.exists()) {
             shop = document.toObject(Shop.class);
+            shop.setId(id);
             return shop;
         }
         return null;

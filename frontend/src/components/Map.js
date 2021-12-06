@@ -13,6 +13,7 @@ function Map({markers}) {
     googleMapsApiKey: "AIzaSyDaqcuqPLMXH1NOKt3fkYpdJb4tmttxfP8", // Add your API key
     language: "mk",
   });
+  console.log(markers);
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
       return;
@@ -34,7 +35,6 @@ function Map({markers}) {
         // center={{lat: 41.6086, lng: 21.7453}}
       >
         {markers?.map(({id, name, position}) => (
-          //   <MarkerClusterer options={options}>
           <Marker
             key={id}
             position={position}

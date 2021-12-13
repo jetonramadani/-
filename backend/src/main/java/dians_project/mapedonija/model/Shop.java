@@ -2,8 +2,10 @@ package dians_project.mapedonija.model;
 
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Shop {
@@ -17,4 +19,10 @@ public class Shop {
     private String category;
     private double lat;
     private double lon;
+    private double avgGrade;
+    private List<Review> reviewList;
+
+    public Shop() {
+        this.reviewList = new ArrayList<>();
+    }
 }

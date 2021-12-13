@@ -3,6 +3,8 @@ package dians_project.mapedonija.service;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
+import dians_project.mapedonija.model.DummyShop;
+import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -52,17 +54,16 @@ public class ShopService {
         return documents.stream().map(i -> i.toObject(Shop.class)).collect(Collectors.toList());
     }
 
-    public List<Shop> getAllShops() throws Exception {
+    public List<DummyShop> getAllShops() throws Exception {
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("shops").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         return documents
                 .stream()
                 .map(i -> {
-            Shop shop = i.toObject(Shop.class);
-            shop.setId(i.getId());
-            return shop;
-        })
-                .collect(Collectors.toList());
+                    DummyShop shop = i.toObject(DummyShop.class);
+                    shop.setId(i.getId());
+                    return shop;
+                }).collect(Collectors.toList());
     }
 
     public String updateShop(Shop shop) throws ExecutionException, InterruptedException {
@@ -91,4 +92,30 @@ public class ShopService {
         }
         return Arrays.asList(cats);
     }
+
+    //promeni
+
+
+    public List<Review> reviewList(String id) throws ExecutionException, InterruptedException {
+        Shop shop = getShopById(id);
+        return shop.getReviewList();
+    }
+
+    //dali da se pravi proverka za dali se okej vneseni i prateni site atributi od review
+    public String addReviews(String id, Review review) throws ExecutionException, InterruptedException{
+        Shop shop = getShopById(id);
+        shop.getReviewList().add(review);
+        updateShop(shop); //da se snimi vo databaza ovoj nov objekt
+        updateAvgGrade(shop);
+        return "added review to the shop and updated the average grade";
+    }
+
+    public void updateAvgGrade(Shop shop){
+        double avgGrade;
+        int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
+        avgGrade = (double) grades/shop.getReviewList().size();
+        dbFirestore.collection("shops").document(shop.getId()).update("avgGrade",avgGrade);
+    }
+
+
 }

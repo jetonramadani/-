@@ -1,5 +1,7 @@
 package dians_project.mapedonija.controller;
 
+import dians_project.mapedonija.model.DummyShop;
+import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import dians_project.mapedonija.service.ShopService;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,7 @@ public class ShopController {
     }
 
     @GetMapping("/all")
-    public List<Shop> getAllShops() throws Exception {
+    public List<DummyShop> getAllShops() throws Exception {
         return shopService.getAllShops();
     }
 
@@ -58,4 +60,16 @@ public class ShopController {
     public String updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
         return shopService.updateShop(shop);
     }
+
+    @GetMapping("/{id}/reviews")
+    public List<Review> getReviewList(@PathVariable String id) throws ExecutionException, InterruptedException{
+        return shopService.reviewList(id);
+    }
+
+    @PostMapping("/{id}/add-review")    //treba da se prati shopId, i plus: username, comment, grade vo objekt
+    public String addShopReview(@PathVariable String id, @RequestBody Review review) throws ExecutionException, InterruptedException{
+        return shopService.addReviews(id,review);
+    }
+
+
 }

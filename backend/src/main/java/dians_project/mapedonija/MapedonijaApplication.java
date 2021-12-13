@@ -14,10 +14,6 @@ import java.io.IOException;
 public class MapedonijaApplication {
 
     public static void main(String[] args) throws IOException {
-        ClassLoader classLoader = MapedonijaApplication.class.getClassLoader();
-
-        //File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccountkey/serviceAccountKey.json")).getFile());
-
         File file = new File("src/main/resources/serviceAccountKey/serviceAccountKey.json");
         FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
 

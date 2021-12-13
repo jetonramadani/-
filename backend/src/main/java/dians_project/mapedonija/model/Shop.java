@@ -1,24 +1,28 @@
 package dians_project.mapedonija.model;
 
 import lombok.*;
-//import javax.persistence.*;
 
-//@Entity
+import java.util.ArrayList;
+import java.util.List;
+
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class Shop {
-    //@Id
-    //@Column(name = "id", nullable = false)
-    private String id;  //zaradi document_id
-    private String streetAddress;
-    private String emailAddress;
-    private String shopName;
-    private String phoneNumber;
+    private String id;
+    private String address;
+    private String email;
+    private String name;
+    private String phone;
     private String website;
-    private String workHours;
+    private String opening_hours;
     private String category;
     private double lat;
     private double lon;
+    private double avgGrade;
+    private List<Review> reviewList;
+
+    public Shop() {
+        this.reviewList = new ArrayList<>();
+    }
 }

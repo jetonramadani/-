@@ -1,13 +1,13 @@
 /* eslint-disable*/
 import "./App.css";
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import AddDataToDb from "./components/AddDataToDb";
-import {default as axios} from "./axiosConfig";
+import { default as axios } from "./axiosConfig";
 import StoreContainer from "./components/shops/StoreContainer";
 import SingleShop from "./components/shop/SingleShop";
 import DesktopHeader from "./components/header/DesktopHeader";
-import {dataActions} from "./store/data-slice";
-import {useDispatch} from "react-redux";
+import { dataActions } from "./store/data-slice";
+import { useDispatch } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -55,12 +55,14 @@ function App() {
         )}
       </div>
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
-      <Routes>
+
+      {/* <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/stores/:id" element={<SingleShop />} />
         <Route path="/" element={<Home />} />
-      </Routes>
+      </Routes> */}
+
       {/* <AddDataToDb /> */}
       {/* <Places /> */}
     </>

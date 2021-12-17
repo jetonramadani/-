@@ -24,7 +24,7 @@ public class ShopService {
     }
 
     public String createShop(Shop shop) throws ExecutionException, InterruptedException {
-        ApiFuture<DocumentReference> addedDocRef  = dbFirestore.collection("shops").add(shop);
+        ApiFuture<DocumentReference> addedDocRef = dbFirestore.collection("shops").add(shop);
         System.out.println("Added document with ID: " + addedDocRef.get().getId());
         return addedDocRef.get().getId();
     }
@@ -37,7 +37,7 @@ public class ShopService {
         if (document.exists()) {
             shop = document.toObject(Shop.class);
             //assert shop != null;
-            if(shop!=null){
+            if (shop != null) {
                 shop.setId(id);
                 return shop;
             }
@@ -81,7 +81,7 @@ public class ShopService {
 
     // in the refactor phase of the project this whole backend architecture is getting a makeover :P
     public List<String> getCategories() {
-        String [] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/categories.json", String[].class);
+        String[] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/categories.json", String[].class);
         if (cats == null) {
             throw new NullPointerException("No categories found");
         }
@@ -89,7 +89,7 @@ public class ShopService {
     }
 
     public List<String> getCities() {
-        String [] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/cities.json", String[].class);
+        String[] cats = restTemplate.getForObject("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/cities.json", String[].class);
         if (cats == null) {
             throw new NullPointerException("No categories found");
         }
@@ -106,7 +106,7 @@ public class ShopService {
     }
 
     //dali da se pravi proverka za dali se okej vneseni i prateni site atributi od review
-    public String addReviews(String id, Review review) throws ExecutionException, InterruptedException{
+    public String addReviews(String id, Review review) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         shop.getReviewList().add(review);
         updateShop(shop); //da se snimi vo databaza ovoj nov objekt
@@ -114,11 +114,11 @@ public class ShopService {
         return "added review to the shop and updated the average grade";
     }
 
-    public void updateAvgGrade(Shop shop){
+    public void updateAvgGrade(Shop shop) {
         double avgGrade;
         int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
-        avgGrade = (double) grades/shop.getReviewList().size();
-        dbFirestore.collection("shops").document(shop.getId()).update("avgGrade",avgGrade);
+        avgGrade = (double) grades / shop.getReviewList().size();
+        dbFirestore.collection("shops").document(shop.getId()).update("avgGrade", avgGrade);
     }
 
     public String deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {

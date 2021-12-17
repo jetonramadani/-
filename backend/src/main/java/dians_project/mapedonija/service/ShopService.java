@@ -36,8 +36,11 @@ public class ShopService {
         Shop shop;
         if (document.exists()) {
             shop = document.toObject(Shop.class);
-            shop.setId(id);
-            return shop;
+            //assert shop != null;
+            if(shop!=null){
+                shop.setId(id);
+                return shop;
+            }
         }
         return null;
     }
@@ -93,6 +96,7 @@ public class ShopService {
         return Arrays.asList(cats);
     }
 
+
     //promeni
 
 
@@ -117,5 +121,10 @@ public class ShopService {
         dbFirestore.collection("shops").document(shop.getId()).update("avgGrade",avgGrade);
     }
 
-
+    public String deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
+        Shop shop = getShopById(id);
+        shop.getReviewList().remove(reviewId);
+        updateShop(shop);
+        return "deleted review for the current shop";
+    }
 }

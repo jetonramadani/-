@@ -5,7 +5,6 @@ import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import dians_project.mapedonija.service.ShopService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -69,6 +68,11 @@ public class ShopController {
     @PostMapping("/{id}/add-review")    //treba da se prati shopId, i plus: username, comment, grade vo objekt
     public String addShopReview(@PathVariable String id, @RequestBody Review review) throws ExecutionException, InterruptedException{
         return shopService.addReviews(id,review);
+    }
+
+    @DeleteMapping("/{id}/delete-review")
+    public String deleteShopReview(@PathVariable String id, @RequestParam int reviewId)  throws ExecutionException, InterruptedException{
+        return shopService.deleteReview(id,reviewId);
     }
 
 

@@ -56,12 +56,12 @@ function App() {
       </div>
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
 
-      {/* <Routes>
+      <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/stores/:id" element={<SingleShop />} />
         <Route path="/" element={<Home />} />
-      </Routes> */}
+      </Routes>
 
       {/* <AddDataToDb /> */}
       {/* <Places /> */}

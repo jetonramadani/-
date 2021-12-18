@@ -2,14 +2,14 @@
 import React from "react";
 import "./desktopHeader.css";
 import photoImg from "../../assets/logo.png";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const Header = (props) => {
   return (
     <>
       <Link to="/" onClick={() => props.onClick("home")}>
         <img src={photoImg} className="imgStyle" />
       </Link>
-      <nav className="backgroundHeader">
+      <nav>
         <Link to="/" onClick={() => props.onClick("home")}>
           ДОМА
         </Link>

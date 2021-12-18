@@ -8,6 +8,7 @@ import SingleShop from "./components/shop/SingleShop";
 import DesktopHeader from "./components/header/DesktopHeader";
 import { dataActions } from "./store/data-slice";
 import { useDispatch } from "react-redux";
+import LoadingComponent from "./components/loading/LoadingComponent";
 import {
   BrowserRouter as Router,
   Route,
@@ -20,6 +21,7 @@ import About from "./components/about/About";
 function App() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("home");
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     if (location.pathname.startsWith("/store")) {
@@ -34,12 +36,14 @@ function App() {
       setActiveTab("");
     }
     const loadEffect = async () => {
+      setIsLoading(true);
       const cities = await axios.get("/shop/cities");
       dispatch(dataActions.addCities(cities.data || []));
       const categories = await axios.get("/shop/categories");
       dispatch(dataActions.addCategories(categories.data || []));
       const allShops = await axios.get("/shop/all");
       dispatch(dataActions.addPlaces(allShops.data || []));
+      setIsLoading(false);
     };
     loadEffect();
     // ON MOUNT CONSTRUCTOR
@@ -55,13 +59,13 @@ function App() {
         )}
       </div>
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
-
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/stores/:id" element={<SingleShop />} />
         <Route path="/" element={<Home />} />
       </Routes>
+      {isLoading && <LoadingComponent />}
 
       {/* <AddDataToDb /> */}
       {/* <Places /> */}

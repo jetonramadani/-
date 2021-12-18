@@ -39,18 +39,21 @@ function IconContainer(props) {
 IconContainer.propTypes = {
     value: PropTypes.number.isRequired,
 };
-const rateHandler = (event, value) => {
-    console.log(value)
-}
-export default function CustomRating() {
+const CustomRating = (props) => {
+    const rateHandler = (event, value) => {
+        props.onChange("rating", value)
+    }
     return (
         <Rating
             name="highlight-selected-only"
             defaultValue={3}
             IconContainerComponent={IconContainer}
             highlightSelectedOnly
+            value={props.value}
             onChange={rateHandler}
             size="large"
         />
     );
 }
+
+export default CustomRating;

@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {useParams} from "react-router";
-import {Link} from "react-router-dom";
-import {default as axios} from "../../axiosConfig";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { default as axios } from "../../axiosConfig";
 import Map from "../Map";
 import Information from "./Information";
+import ShopReview from "./ShopReview";
 import classes from "./SingleShop.module.scss";
 const SingleShop = (props) => {
   const [shopData, setShopData] = useState({});
   const [showMap, setShowMap] = useState(false);
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     const loadShop = async () => {
       const data = await axios.get(`/shop/get/${id}`);
@@ -38,7 +39,7 @@ const SingleShop = (props) => {
         </div>
         <h2>Comments and reviews:</h2>
         <p>Функционалноста ке биде имплементирана</p>
-        <Link
+        {/* <Link
           to="/stores"
           style={{
             textDecoration: "none",
@@ -50,7 +51,11 @@ const SingleShop = (props) => {
         >
           {" "}
           Вратисе кај сите продавници{" "}
-        </Link>
+
+        </Link> */}
+
+        <ShopReview />
+
       </div>
       <div className={classes.mydata}>
         {showMap ? (
@@ -69,6 +74,7 @@ const SingleShop = (props) => {
           "Loading..."
         )}
       </div>
+
     </div>
   );
 };

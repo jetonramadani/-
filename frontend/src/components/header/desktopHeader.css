@@ -3,7 +3,7 @@ nav {
   top: 5%;
   right: 0;
   left: 0;
-  width: 319px;
+  width: 400px;
   display: table;
   margin: 0 auto;
   transform: translateY(-50%);
@@ -71,7 +71,7 @@ nav a:nth-child(3):after {
 
 #indicator {
   position: absolute;
-  left: 5%;
+  left: 8%;
   display: none;
   bottom: 0;
   width: 30px;
@@ -102,7 +102,7 @@ nav a:nth-child(2):hover ~ #indicator {
 }
 
 nav a:nth-child(3):hover ~ #indicator {
-  left: 70%;
+  left: 78%;
   background: linear-gradient(130deg, purple, palevioletred);
   display: block;
 }

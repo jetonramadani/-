@@ -9,7 +9,7 @@ const Header = (props) => {
       <Link to="/" onClick={() => props.onClick("home")}>
         <img src={photoImg} className="imgStyle" />
       </Link>
-      <nav>
+      <nav >
         <Link to="/" onClick={() => props.onClick("home")}>
           ДОМА
         </Link>

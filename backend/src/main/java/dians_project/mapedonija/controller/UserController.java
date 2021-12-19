@@ -6,7 +6,6 @@ import dians_project.mapedonija.service.UserService;
 import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.ExecutionException;
 
 @RestController

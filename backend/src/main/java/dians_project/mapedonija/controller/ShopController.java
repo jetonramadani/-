@@ -1,5 +1,8 @@
 package dians_project.mapedonija.controller;
 
+import com.google.cloud.firestore.FieldValue;
+import com.google.protobuf.Timestamp;
+import com.google.protobuf.TimestampOrBuilder;
 import dians_project.mapedonija.model.DummyShop;
 import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
@@ -65,7 +68,7 @@ public class ShopController {
         return shopService.reviewList(id);
     }
 
-    @PostMapping("/{id}/add-review")    //treba da se prati shopId, i plus: username, comment, grade vo objekt
+    @PostMapping(value = "/{id}/add-review")    //treba da se prati shopId, i plus: username, comment, grade vo objekt
     public String addShopReview(@PathVariable String id, @RequestBody Review review) throws ExecutionException, InterruptedException{
         return shopService.addReviews(id,review);
     }

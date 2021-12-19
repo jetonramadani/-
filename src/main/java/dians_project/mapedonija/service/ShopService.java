@@ -71,7 +71,7 @@ public class ShopService {
 
     public Shop updateShop(Shop shop) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(shop.getId()).set(shop);
-        return dbFirestore.collection("shops").document(shop.getId()).get().get().toObject(Shop.class);
+        return shop;
     }
 
     public String deleteShop(String id) {

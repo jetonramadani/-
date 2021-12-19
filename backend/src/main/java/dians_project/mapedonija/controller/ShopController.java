@@ -56,7 +56,7 @@ public class ShopController {
     }
 
     @PutMapping("/update/{id}")
-    public String updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
+    public Shop updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
         return shopService.updateShop(shop);
     }
 
@@ -71,7 +71,7 @@ public class ShopController {
     }
 
     @DeleteMapping("/{id}/delete-review")
-    public String deleteShopReview(@PathVariable String id, @RequestParam int reviewId)  throws ExecutionException, InterruptedException{
+    public Shop deleteShopReview(@PathVariable String id, @RequestParam int reviewId)  throws ExecutionException, InterruptedException{
         return shopService.deleteReview(id,reviewId);
     }
 

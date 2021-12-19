@@ -13,10 +13,10 @@
   row-gap: 0.4rem;
   & > div {
     flex: 1 0 26%;
-    @media (max-width: 850px) {
+    @media (max-width: 1080px) {
       flex-basis: 34%;
     }
-    @media (max-width: 600px) {
+    @media (max-width: 700px) {
       flex-basis: 51%;
     }
   }
@@ -31,4 +31,10 @@
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  border: 1px solid black;
+}
+
+.reviews {
+  max-height: 500px;
+  overflow-y: auto;
 }

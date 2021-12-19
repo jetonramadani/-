@@ -77,7 +77,7 @@ const Place = (props) => {
             <ListItemText
               secondary={
                 <React.Fragment>
-                  <span className={classes.kmAway}>15 km</span>
+                  <span className={classes.kmAway}>{props.avgGrade}</span>
                 </React.Fragment>
               }
             />

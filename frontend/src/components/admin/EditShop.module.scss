@@ -1,0 +1,34 @@
+.closedPart {
+  padding: 10px;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.editFields {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.4rem;
+  row-gap: 0.4rem;
+  & > div {
+    flex: 1 0 26%;
+    @media (max-width: 850px) {
+      flex-basis: 34%;
+    }
+    @media (max-width: 600px) {
+      flex-basis: 51%;
+    }
+  }
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.openPart {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}

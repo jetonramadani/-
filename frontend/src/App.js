@@ -1,4 +1,3 @@
-/* eslint-disable*/
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import AddDataToDb from "./components/AddDataToDb";
@@ -9,6 +8,7 @@ import DesktopHeader from "./components/header/DesktopHeader";
 import { dataActions } from "./store/data-slice";
 import { useDispatch } from "react-redux";
 import LoadingComponent from "./components/loading/LoadingComponent";
+import AdminPanel from "./components/admin/AdminPanel";
 import {
   BrowserRouter as Router,
   Route,
@@ -61,11 +61,12 @@ function App() {
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
       <Routes>
         <Route path="/about" element={<About />} />
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/stores/:id" element={<SingleShop />} />
         <Route path="/" element={<Home />} />
       </Routes>
-      {isLoading && <LoadingComponent />}
+      {/* {isLoading && <LoadingComponent />} */}
 
       {/* <AddDataToDb /> */}
       {/* <Places /> */}

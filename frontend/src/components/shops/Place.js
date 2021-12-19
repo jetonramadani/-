@@ -1,7 +1,5 @@
-/* eslint-disable */
-
-import React, {useState, useEffect} from "react";
-import {makeStyles} from "@material-ui/core/styles";
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -10,7 +8,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import photo from "../../assets/supermarket.jpg";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",
@@ -51,7 +49,7 @@ const Place = (props) => {
   return (
     <Link
       to={`/stores/${props.id}`}
-      style={{textDecoration: "none", color: "inherit"}}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
       <List className={classes.root}>
         <ListItem alignItems="flex-start">

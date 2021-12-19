@@ -69,13 +69,13 @@ public class ShopService {
                 }).collect(Collectors.toList());
     }
 
-    public Shop updateShop(Shop shop) throws ExecutionException, InterruptedException {
+    public Shop updateShop(Shop shop) {
         dbFirestore.collection("shops").document(shop.getId()).set(shop);
         return shop;
     }
 
     public String deleteShop(String id) {
-        ApiFuture<WriteResult> writeResultApiFuture = dbFirestore.collection("shops").document(id).delete();
+        dbFirestore.collection("shops").document(id).delete();
         return "Successfully deleted shop with id: " + id;
     }
 
@@ -111,7 +111,7 @@ public class ShopService {
         shop.getReviewList().add(review);
         updateShop(shop); //da se snimi vo databaza ovoj nov objekt
         updateAvgGrade(shop);
-        return "added review to the shop and updated the average grade";
+        return "Successfully added a review to the shop and updated its average grade";
     }
 
     public void updateAvgGrade(Shop shop) {

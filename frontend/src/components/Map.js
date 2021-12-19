@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   GoogleMap,
   InfoWindow,
@@ -7,13 +7,12 @@ import {
   MarkerClusterer,
 } from "@react-google-maps/api";
 
-function Map({markers}) {
+function Map({ markers }) {
   const [activeMarker, setActiveMarker] = useState(null);
-  const {isLoaded} = useLoadScript({
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDaqcuqPLMXH1NOKt3fkYpdJb4tmttxfP8", // Add your API key
     language: "mk",
   });
-  console.log(markers);
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
       return;
@@ -23,7 +22,7 @@ function Map({markers}) {
 
   const handleOnLoad = (map) => {
     const bounds = new window.google.maps.LatLngBounds();
-    markers.forEach(({position}) => bounds.extend(position));
+    markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);
   };
   return isLoaded ? (
@@ -31,10 +30,10 @@ function Map({markers}) {
       <GoogleMap
         onLoad={handleOnLoad}
         onClick={() => setActiveMarker(null)}
-        mapContainerStyle={{width: "55vw", height: "100vh"}}
-        // center={{lat: 41.6086, lng: 21.7453}}
+        mapContainerStyle={{ width: "55vw", height: "100vh" }} // to be fixed with className
+      // center={{lat: 41.6086, lng: 21.7453}}
       >
-        {markers?.map(({id, name, position}) => (
+        {markers?.map(({ id, name, position }) => (
           <Marker
             key={id}
             position={position}

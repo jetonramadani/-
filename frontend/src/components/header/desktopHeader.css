@@ -115,3 +115,15 @@ nav a:nth-child(3):hover ~ #indicator {
   content: url("../../assets/whitelogo.png");
   cursor: pointer;
 }
+
+.headerStyle {
+  height: 80px;
+  background-color: #63a4ff;
+  background-image: linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%);
+}
+
+@media (max-width: 768px) {
+  .headerStyle {
+    display: none;
+  }
+}

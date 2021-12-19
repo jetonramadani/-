@@ -5,9 +5,9 @@ import photoImg from "../../assets/logo.png";
 import { Link } from "react-router-dom";
 const Header = (props) => {
   return (
-    <>
+    <div className="headerStyle">
       <Link to="/" onClick={() => props.onClick("home")}>
-        <img src={photoImg} className="imgStyle" />
+        <img src={photoImg} className="imgStyle" alt="logo" />
       </Link>
       <nav >
         <Link to="/" onClick={() => props.onClick("home")}>
@@ -21,7 +21,7 @@ const Header = (props) => {
         </Link>
         <div id="indicator"></div>
       </nav>
-    </>
+    </div>
   );
 };
 

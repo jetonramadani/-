@@ -4,7 +4,6 @@ import AddDataToDb from "./components/AddDataToDb";
 import { default as axios } from "./axiosConfig";
 import StoreContainer from "./components/shops/StoreContainer";
 import SingleShop from "./components/shop/SingleShop";
-import DesktopHeader from "./components/header/DesktopHeader";
 import { dataActions } from "./store/data-slice";
 import { useDispatch } from "react-redux";
 import LoadingComponent from "./components/loading/LoadingComponent";
@@ -18,6 +17,7 @@ import {
 } from "react-router-dom";
 import Home from "./components/homepage/Home";
 import About from "./components/about/About";
+import Header from "./components/header/Header";
 function App() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("home");
@@ -7246,9 +7246,9 @@ function App() {
   }, []);
   return (
     <>
-      <div className="headerStyle">
+      <div>
         {activeTab !== "404" && (
-          <DesktopHeader onClick={(value) => setActiveTab(value)} />
+          <Header onClick={(value) => setActiveTab(value)} />
         )}
       </div>
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}

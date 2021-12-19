@@ -3,18 +3,18 @@ import React from 'react'
 import Avatar from "@material-ui/core/Avatar";
 import Rating from "@mui/material/Rating";
 import classes from './SingleComment.module.scss'
-const SingleComment = () => {
+const SingleComment = (props) => {
     return (
         <div>
             <div className={classes.top}>
                 <Avatar alt='Avatar' className={classes.avatar} style={{ height: '50px', width: '50px' }} />
                 <div className={classes.profile}>
-                    <p className={classes.name} >Guxim Selmani</p>
-                    <Rating value={2} readOnly size='small' />
+                    <p className={classes.name} >{props.username}</p>
+                    <Rating value={props.grade} readOnly size='small' />
                 </div>
             </div>
             <div className={classes.bottom}>
-                <p className={classes.comment}>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                <p className={classes.comment}>{props.comment}</p>
             </div>
         </div>
     )

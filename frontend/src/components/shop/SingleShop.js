@@ -55,7 +55,9 @@ const SingleShop = (props) => {
         </Link> */}
 
         <ShopReview />
-        <SingleComment />
+        <div style={{ maxHeight: "500px", overflowY: "auto" }}>
+          {shopData?.reviewList?.map((review, index) => <SingleComment key={review.username + index} {...review} />)}
+        </div>
       </div>
       <div className={classes.mydata}>
         {showMap ? (

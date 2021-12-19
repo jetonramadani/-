@@ -62,8 +62,8 @@ const ShopReview = () => {
                         <FormControl component="fieldset" >
                             <FormLabel component="legend">Пол</FormLabel>
                             <RadioGroup row aria-label="gender" name="row-radio-buttons-group" value={formData.gender} onChange={(event) => setValue("gender", event.target.value)}>
-                                <FormControlLabel value={0} control={<Radio />} label="Женски" />
-                                <FormControlLabel value={1} control={<Radio />} label="Машки" />
+                                <FormControlLabel value={"female"} control={<Radio />} label="Женски" />
+                                <FormControlLabel value={"male"} control={<Radio />} label="Машки" />
                             </RadioGroup>
                         </FormControl>
                     </div>
@@ -97,7 +97,7 @@ const ShopReview = () => {
                         style={{ width: "45%" }}
                         disabled={hasError()}
                         onClick={() => {
-                            console.log(formData, "DATA");
+                            console.log({ ...formData, date: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0] }, "DATA");
                             setFormData({ ...initialFormData });
                             setAddButton(false);
                         }}

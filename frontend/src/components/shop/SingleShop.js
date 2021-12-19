@@ -5,6 +5,7 @@ import { default as axios } from "../../axiosConfig";
 import Map from "../Map";
 import Information from "./Information";
 import ShopReview from "./ShopReview";
+import SingleComment from "./SingleComment";
 import classes from "./SingleShop.module.scss";
 const SingleShop = (props) => {
   const [shopData, setShopData] = useState({});
@@ -54,7 +55,7 @@ const SingleShop = (props) => {
         </Link> */}
 
         <ShopReview />
-
+        <SingleComment />
       </div>
       <div className={classes.mydata}>
         {showMap ? (

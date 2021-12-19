@@ -9,7 +9,7 @@ import classes from "./StoreContainer.module.scss";
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
-const MultipleCheckboxes = ({onChange, label, value, listValue}) => {
+const MultipleCheckboxes = ({ onChange, label, value, listValue }) => {
   return (
     <Autocomplete
       multiple
@@ -20,12 +20,12 @@ const MultipleCheckboxes = ({onChange, label, value, listValue}) => {
       limitTags={1}
       onChange={onChange}
       value={value}
-      renderOption={(option, {selected}) => (
+      renderOption={(option, { selected }) => (
         <React.Fragment>
           <Checkbox
             icon={icon}
             checkedIcon={checkedIcon}
-            style={{marginRight: 8}}
+            style={{ marginRight: 8 }}
             checked={selected}
           />
           {option}

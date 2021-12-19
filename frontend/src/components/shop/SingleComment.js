@@ -7,9 +7,9 @@ const SingleComment = () => {
     return (
         <div>
             <div className={classes.top}>
-                <Avatar alt='Avatar' className={classes.avatar} />
+                <Avatar alt='Avatar' className={classes.avatar} style={{ height: '50px', width: '50px' }} />
                 <div className={classes.profile}>
-                    <p className={classes.name}>Guxim Selmani</p>
+                    <p className={classes.name} >Guxim Selmani</p>
                     <Rating value={2} readOnly size='small' />
                 </div>
             </div>

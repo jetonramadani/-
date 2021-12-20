@@ -18,6 +18,7 @@ import {
 import Home from "./components/homepage/Home";
 import About from "./components/about/About";
 import Header from "./components/header/Header";
+import Login from "./components/login/Login";
 function App() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState("home");
@@ -7255,6 +7256,7 @@ function App() {
       <Routes>
         <Route path="/about" element={<About />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/stores" element={<StoreContainer />} />
         <Route path="/stores/:id" element={<SingleShop />} />
         <Route path="/" element={<Home />} />

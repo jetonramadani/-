@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from "react";
 import {
   GoogleMap,
@@ -6,6 +7,7 @@ import {
   useLoadScript,
   MarkerClusterer,
 } from "@react-google-maps/api";
+import classes from './Map.module.scss';
 
 function Map({ markers }) {
   const [activeMarker, setActiveMarker] = useState(null);
@@ -26,11 +28,12 @@ function Map({ markers }) {
     map.fitBounds(bounds);
   };
   return isLoaded ? (
-    <>
+    <div className={classes.myMap}>
       <GoogleMap
         onLoad={handleOnLoad}
         onClick={() => setActiveMarker(null)}
-        mapContainerStyle={{ width: "55vw", height: "100vh" }} // to be fixed with className
+        mapContainerStyle={{ width: "100%", height: "100vh" }} // to be fixed with className
+
       // center={{lat: 41.6086, lng: 21.7453}}
       >
         {markers?.map(({ id, name, position }) => (
@@ -48,7 +51,7 @@ function Map({ markers }) {
           //   </MarkerClusterer>
         ))}
       </GoogleMap>
-    </>
+    </div>
   ) : null;
 }
 

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -9,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import photo from "../../assets/supermarket.jpg";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",

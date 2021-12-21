@@ -51,6 +51,9 @@ const ShopReview = () => {
                 <TextField
                     id="outlined-basic"
                     label="Име"
+                    InputLabelProps={{
+                        style: { color: 'white', fontWeight: 'bold' },
+                    }}
                     variant="outlined"
                     value={formData.username}
                     onChange={(event) => setValue("username", event.target.value)}
@@ -61,10 +64,10 @@ const ShopReview = () => {
                     <CustomRating onChange={setValue} value={formData.rating} />
                     <div style={{ marginLeft: '2rem' }}>
                         <FormControl component="fieldset" >
-                            <FormLabel component="legend">Пол</FormLabel>
-                            <RadioGroup row aria-label="gender" name="row-radio-buttons-group" value={formData.gender} onChange={(event) => setValue("gender", event.target.value)}>
-                                <FormControlLabel value={"female"} control={<Radio />} label="Женски" />
-                                <FormControlLabel value={"male"} control={<Radio />} label="Машки" />
+                            <FormLabel style={{ color: 'white' }} component="legend">Пол</FormLabel>
+                            <RadioGroup color='white' row aria-label="gender" name="row-radio-buttons-group" value={formData.gender} onChange={(event) => setValue("gender", event.target.value)}>
+                                <FormControlLabel value={"female"} control={<Radio style={{ color: 'white' }} />} label="Женски" />
+                                <FormControlLabel value={"male"} control={<Radio style={{ color: 'white' }} />} label="Машки" />
                             </RadioGroup>
                         </FormControl>
                     </div>
@@ -72,6 +75,9 @@ const ShopReview = () => {
                 <TextField
                     id="outlined-multiline-static"
                     label="Мислење"
+                    InputLabelProps={{
+                        style: { color: 'white', fontWeight: 'bold' },
+                    }}
                     multiline
                     rows={4}
                     variant="outlined"

@@ -5,7 +5,7 @@ import Rating from "@mui/material/Rating";
 import classes from './SingleComment.module.scss'
 const SingleComment = (props) => {
     return (
-        <div>
+        <div className={classes.singleComment}>
             <div className={classes.top}>
                 <Avatar alt='Avatar' className={classes.avatar} style={{ height: '50px', width: '50px' }} />
                 <div className={classes.profile}>
@@ -14,7 +14,7 @@ const SingleComment = (props) => {
                 </div>
             </div>
             <div className={classes.bottom}>
-                <p className={classes.comment}>{props.comment}</p>
+                <h2 className={classes.comment}>{props.comment}</h2>
             </div>
         </div>
     )

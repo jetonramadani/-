@@ -1,13 +1,36 @@
+$left-color: #242e4d;
+$right-color: #897e79;
+$green-dark: #35c3c1;
+$green-light: #00d6b7;
+$gray: #b6b6b6;
+$gray-light: #f5f6f8;
+.allShop {
+}
 .filters {
-  border: 1px solid black;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 8px;
   padding: 10px;
   margin-top: 2%;
   display: flex;
+  margin-left: 10px;
   flex-direction: column;
   row-gap: 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba($left-color, 0.9),
+    rgba($right-color, 0.9)
+  );
+  width: 94%;
 }
 .rate {
   display: flex;
   align-items: center;
   column-gap: 1rem;
+}
+.textfield {
+  background: $gray;
+  border-radius: 5px;
+  text-decoration-color: #f5f6f8;
 }

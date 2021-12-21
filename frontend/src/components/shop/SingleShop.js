@@ -38,7 +38,7 @@ const SingleShop = (props) => {
             <Information label="Веб страна:" value={shopData.website} />
           </div>
         </div>
-        <h2>Мислење и оценки:</h2>
+        <h2 style={{ marginLeft: '10px' }}>Мислење и оценки:</h2>
         {/* <Link
           to="/stores"
           style={{

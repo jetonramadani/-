@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -34,7 +35,7 @@ const ShopReview = () => {
         return false;
     }
     return (
-        <div >
+        <div className={classes.allShop}>
             {!addButton && <div>
                 <Button
                     variant="contained"
@@ -51,9 +52,9 @@ const ShopReview = () => {
                     id="outlined-basic"
                     label="Име"
                     variant="outlined"
-                    className={classes.textfield}
                     value={formData.username}
                     onChange={(event) => setValue("username", event.target.value)}
+                    className={classes.textfield}
                 />
                 <div className={classes.rate}>
                     <label>Оценка: </label>
@@ -76,6 +77,7 @@ const ShopReview = () => {
                     variant="outlined"
                     value={formData.comment}
                     onChange={(event) => setValue("comment", event.target.value)}
+                    className={classes.textfield}
                 />
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <Button

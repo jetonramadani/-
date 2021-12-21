@@ -1,12 +1,12 @@
 /* eslint-disable */
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import classes from "./StoreContainer.module.scss";
 import TextField from "@material-ui/core/TextField";
 import MultipleCheckboxes from "./MultipleCheckboxes";
 import useTranslate from "../../hooks/useTranslate";
-import {useSelector} from "react-redux";
-const Filters = ({applyFilter}) => {
+import { useSelector } from "react-redux";
+const Filters = ({ applyFilter }) => {
   const defaultState = {
     nameOrAddres: "",
     categories: [],
@@ -41,11 +41,11 @@ const Filters = ({applyFilter}) => {
           }
           value={filterData.nameOrAddres}
           className={classes.textField}
-          // helperText={
-          //   filterData.nameOrAddres
-          //     ? `Се бара: ${translate(filterData.nameOrAddres)}`
-          //     : ""
-          // }
+        // helperText={
+        //   filterData.nameOrAddres
+        //     ? `Се бара: ${translate(filterData.nameOrAddres)}`
+        //     : ""
+        // }
         />
       </form>
       <div className={classes.checkBoxes}>
@@ -70,12 +70,13 @@ const Filters = ({applyFilter}) => {
           label="Категорија"
           value={filterData.categories}
           listValue={categories}
+
         />
-        <div style={{display: "flex", flexDirection: "column", width: "35%"}}>
+        <div style={{ display: "flex", flexDirection: "column", width: "35%" }}>
           <Button
             variant="contained"
             color="primary"
-            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
+            style={{ width: "80%", marginRight: "6%", marginTop: "1%" }}
             size="large"
             onClick={() =>
               applyFilter({
@@ -91,10 +92,10 @@ const Filters = ({applyFilter}) => {
           <Button
             variant="contained"
             color="primary"
-            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
+            style={{ width: "80%", marginRight: "6%", marginTop: "1%" }}
             size="large"
             onClick={() => {
-              setFilterData({...defaultState});
+              setFilterData({ ...defaultState });
               applyFilter(defaultState);
             }}
           >

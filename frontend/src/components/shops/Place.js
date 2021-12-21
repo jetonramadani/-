@@ -10,14 +10,15 @@ import Typography from "@material-ui/core/Typography";
 import photo from "../../assets/supermarket.jpg";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { Link } from "react-router-dom";
-
+import Icon from '@mdi/react'
+import { mdiStar } from '@mdi/js';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",
     width: "100%",
     border: "1px solid black",
     maxWidth: "93%",
-    // backgroundColor: '#CFFFF6',
+    backgroundColor: '#DEF6FC',
     boxShadow:
       "rgba(0, 0, 0, 0.3) 0px 5px 20px, rgba(0, 0, 0, 0.22) 0px 2px 2px",
     "&:hover": {
@@ -42,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
   kmAway: {
     fontSize: "2rem",
+    display: 'flex',
+    flexDirection: 'row'
   },
 }));
 
@@ -75,11 +78,11 @@ const Place = (props) => {
               </React.Fragment>
             }
           />
-          <ListItemAvatar>
+          <ListItemAvatar >
             <ListItemText
               secondary={
-                <React.Fragment>
-                  <span className={classes.kmAway}>{props.avgGrade}</span>
+                <React.Fragment >
+                  <span className={classes.kmAway}>{props.avgGrade}<Icon path={mdiStar} size={1.6} color="yellow" /></span>
                 </React.Fragment>
               }
             />

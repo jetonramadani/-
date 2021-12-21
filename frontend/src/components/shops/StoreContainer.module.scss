@@ -36,9 +36,10 @@ body {
   .textField {
     width: 94%;
     margin-top: 10px;
+    background-color: rgb(253, 251, 251);
+    border-radius: 5px;
     & p {
       color: blue;
-      background-color: wheat;
       margin: 0;
     }
   }
@@ -51,4 +52,7 @@ body {
 .checkBoxStyle {
   width: 35%;
   margin-right: 5px;
+  background-color: rgb(253, 251, 251);
+  border-radius: 5px;
+  height: 100%;
 }

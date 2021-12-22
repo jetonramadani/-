@@ -58,7 +58,8 @@ public class ShopController {
         return shopService.deleteShop(id);
     }
 
-    @PutMapping("/update/{id}")
+    // beshe /update/{id} ama ne se koristeshe taa pateka
+    @PutMapping("/update")
     public Shop updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
         return shopService.updateShop(shop);
     }

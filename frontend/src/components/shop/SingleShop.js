@@ -1,7 +1,6 @@
-/* eslint-disable */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Link } from "react-router-dom";
+import LoadingComponent from "../loading/LoadingComponent";
 import { default as axios } from "../../axiosConfig";
 import Map from "../Map";
 import Information from "./Information";
@@ -21,7 +20,7 @@ const SingleShop = (props) => {
     loadShop();
   }, []);
   return (
-    <div className={classes.main}>
+    showMap ? <div className={classes.main}>
       <div className={classes.mydata}>
         <h1>{shopData.name}</h1>
         <div className={`${classes.submain}`}>
@@ -40,21 +39,6 @@ const SingleShop = (props) => {
           </div>
         </div>
         <h2 style={{ marginLeft: '10px' }}>Мислење и оценки:</h2>
-        {/* <Link
-          to="/stores"
-          style={{
-            textDecoration: "none",
-            color: "inherit",
-            padding: ".5rem",
-            background: "aqua",
-            borderRadius: "15px",
-          }}
-        >
-          {" "}
-          Вратисе кај сите продавници{" "}
-
-        </Link> */}
-
         <ShopReview />
         <div style={{ maxHeight: "500px", overflowY: "auto" }}>
           {shopData?.reviewList?.map((review, index) => <SingleComment key={review.username + index} {...review} />)}
@@ -75,11 +59,11 @@ const SingleShop = (props) => {
 
           />
         ) : (
-          "Loading..."
+          <LoadingComponent />
         )}
       </div>
 
-    </div>
+    </div> : <LoadingComponent />
   );
 };
 

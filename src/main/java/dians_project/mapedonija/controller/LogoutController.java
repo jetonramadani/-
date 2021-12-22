@@ -3,6 +3,7 @@ package dians_project.mapedonija.controller;
 import dians_project.mapedonija.model.User;
 import dians_project.mapedonija.service.AuthService;
 import org.apache.http.auth.InvalidCredentialsException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,8 @@ public class LogoutController {
     }
 
     @PostMapping
-    public String logout(HttpServletRequest request) throws ExecutionException, InterruptedException {
+    public HttpStatus logout(HttpServletRequest request) throws ExecutionException, InterruptedException {
         request.getSession().invalidate();
-        return "redirect:/login";
+        return HttpStatus.ACCEPTED;
     }
 }

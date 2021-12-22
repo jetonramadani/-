@@ -1,6 +1,5 @@
 package dians_project.mapedonija.controller;
 
-
 import dians_project.mapedonija.model.User;
 import dians_project.mapedonija.service.AuthService;
 import org.apache.http.auth.InvalidCredentialsException;
@@ -27,11 +26,18 @@ public class LoginController {
         try {
             u = this.authService.login(request.getParameter("username"), request.getParameter("password"));
             request.getSession().setAttribute("user", u);
-            return "redirect:https://mapedonija.herokuapp.com/";
+            return "redirect:https://mapedonija.herokuapp.com/admin";
         } catch (InvalidCredentialsException e) {
             return "redirect:/login";
         }
     }
 
-
+    @GetMapping("/isLoggedIn")
+    public String isLoggedIn(HttpServletRequest request) throws ExecutionException, InterruptedException{
+        User u = (User) request.getSession().getAttribute("user");
+        if (u==null)
+            return "redirect:/login";
+        else
+            return u.getUsername();
+    }
 }

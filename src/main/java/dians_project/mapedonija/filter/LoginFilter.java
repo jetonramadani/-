@@ -19,20 +19,25 @@ public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
 
-        HttpServletRequest request = (HttpServletRequest) servletRequest;       //vrsime kastiranje vo HttpServletRequest
-        HttpServletResponse response = (HttpServletResponse) servletResponse;   //vrsime kastiranje vo HttpServletResponse
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
 
-        User user = (User)request.getSession().getAttribute("user");        //kastirame vo user
+        User user = (User)request.getSession().getAttribute("user");
 
-        String path = request.getServletPath();         //se zema patekata koja ja prakjame
+        String path = request.getServletPath();
 
-        if(("/create".equals(path) ||
-                "/delete/**".equals(path) ||
-                "/update/**".equals(path) ||
-                "/**/delete-review".equals(path)) && user==null) {    //ako taa pateka ne e /login ili /main.css ili user da e null
-            response.sendRedirect("/login");    //ke go redirektirame kon /login stranickata, bidejki ovie se public strani i sekoj na niv moze da pristapi za da se logira i prodolzi so aktivnost
+        // /shop/create filterot raboti
+        // /shop/delete/** filterot ne znaeme dali raboti
+        // /shop/update filterot raboti
+        // */delete-review fitlerot ne raboti
+
+        if(("/shop/create".equals(path) ||
+                "/shop/delete/**".equals(path) ||
+                "/shop/update".equals(path) ||
+                "*/delete-review".equals(path)) && user==null) {
+            response.sendRedirect("/login");
         } else {
-            filterChain.doFilter(servletRequest,servletResponse);   //vo sprotivno prikazi filter i zabrani
+            filterChain.doFilter(servletRequest,servletResponse);
         }
     }
 

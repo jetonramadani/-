@@ -114,7 +114,7 @@ const ShopReview = ({ shopId, onAddReview }) => {
                         onClick={() => {
                             postReview({
                                 ...formData,
-                                date: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0]
+                                timestamp: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0]
                             })
                         }}
                     >

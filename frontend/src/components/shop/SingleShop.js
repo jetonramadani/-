@@ -11,9 +11,21 @@ const SingleShop = (props) => {
   const [shopData, setShopData] = useState({});
   const [showMap, setShowMap] = useState(false);
   const { id } = useParams();
+
+  function createSorter(dateParser) {
+    return function (a, b) {
+      var aDate = dateParser(a.timestamp);
+      var bDate = dateParser(b.timestamp);
+      return bDate.getTime() - aDate.getTime();
+    };
+  }
+
   useEffect(() => {
     const loadShop = async () => {
       const data = await axios.get(`/shop/get/${id}`);
+      data.data?.reviewList?.sort(createSorter(function (dateString) {
+        return new Date(dateString);
+      }));
       setShopData(data.data);
       setShowMap(true);
     };

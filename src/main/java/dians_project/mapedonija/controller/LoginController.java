@@ -23,19 +23,15 @@ public class LoginController {
     public String login(HttpServletRequest request) throws ExecutionException, InterruptedException {
         User u;
 
-        // TODO: tuka najv ke imame problemi so redirekcitie
+        // TODO: tuka moze da imame problemi so redirekcijata
         try {
             u = this.authService.login(request.getParameter("username"), request.getParameter("password"));
             request.getSession().setAttribute("user", u);
-            return "redirect:/home";
+            return "redirect:https://mapedonija.herokuapp.com/";
         } catch (InvalidCredentialsException e) {
             return "redirect:/login";
         }
     }
 
-    private boolean isLoggedIn() {
-        // TODO check if a user is in session
-        return false;
-    }
 
 }

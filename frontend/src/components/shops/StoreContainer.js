@@ -1,11 +1,12 @@
 /* eslint-disable */
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Places from "./Places";
 import Map from "../Map";
 import Filters from "./Filters";
 import classes from "./StoreContainer.module.scss";
-import {useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import useTranslate from "../../hooks/useTranslate";
+import LoadingComponent from "../loading/LoadingComponent";
 const StoreContainer = () => {
   const places = useSelector((state) => state.data.places);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
@@ -39,7 +40,7 @@ const StoreContainer = () => {
     setFilteredPlaces(helpArr);
   };
   return (
-    <div className={classes.main}>
+    places.length ? <div className={classes.main}>
       <div className={classes.mydata}>
         <Filters applyFilter={applyFilter} />
         <div className={classes.placesDiv}>
@@ -58,10 +59,10 @@ const StoreContainer = () => {
             }))}
           />
         ) : (
-          "Loading..."
+          <LoadingComponent />
         )}
       </div>
-    </div>
+    </div> : <LoadingComponent />
   );
 };
 

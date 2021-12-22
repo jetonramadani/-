@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
@@ -9,14 +8,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { width } from '@mui/system';
+import { default as axios } from "../../axiosConfig";
 const initialFormData = {
     username: "",
-    rating: 3,
+    grade: 3,
     comment: "",
     gender: ""
 }
-const ShopReview = () => {
+const ShopReview = ({ shopId, onAddReview }) => {
     const [addButton, setAddButton] = useState(false);
     const [formData, setFormData] = useState({ ...initialFormData })
     const setValue = (dataName, value) => {
@@ -25,10 +24,18 @@ const ShopReview = () => {
             [dataName]: value
         }))
     }
+    const postReview = async (review) => {
+        // setIsPosting
+        const res = await axios.post(`/shop/${shopId}/add-review`, review);
+        console.log(res.data);
+        // setIsPosting
+        onAddReview(formData);
+        setFormData({ ...initialFormData });
+        setAddButton(false);
+    }
     const hasError = () => {
         for (const key in formData) {
             if (formData[key] === "") {
-                console.log("TESTTT11", key)
                 return true;
             }
         }
@@ -61,7 +68,7 @@ const ShopReview = () => {
                 />
                 <div className={classes.rate}>
                     <label>Оценка: </label>
-                    <CustomRating onChange={setValue} value={formData.rating} />
+                    <CustomRating onChange={setValue} value={formData.grade} />
                     <div style={{ marginLeft: '2rem' }}>
                         <FormControl component="fieldset" >
                             <FormLabel style={{ color: 'white' }} component="legend">Пол</FormLabel>
@@ -105,9 +112,10 @@ const ShopReview = () => {
                         style={{ width: "45%" }}
                         disabled={hasError()}
                         onClick={() => {
-                            console.log({ ...formData, date: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0] }, "DATA");
-                            setFormData({ ...initialFormData });
-                            setAddButton(false);
+                            postReview({
+                                ...formData,
+                                date: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0]
+                            })
                         }}
                     >
                         Додади

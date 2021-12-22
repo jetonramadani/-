@@ -19,6 +19,13 @@ const SingleShop = (props) => {
     };
     loadShop();
   }, []);
+
+  const addReview = (data) => {
+    setShopData({
+      ...shopData,
+      reviewList: [data, ...(shopData?.reviewList || [])]
+    });
+  }
   return (
     showMap ? <div className={classes.main}>
       <div className={classes.mydata}>
@@ -39,7 +46,7 @@ const SingleShop = (props) => {
           </div>
         </div>
         <h2 style={{ marginLeft: '10px' }}>Мислење и оценки:</h2>
-        <ShopReview />
+        <ShopReview shopId={id} onAddReview={addReview} />
         <div style={{ maxHeight: "500px", overflowY: "auto" }}>
           {shopData?.reviewList?.map((review, index) => <SingleComment key={review.username + index} {...review} />)}
         </div>

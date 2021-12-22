@@ -41,7 +41,8 @@ IconContainer.propTypes = {
 };
 const CustomRating = (props) => {
     const rateHandler = (event, value) => {
-        props.onChange("rating", value)
+        props.onChange("grade", value)
+
     }
     return (
         <Rating

@@ -10,7 +10,13 @@ import dians_project.mapedonija.model.User;
 import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
@@ -33,6 +39,19 @@ public class AuthService {
                 .filter(i -> i.getUsername().equals(username) && i.getPassword().equals(password))
                 .findFirst()
                 .orElseThrow(InvalidCredentialsException::new);
+    }
+
+
+    private boolean isLoggedIn() {
+        RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
+        ServletRequestAttributes attributes = (ServletRequestAttributes) requestAttributes;
+
+        HttpServletRequest request = attributes.getRequest();
+        HttpSession httpSession = request.getSession(true);
+
+        User userObject = (User) httpSession.getAttribute("user");
+
+        return userObject == null;
     }
 
 }

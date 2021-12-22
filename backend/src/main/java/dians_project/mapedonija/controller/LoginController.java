@@ -3,13 +3,17 @@ package dians_project.mapedonija.controller;
 import dians_project.mapedonija.model.User;
 import dians_project.mapedonija.service.AuthService;
 import org.apache.http.auth.InvalidCredentialsException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin
 public class LoginController {
 
     private final AuthService authService;
@@ -19,16 +23,17 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(HttpServletRequest request) throws ExecutionException, InterruptedException {
+    public HttpStatus login(HttpServletRequest request, @RequestBody User userBody) throws ExecutionException, InterruptedException {
         User u;
 
-        // TODO: tuka moze da imame problemi so redirekcijata
         try {
-            u = this.authService.login(request.getParameter("username"), request.getParameter("password"));
+            u = this.authService.login(userBody.getUsername(), userBody.getPassword());
             request.getSession().setAttribute("user", u);
-            return "redirect:https://mapedonija.herokuapp.com/admin";
+
+            return HttpStatus.ACCEPTED;
+
         } catch (InvalidCredentialsException e) {
-            return "redirect:/login";
+            return HttpStatus.NOT_ACCEPTABLE;
         }
     }
 
@@ -36,7 +41,7 @@ public class LoginController {
     public String isLoggedIn(HttpServletRequest request) throws ExecutionException, InterruptedException{
         User u = (User) request.getSession().getAttribute("user");
         if (u==null)
-            return "redirect:/login";
+            return HttpStatus.TEMPORARY_REDIRECT.toString();
         else
             return u.getUsername();
     }

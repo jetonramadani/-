@@ -16,15 +16,15 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Service
-public class UserService {
+public class AuthService {
     Firestore dbFirestore = FirestoreClient.getFirestore();
-    private final RestTemplate restTemplate;
 
-    public UserService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
+    public User login(String username, String password) throws ExecutionException, InterruptedException, InvalidCredentialsException {
 
-    public User getUser(String username, String password) throws ExecutionException, InterruptedException, InvalidCredentialsException {
+        if (username == null || username.isEmpty() || password == null || password.isEmpty() ) {
+            throw new InvalidCredentialsException();
+        }
+
         ApiFuture<QuerySnapshot> future = dbFirestore.collection("users").get();
         List<QueryDocumentSnapshot> documents = future.get().getDocuments();
         List<User> users = documents.stream().map(i -> i.toObject(User.class)).collect(Collectors.toList());

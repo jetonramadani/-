@@ -96,10 +96,6 @@ public class ShopService {
         return Arrays.asList(cats);
     }
 
-
-    //promeni
-
-
     public List<Review> reviewList(String id) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         return shop.getReviewList();
@@ -127,4 +123,6 @@ public class ShopService {
         updateShop(shop);
         return shop;
     }
+
+    //za createShop,
 }

@@ -48,7 +48,7 @@ public class LoginController {
         String[] tokenTime = token.split("###", 2);
         LocalDateTime tokenDateTime = LocalDateTime.parse(tokenTime[1], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
-        if (tokenDateTime.isBefore(LocalDateTime.now(ZoneId.of("GMT")))) {
+        if (tokenDateTime.isBefore(LocalDateTime.now(ZoneId.of("GMT+1")))) {
             return HttpStatus.TEMPORARY_REDIRECT.toString();
         } else {
             return token;

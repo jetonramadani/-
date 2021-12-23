@@ -4,16 +4,28 @@ import classes from "./AdminPanel.module.scss";
 import EditShop from './EditShop';
 import { default as axios } from "../../axiosConfig";
 import { Navigate } from "react-router";
-
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+}
 const AdminPanel = () => {
     const [user, setUser] = useState("");
+    const [redirectToLogin, setRedirectToLogin] = useState(false);
     useEffect(() => {
         const effect = async () => {
-            const res = axios.get("/login/isLoggedIn");
-            if (!res.data) {
-                setUser("redirect:/login")
-            } else {
-                setUser(res.data);
+            const res = await axios.get("/login/isLoggedIn", {
+                headers: {
+                    loginToken: getCookie("loginToken"),
+                }
+            });
+            if (res.data === "307 TEMPORARY_REDIRECT") {
+                setRedirectToLogin(true);
             }
         }
         effect();
@@ -22,8 +34,7 @@ const AdminPanel = () => {
         }
     }, [])
     const places = useSelector((state) => state.data.places);
-    console.log(user)
-    if (user === "redirect:/login") {
+    if (redirectToLogin) {
         return <Navigate to="/login" />
     }
     return (

@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -23,26 +27,25 @@ public class LoginController {
     }
 
     @PostMapping
-    public HttpStatus login(HttpServletRequest request, @RequestBody User userBody) throws ExecutionException, InterruptedException {
-        User u;
-
+    public HttpStatus login(@RequestBody User userBody) throws ExecutionException, InterruptedException {
         try {
-            u = this.authService.login(userBody.getUsername(), userBody.getPassword());
-            request.getSession().setAttribute("user", u);
-
+            this.authService.login(userBody.getUsername(), userBody.getPassword());
             return HttpStatus.ACCEPTED;
-
         } catch (InvalidCredentialsException e) {
             return HttpStatus.NOT_ACCEPTABLE;
         }
     }
 
     @GetMapping("/isLoggedIn")
-    public String isLoggedIn(HttpServletRequest request) throws ExecutionException, InterruptedException{
-        User u = (User) request.getSession().getAttribute("user");
-        if (u==null)
+    public String isLoggedIn(HttpServletRequest request) {
+        String token = request.getHeader("loginToken");
+        String[] tokenTime = token.split("###", 2);
+        LocalDateTime tokenDateTime = LocalDateTime.parse(tokenTime[1], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+        if (tokenDateTime.isBefore(LocalDateTime.now())) {
             return HttpStatus.TEMPORARY_REDIRECT.toString();
-        else
-            return u.getUsername();
+        } else {
+            return token;
+        }
     }
 }

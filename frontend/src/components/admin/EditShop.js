@@ -181,6 +181,7 @@ const EditShop = (props) => {
                             style={{ width: "45%" }}
                             onClick={() => {
                                 // setFormData({});
+                                props.update(formData);
                             }}
                         >
                             Промени

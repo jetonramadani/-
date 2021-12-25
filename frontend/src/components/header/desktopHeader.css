@@ -127,3 +127,10 @@ nav a:nth-child(3):hover ~ #indicator {
     display: none;
   }
 }
+.adminStyle {
+  float: right;
+  text-decoration: none;
+  justify-content: center;
+  top: 20%;
+  right: 2%;
+}

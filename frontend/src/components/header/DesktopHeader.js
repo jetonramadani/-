@@ -3,6 +3,7 @@ import React from "react";
 import "./desktopHeader.css";
 import photoImg from "../../assets/logo.png";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 const Header = (props) => {
   return (
     <div className="headerStyle">
@@ -21,6 +22,19 @@ const Header = (props) => {
         </Link>
         <div id="indicator"></div>
       </nav>
+      <Link to="/admin" onClick={() => props.onClick("admin")} >
+        <Button
+          variant="contained"
+          color='secondary'
+
+          size="large"
+          // onClick={ }
+          //disabled={ }
+          className="adminStyle"
+        >
+          Admin
+        </Button>
+      </Link>
     </div>
   );
 };

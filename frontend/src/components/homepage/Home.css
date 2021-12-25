@@ -20,3 +20,6 @@
 .categories {
   text-align: center;
 }
+.prevnext {
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import SelectInput from './SelectInput';
 import { useSelector, useDispatch } from 'react-redux';
 import { default as axios } from "../../axiosConfig";
 import { dataActions } from "../../store/data-slice";
+import LoadingComponent from '../loading/LoadingComponent';
 const initialFormData = {
     "address": "",
     "email": null,
@@ -32,6 +33,7 @@ function getCookie(cName) {
 const AddShop = (props) => {
     const [addButton, setAddButton] = useState(false);
     const [formData, setFormData] = useState({ ...initialFormData })
+    const [loading, setLoading] = useState(false);
     const categories = useSelector((state) => state.data.categories);
     const dispatch = useDispatch();
     const setValue = (dataName, value) => {
@@ -41,18 +43,20 @@ const AddShop = (props) => {
         }))
     }
     const postShop = async (shopData) => {
+        setLoading(true);
         const res = await axios.post(`/shop/create`, shopData, {
             headers: {
                 loginToken: getCookie("loginToken"),
             }
         });
-        if (res.data === null) {
+        if (!res.data) {
             props.redirect();
         } else {
             dispatch(dataActions.addPlace(res.data))
             setFormData({ ...initialFormData });
             setAddButton(false);
         }
+        setLoading(false);
     }
 
     const hasError = () => {
@@ -71,137 +75,138 @@ const AddShop = (props) => {
                     Додади нова продавница
                 </Button>
             </div>}
-            {addButton && <div className={classes.filters}>
-                <div className={classes.editFields}>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Име на продавница"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.name}
-                            onChange={(event) => setValue("name", event.target.value)}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Адреса на продавница"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.address}
-                            onChange={(event) => setValue("address", event.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <SelectInput name="Категорија" data={categories} value={formData.category} onChange={(event) => setValue("category", event.target.value)} />
-                    </div>
+            {addButton && (!loading ?
+                <div className={classes.filters}>
+                    <div className={classes.editFields}>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Име на продавница"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.name}
+                                onChange={(event) => setValue("name", event.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Адреса на продавница"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.address}
+                                onChange={(event) => setValue("address", event.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <SelectInput name="Категорија" data={categories} value={formData.category} onChange={(event) => setValue("category", event.target.value)} />
+                        </div>
 
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Tелефонски број"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.phone}
-                            onChange={(event) => setValue("phone", event.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="E-mail"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.email}
-                            onChange={(event) => setValue("email", event.target.value)}
-                            type="email"
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Latitude"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.lat}
-                            onChange={(event) => setValue("lat", event.target.value)}
-                            type="number"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Longitude"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.lon}
-                            onChange={(event) => setValue("lon", event.target.value)}
-                            type="number"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Веб страна"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.website}
-                            onChange={(event) => setValue("website", event.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <TextField
-                            id="outlined-basic"
-                            label="Работно време"
-                            variant="outlined"
-                            fullWidth={true}
-                            className={classes.textfield}
-                            value={formData.opening_hours}
-                            onChange={(event) => setValue("opening_hours", event.target.value)}
-                        />
-                    </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Tелефонски број"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.phone}
+                                onChange={(event) => setValue("phone", event.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="E-mail"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.email}
+                                onChange={(event) => setValue("email", event.target.value)}
+                                type="email"
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Latitude"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.lat}
+                                onChange={(event) => setValue("lat", event.target.value)}
+                                type="number"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Longitude"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.lon}
+                                onChange={(event) => setValue("lon", event.target.value)}
+                                type="number"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Веб страна"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.website}
+                                onChange={(event) => setValue("website", event.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <TextField
+                                id="outlined-basic"
+                                label="Работно време"
+                                variant="outlined"
+                                fullWidth={true}
+                                className={classes.textfield}
+                                value={formData.opening_hours}
+                                onChange={(event) => setValue("opening_hours", event.target.value)}
+                            />
+                        </div>
 
-                </div>
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <Button
-                        variant="contained"
-                        // color="secondary"
-                        size="medium"
-                        style={{ width: "45%" }}
-                        onClick={() => {
-                            setAddButton(false);
-                            setFormData({ ...initialFormData })
-                        }}
-                    >
-                        Откажи
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        style={{ width: "45%" }}
-                        disabled={hasError()}
-                        onClick={() => {
-                            postShop({
-                                ...formData,
-                            })
-                        }}
-                    >
-                        Додади
-                    </Button> {/** TO BE IMPLEMENTED */}
-                </div>
-            </div>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Button
+                            variant="contained"
+                            // color="secondary"
+                            size="medium"
+                            style={{ width: "45%" }}
+                            onClick={() => {
+                                setAddButton(false);
+                                setFormData({ ...initialFormData })
+                            }}
+                        >
+                            Откажи
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="medium"
+                            style={{ width: "45%" }}
+                            disabled={hasError()}
+                            onClick={() => {
+                                postShop({
+                                    ...formData,
+                                })
+                            }}
+                        >
+                            Додади
+                        </Button> {/** TO BE IMPLEMENTED */}
+                    </div>
+                </div> : <LoadingComponent />)
             }
         </div >
     )

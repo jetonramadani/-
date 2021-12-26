@@ -33,7 +33,7 @@ const AdminPanel = () => {
                 loginToken: getCookie("loginToken"),
             }
         });
-        if (res.data === null) {
+        if (!res.data) {
             setRedirectToLogin(true);
         } else {
             dispatch(dataActions.updatePlace({ ...res.data }));
@@ -118,7 +118,7 @@ const AdminPanel = () => {
             {loading ? <LoadingComponent /> : <>
                 <Filters applyFilter={applyFilter} />
                 <AddShop redirect={() => setRedirectToLogin(true)} />
-                {filteredPlaces?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} delete={deleteShop} />)}
+                {filteredPlaces?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} delete={deleteShop} redirect={() => setRedirectToLogin(true)} />)}
             </>}
         </div>
     )

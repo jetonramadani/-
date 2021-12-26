@@ -9,6 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { default as axios } from "../../axiosConfig";
+import LoadingComponent from '../loading/LoadingComponent';
 const initialFormData = {
     username: "",
     grade: 3,
@@ -18,6 +19,7 @@ const initialFormData = {
 const ShopReview = ({ shopId, onAddReview }) => {
     const [addButton, setAddButton] = useState(false);
     const [formData, setFormData] = useState({ ...initialFormData })
+    const [isLoading, setIsLoading] = useState(false)
     const setValue = (dataName, value) => {
         setFormData((prev) => ({
             ...prev,
@@ -25,13 +27,14 @@ const ShopReview = ({ shopId, onAddReview }) => {
         }))
     }
     const postReview = async (review) => {
-        // setIsPosting
+        setIsLoading(true);
         const res = await axios.post(`/shop/${shopId}/add-review`, review);
-        console.log(res.data);
-        // setIsPosting
-        onAddReview(formData);
-        setFormData({ ...initialFormData });
-        setAddButton(false);
+        if (res.data === "OK") {
+            onAddReview(formData);
+            setFormData({ ...initialFormData });
+            setAddButton(false);
+        }
+        setIsLoading(false);
     }
     const hasError = () => {
         for (const key in formData) {
@@ -54,74 +57,75 @@ const ShopReview = ({ shopId, onAddReview }) => {
                     Додади
                 </Button>
             </div>}
-            {addButton && <div className={classes.filters}>
-                <TextField
-                    id="outlined-basic"
-                    label="Име"
-                    InputLabelProps={{
-                        style: { color: 'white', fontWeight: 'bold' },
-                    }}
-                    variant="outlined"
-                    value={formData.username}
-                    onChange={(event) => setValue("username", event.target.value)}
-                    className={classes.textfield}
-                />
-                <div className={classes.rate}>
-                    <label>Оценка: </label>
-                    <CustomRating onChange={setValue} value={formData.grade} />
-                    <div style={{ marginLeft: '2rem' }}>
-                        <FormControl component="fieldset" >
-                            <FormLabel style={{ color: 'white' }} component="legend">Пол</FormLabel>
-                            <RadioGroup color='white' row aria-label="gender" name="row-radio-buttons-group" value={formData.gender} onChange={(event) => setValue("gender", event.target.value)}>
-                                <FormControlLabel value={"female"} control={<Radio style={{ color: 'white' }} />} label="Женски" />
-                                <FormControlLabel value={"male"} control={<Radio style={{ color: 'white' }} />} label="Машки" />
-                            </RadioGroup>
-                        </FormControl>
+            {addButton &&
+                (isLoading ? <LoadingComponent /> : <div className={classes.filters}>
+                    <TextField
+                        id="outlined-basic"
+                        label="Име"
+                        InputLabelProps={{
+                            style: { color: 'white', fontWeight: 'bold' },
+                        }}
+                        variant="outlined"
+                        value={formData.username}
+                        onChange={(event) => setValue("username", event.target.value)}
+                        className={classes.textfield}
+                    />
+                    <div className={classes.rate}>
+                        <label>Оценка: </label>
+                        <CustomRating onChange={setValue} value={formData.grade} />
+                        <div style={{ marginLeft: '2rem' }}>
+                            <FormControl component="fieldset" >
+                                <FormLabel style={{ color: 'white' }} component="legend">Пол</FormLabel>
+                                <RadioGroup color='white' row aria-label="gender" name="row-radio-buttons-group" value={formData.gender} onChange={(event) => setValue("gender", event.target.value)}>
+                                    <FormControlLabel value={"female"} control={<Radio style={{ color: 'white' }} />} label="Женски" />
+                                    <FormControlLabel value={"male"} control={<Radio style={{ color: 'white' }} />} label="Машки" />
+                                </RadioGroup>
+                            </FormControl>
+                        </div>
                     </div>
-                </div>
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Мислење"
-                    InputLabelProps={{
-                        style: { color: 'white', fontWeight: 'bold' },
-                    }}
-                    multiline
-                    rows={4}
-                    variant="outlined"
-                    value={formData.comment}
-                    onChange={(event) => setValue("comment", event.target.value)}
-                    className={classes.textfield}
-                />
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <Button
-                        variant="contained"
-                        // color="secondary"
-                        size="medium"
-                        style={{ width: "45%" }}
-                        onClick={() => {
-                            setAddButton(false);
-                            setFormData({ ...initialFormData })
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Мислење"
+                        InputLabelProps={{
+                            style: { color: 'white', fontWeight: 'bold' },
                         }}
-                    >
-                        Откажи
-                    </Button>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        size="medium"
-                        style={{ width: "45%" }}
-                        disabled={hasError()}
-                        onClick={() => {
-                            postReview({
-                                ...formData,
-                                timestamp: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0]
-                            })
-                        }}
-                    >
-                        Додади
-                    </Button> {/** TO BE IMPLEMENTED */}
-                </div>
-            </div>
+                        multiline
+                        rows={4}
+                        variant="outlined"
+                        value={formData.comment}
+                        onChange={(event) => setValue("comment", event.target.value)}
+                        className={classes.textfield}
+                    />
+                    <div style={{ display: "flex", justifyContent: "space-between" }}>
+                        <Button
+                            variant="contained"
+                            // color="secondary"
+                            size="medium"
+                            style={{ width: "45%" }}
+                            onClick={() => {
+                                setAddButton(false);
+                                setFormData({ ...initialFormData })
+                            }}
+                        >
+                            Откажи
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            size="medium"
+                            style={{ width: "45%" }}
+                            disabled={hasError()}
+                            onClick={() => {
+                                postReview({
+                                    ...formData,
+                                    timestamp: new Date().toLocaleString("sv-SE").replace(" ", "T").split(".")[0]
+                                })
+                            }}
+                        >
+                            Додади
+                        </Button> {/** TO BE IMPLEMENTED */}
+                    </div>
+                </div>)
             }
         </div >
     )

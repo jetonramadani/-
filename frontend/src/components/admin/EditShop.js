@@ -22,8 +22,10 @@ const EditShop = (props) => {
     const [showEditPart, setShowEditPart] = useState(false);
     const [showReviews, setShowReviews] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [reviewLoading, setReviewLoading] = useState(false);
     const [formData, setFormData] = useState({})
     const categories = useSelector((state) => state.data.categories);
+
     const setValue = (dataName, value) => {
         setFormData((prev) => ({
             ...prev,
@@ -40,16 +42,24 @@ const EditShop = (props) => {
     }
 
     const removeReview = async (reviewId) => {
+        setReviewLoading(true);
         const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`, {
             headers: {
                 loginToken: getCookie("loginToken"),
             }
         });
 
-        setFormData((prev) => ({
-            ...prev,
-            reviewList: res.data,
-        }))
+        if (!res.data) {
+            props.redirect();
+        } else {
+            setFormData((prev) => ({
+                ...prev,
+                reviewList: res.data,
+            }))
+        }
+
+
+        setReviewLoading(false);
     }
 
 
@@ -181,10 +191,11 @@ const EditShop = (props) => {
                         </div>
 
                     </div>
-                    <Button variant="contained" size="large" color="" onClick={() => setShowReviews((prev) => !prev)}>{showReviews ? "Затвори" : "Прикажи"} секција за мислења</Button>
-                    {showReviews && <div className={classes.reviews}>
-                        {formData?.reviewList?.map((review, index) => <EditReview key={review.username + index} id={index} {...review} onDelete={removeReview} />)}
-                    </div>}
+                    {formData?.reviewList?.length > 0 && <Button variant="contained" size="large" color="" onClick={() => setShowReviews((prev) => !prev)}>{showReviews ? "Затвори" : "Прикажи"} секција за мислења</Button>}
+                    {showReviews &&
+                        (reviewLoading ? <LoadingComponent /> : <div className={classes.reviews}>
+                            {formData?.reviewList?.map((review, index) => <EditReview key={review.username + index} id={index} {...review} onDelete={removeReview} />)}
+                        </div>)}
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button
                             variant="contained"

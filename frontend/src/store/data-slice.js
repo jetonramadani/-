@@ -19,7 +19,7 @@ const dataSlice = createSlice({
     },
     updatePlace(state, action) {
       state.places = state.places?.map(place => {
-        if (place === action.payload.id) {
+        if (place.id === action.payload.id) {
           return {
             ...action.payload
           }

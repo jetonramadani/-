@@ -25,11 +25,11 @@ public class ShopController {
     }
 
     @PostMapping("/create")
-    public String createShop(@RequestBody Shop shop, HttpServletRequest request) throws InterruptedException, ExecutionException {
+    public DummyShop createShop(@RequestBody Shop shop, HttpServletRequest request) throws InterruptedException, ExecutionException {
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             return shopService.createShop(shop);
         } else {
-            return "User timed out";
+            return null;
         }
     }
 
@@ -63,13 +63,13 @@ public class ShopController {
     }
 
     @PutMapping("/update/{id}")
-    public HttpStatus updateShop(@PathVariable String id, @RequestBody Map<String, Object> shop, HttpServletRequest request) {
+    public DummyShop updateShop(@PathVariable String id, @RequestBody Map<String, Object> shop, HttpServletRequest request) throws ExecutionException, InterruptedException {
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             shop.remove("id");
             shop.remove("reviewList");
             return shopService.updateShop(shop, id);
         } else {
-            return HttpStatus.UNAUTHORIZED;
+            return null;
         }
     }
 

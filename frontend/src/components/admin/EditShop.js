@@ -8,6 +8,16 @@ import SelectInput from './SelectInput';
 import { useSelector } from 'react-redux';
 import { default as axios } from "../../axiosConfig";
 import EditReview from './EditReview';
+function getCookie(cName) {
+    const name = cName + "=";
+    const cDecoded = decodeURIComponent(document.cookie); //to be careful
+    const cArr = cDecoded.split('; ');
+    let res;
+    cArr.forEach(val => {
+        if (val.indexOf(name) === 0) res = val.substring(name.length);
+    })
+    return res
+}
 const EditShop = (props) => {
     const [showEditPart, setShowEditPart] = useState(false);
     const [showReviews, setShowReviews] = useState(false);
@@ -28,6 +38,20 @@ const EditShop = (props) => {
         setFormData(shop.data);
         setIsLoading(false);
     }
+
+    const removeReview = async (reviewId) => {
+        const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`, {}, {
+            headers: {
+                loginToken: getCookie("loginToken"),
+            }
+        });
+
+        setFormData((prev) => ({
+            ...prev,
+            reviewList: res.data,
+        }))
+    }
+
 
     return (
         <div >
@@ -156,9 +180,9 @@ const EditShop = (props) => {
                         </div>
 
                     </div>
-                    <div onClick={() => setShowReviews((prev) => !prev)}>{showReviews ? "Затвори" : "Прикажи"} секција за мислења</div>
+                    <Button variant="contained" size="large" color="" onClick={() => setShowReviews((prev) => !prev)}>{showReviews ? "Затвори" : "Прикажи"} секција за мислења</Button>
                     {showReviews && <div className={classes.reviews}>
-                        {formData?.reviewList?.map((review, index) => <EditReview key={review.username + index} id={index} {...review} />)}
+                        {formData?.reviewList?.map((review, index) => <EditReview key={review.username + index} id={index} {...review} onDelete={removeReview} />)}
                     </div>}
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button

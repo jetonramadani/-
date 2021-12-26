@@ -11,6 +11,7 @@ const EditReview = (props) => {
                 variant="contained"
                 color="secondary"
                 size="large"
+                onClick={props.onDelete.bind(this, props.id)}
             >
                 Избриши
             </Button>

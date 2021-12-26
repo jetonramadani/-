@@ -30,6 +30,7 @@ const AdminPanel = () => {
             setRedirectToLogin(true);
         }
     }
+
     const [user, setUser] = useState("");
     const [redirectToLogin, setRedirectToLogin] = useState(false);
     const [loading, setLoading] = useState(true);

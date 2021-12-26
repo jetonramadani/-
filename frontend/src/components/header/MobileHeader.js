@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import Button from "@material-ui/core/Button";
 import "./mobileHeader.css";
 import photoImg from "../../assets/logo.png";
 const MobileHeader = (props) => {
@@ -44,6 +45,21 @@ const MobileHeader = (props) => {
                             ЗА НАС
                         </Link>
                     </li>
+                    <br />
+                    <Link to="/admin" className='admin-button' onClick={() => {
+                        toggleMenu();
+                        props.onClick("admin")
+                    }}>
+                        <Button
+                            variant="contained"
+                            color='secondary'
+                            size="large"
+                            className='menu-button'
+                        >
+                            Admin
+                        </Button>
+
+                    </Link>
                 </ul>
             </div>
         </div >

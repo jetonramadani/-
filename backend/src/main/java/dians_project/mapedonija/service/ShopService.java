@@ -28,6 +28,7 @@ public class ShopService {
 
     public DummyShop createShop(Shop shop) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentReference> addedDocRef = dbFirestore.collection("shops").add(shop);
+        wait(1000);
         return getDummyShopById(addedDocRef.get().getId());
     }
 

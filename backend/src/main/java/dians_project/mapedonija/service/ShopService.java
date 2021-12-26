@@ -111,14 +111,8 @@ public class ShopService {
         List<Review> reviews = shop.getReviewList();
         reviews.add(review);
         updateReviewList(id, reviews);
+        updateAvgGrade(shop);
         return "Successfully added a review to the shop and updated its average grade";
-    }
-
-    public void updateAvgGrade(Shop shop) {
-        double avgGrade;
-        int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
-        avgGrade = (double) grades / shop.getReviewList().size();
-        dbFirestore.collection("shops").document(shop.getId()).update("avgGrade", avgGrade);
     }
 
     public List<Review> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
@@ -126,7 +120,15 @@ public class ShopService {
         List<Review> reviews = shop.getReviewList();
         reviews.remove(reviewId);
         updateReviewList(id, reviews);
+        updateAvgGrade(shop);
         return reviews;
+    }
+
+    public void updateAvgGrade(Shop shop) {
+        double avgGrade;
+        int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
+        avgGrade = (double) grades / shop.getReviewList().size();
+        dbFirestore.collection("shops").document(shop.getId()).update("avgGrade", avgGrade);
     }
 
     private void updateReviewList(String id, List<Review> reviews) {

@@ -4,6 +4,7 @@ import classes from "./AdminPanel.module.scss";
 import EditShop from './EditShop';
 import { default as axios } from "../../axiosConfig";
 import { Navigate } from "react-router";
+import LoadingComponent from "../loading/LoadingComponent";
 const AdminPanel = () => {
     function getCookie(cName) {
         const name = cName + "=";
@@ -18,7 +19,7 @@ const AdminPanel = () => {
 
 
     const updateShop = async (shopData) => {
-        const res = await axios.put("/shop/update", {
+        const res = await axios.put(`/shop/update/${shopData.id}`, {
             ...shopData,
         }, {
             headers: {
@@ -31,6 +32,7 @@ const AdminPanel = () => {
     }
     const [user, setUser] = useState("");
     const [redirectToLogin, setRedirectToLogin] = useState(false);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const effect = async () => {
             const res = await axios.get("/login/isLoggedIn", {
@@ -41,6 +43,7 @@ const AdminPanel = () => {
             if (res.data === "307 TEMPORARY_REDIRECT") {
                 setRedirectToLogin(true);
             }
+            setLoading(false);
         }
         effect();
         return () => {
@@ -53,7 +56,7 @@ const AdminPanel = () => {
     }
     return (
         <div className={classes.wrapper}>
-            {places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} />)}
+            {loading ? <LoadingComponent /> : places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} />)}
         </div>
     )
 }

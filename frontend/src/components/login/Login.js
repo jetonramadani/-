@@ -11,13 +11,12 @@ function getCookie(cName) {
     cArr.forEach(val => {
         if (val.indexOf(name) === 0) res = val.substring(name.length);
     })
-    return res
+    return res;
 }
 const Login = () => {
     const userRef = useRef();
     const passRef = useRef();
     const [redirectToAdmin, setRedirectToAdmin] = useState(false);
-    const [success, setSuccess] = useState("");
     const loginHandler = async () => {
         const res = await axios.post("/login", {
             username: userRef.current.value,
@@ -28,7 +27,7 @@ const Login = () => {
             },
         })
         if (res.data === "ACCEPTED") {
-            var expires = (new Date(Date.now() + 20 * 6 * 1000)).toLocaleString("sv-SE").replace(" ", "T").split(".")[0];
+            var expires = (new Date(Date.now() + 20 * 60 * 1000)).toLocaleString("sv-SE").replace(" ", "T").split(".")[0];
             document.cookie = (`loginToken=${userRef.current.value}###${expires}; expires=` + expires) + ";path=/;"
             setRedirectToAdmin(true);
         }
@@ -45,7 +44,7 @@ const Login = () => {
             }
         }
         effect();
-    })
+    }, [])
     if (redirectToAdmin) {
         return <Navigate to="/admin" />
     }

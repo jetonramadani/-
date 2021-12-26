@@ -66,7 +66,7 @@ const EditShop = (props) => {
                                 variant="outlined"
                                 fullWidth={true}
                                 className={classes.textfield}
-                                value={formData.username}
+                                value={formData.name}
                                 onChange={(event) => setValue("name", event.target.value)}
                             />
                         </div>
@@ -77,7 +77,7 @@ const EditShop = (props) => {
                                 variant="outlined"
                                 fullWidth={true}
                                 className={classes.textfield}
-                                value={formData.username}
+                                value={formData.address}
                                 onChange={(event) => setValue("address", event.target.value)}
                             />
                         </div>

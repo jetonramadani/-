@@ -4,7 +4,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
   & div {
     margin: 1rem;
   }

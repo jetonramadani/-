@@ -12,8 +12,21 @@
     }
     .submain {
       display: flex;
-      > div {
-        margin: 1rem;
+      flex-direction: column;
+      border: 3px solid #333333;
+      font-size: 1rem;
+      padding: 1rem 0rem;
+      border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+      text-transform: uppercase;
+      letter-spacing: 0.2ch;
+      background: #ffffff;
+      margin-left: 5px;
+      width: 96% !important;
+      column-gap: 0.5rem;
+      div {
+        min-width: 90%;
+        word-break: break-all;
+        margin: auto;
       }
     }
     width: 100%;

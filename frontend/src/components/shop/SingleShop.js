@@ -40,7 +40,7 @@ const SingleShop = (props) => {
   }
   return (
     showMap ? <div className={classes.main}>
-      <div className={classes.mydata}>
+      <div className={classes.mydata} >
         <h1>{shopData.name}</h1>
         <div className={`${classes.submain}`}>
           <div>
@@ -51,7 +51,7 @@ const SingleShop = (props) => {
               value={shopData.opening_hours}
             />
           </div>
-          <div>
+          <div >
             <Information label="E-mail:" value={shopData.email} />
             <Information label="Тел:" value={shopData.phone} />
             <Information label="Веб страна:" value={shopData.website} />

@@ -51,14 +51,14 @@ const Login = () => {
     return (
         <div >
             {<img src={photoImage} className='imgBackground' />}
-            <div class="login-box">
+            <div className="login-box">
                 <h2>Login</h2>
                 <form>
-                    <div class="user-box">
+                    <div className="user-box">
                         <input type="text" name="" required="" ref={userRef} />
                         <label>Корисничко име</label>
                     </div>
-                    <div class="user-box">
+                    <div className="user-box">
                         <input type="password" name="" required="" ref={passRef} />
                         <label>Лозинка</label>
                     </div>

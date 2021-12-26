@@ -28,7 +28,6 @@ public class ShopService {
 
     public DummyShop createShop(Shop shop) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentReference> addedDocRef = dbFirestore.collection("shops").add(shop);
-        wait(100);
         return getDummyShopById(addedDocRef.get().getId());
     }
 
@@ -74,10 +73,18 @@ public class ShopService {
                 }).collect(Collectors.toList());
     }
 
-    public DummyShop updateShop(Map<String, Object> shop, String id) throws ExecutionException, InterruptedException {
+    public DummyShop updateShop(Map<String, Object> shop, String id) {
         dbFirestore.collection("shops").document(id).update(shop);
-        wait(100);
-        return getDummyShopById(id);
+
+        return new DummyShop
+                (
+                shop.get("address")==null?null:shop.get("address").toString(),
+                shop.get("name")==null?null:shop.get("name").toString(),
+                shop.get("category")==null?null:shop.get("category").toString(),
+                shop.get("avgGrade")==null?0.0:Double.parseDouble(shop.get("avgGrade").toString()),
+                shop.get("lat")==null?0.0:Double.parseDouble(shop.get("lat").toString()),
+                shop.get("lon")==null?0.0:Double.parseDouble(shop.get("lon").toString())
+                );
     }
 
     public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
@@ -109,14 +116,13 @@ public class ShopService {
         return shop.getReviewList();
     }
 
-    public DummyShop addReviews(String id, Review review) throws ExecutionException, InterruptedException {
+    public double addReviews(String id, Review review) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         List<Review> reviews = shop.getReviewList();
         reviews.add(review);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        wait(100);
-        return getDummyShopById(id);
+        return shop.getAvgGrade();
     }
 
     public Map<String, Object> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
@@ -125,10 +131,9 @@ public class ShopService {
         reviews.remove(reviewId);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        wait(100);
-        DummyShop dShop = getDummyShopById(id);
+
         Map<String, Object> map = new HashMap<>();
-        map.put("shop", dShop);
+        map.put("avgGrade", shop.getAvgGrade());
         map.put("reviews", reviews);
         return map;
     }
@@ -142,16 +147,6 @@ public class ShopService {
 
     private void updateReviewList(String id, List<Review> reviews) {
         dbFirestore.collection("shops").document(id).update("reviewList", reviews);
-    }
-
-    private static void wait(int ms)
-    {
-        try {
-            Thread.sleep(ms);
-        }
-        catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
     }
 
 }

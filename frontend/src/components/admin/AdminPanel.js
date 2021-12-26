@@ -5,7 +5,12 @@ import EditShop from './EditShop';
 import { default as axios } from "../../axiosConfig";
 import { Navigate } from "react-router";
 import LoadingComponent from "../loading/LoadingComponent";
+import AddShop from "./AddShop";
+import { dataActions } from '../../store/data-slice';
+import { useDispatch } from 'react-redux';
 const AdminPanel = () => {
+    const dispatch = useDispatch();
+
     function getCookie(cName) {
         const name = cName + "=";
         const cDecoded = decodeURIComponent(document.cookie); //to be careful
@@ -26,8 +31,10 @@ const AdminPanel = () => {
                 loginToken: getCookie("loginToken"),
             }
         });
-        if (res.data === "307 TEMPORARY_REDIRECT") {
+        if (res.data === null) {
             setRedirectToLogin(true);
+        } else {
+            dispatch(dataActions.updatePlace(res.data));
         }
     }
 
@@ -57,7 +64,10 @@ const AdminPanel = () => {
     }
     return (
         <div className={classes.wrapper}>
-            {loading ? <LoadingComponent /> : places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} />)}
+            {loading ? <LoadingComponent /> : <>
+                <AddShop redirect={() => setRedirectToLogin(true)} />
+                {places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} />)}
+            </>}
         </div>
     )
 }

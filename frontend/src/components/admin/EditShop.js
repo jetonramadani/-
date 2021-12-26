@@ -40,7 +40,7 @@ const EditShop = (props) => {
     }
 
     const removeReview = async (reviewId) => {
-        const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`, {}, {
+        const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`, {
             headers: {
                 loginToken: getCookie("loginToken"),
             }
@@ -75,6 +75,7 @@ const EditShop = (props) => {
                         variant="contained"
                         color="secondary"
                         size="large"
+                        onClick={props.delete.bind(this, props.id)}
                     >
                         Избриши
                     </Button>

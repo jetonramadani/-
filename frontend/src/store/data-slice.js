@@ -31,8 +31,13 @@ const dataSlice = createSlice({
     },
     addPlace(state, action) {
       state.places = [action.payload, ...state.places]
+    },
+    deletePlace(state, action) {
+      state.places = state.places?.filter((place) => place.id !== action.payload)
     }
+
   },
+
 });
 export default dataSlice.reducer;
 export const dataActions = dataSlice.actions;

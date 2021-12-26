@@ -38,6 +38,20 @@ const AdminPanel = () => {
         }
     }
 
+    const deleteShop = async (shopId) => {
+        const res = await axios.delete(`/shop/delete/${shopId}`, {
+            headers: {
+                loginToken: getCookie("loginToken"),
+            }
+        });
+
+        if (res.data) {
+            dispatch(dataActions.deletePlace(shopId));
+        } else {
+            setRedirectToLogin(true);
+        }
+    }
+
     const [user, setUser] = useState("");
     const [redirectToLogin, setRedirectToLogin] = useState(false);
     const [loading, setLoading] = useState(true);
@@ -66,7 +80,7 @@ const AdminPanel = () => {
         <div className={classes.wrapper}>
             {loading ? <LoadingComponent /> : <>
                 <AddShop redirect={() => setRedirectToLogin(true)} />
-                {places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} />)}
+                {places?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} delete={deleteShop} />)}
             </>}
         </div>
     )

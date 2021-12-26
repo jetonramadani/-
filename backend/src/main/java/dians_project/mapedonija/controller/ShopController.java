@@ -54,11 +54,11 @@ public class ShopController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteShop(@PathVariable String id, HttpServletRequest request) {
+    public boolean deleteShop(@PathVariable String id, HttpServletRequest request) throws ExecutionException, InterruptedException {
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             return shopService.deleteShop(id);
         } else {
-            return "User timed out";
+            return false;
         }
     }
 

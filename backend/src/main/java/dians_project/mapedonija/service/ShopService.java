@@ -78,9 +78,10 @@ public class ShopService {
         return getDummyShopById(id);
     }
 
-    public String deleteShop(String id) {
+    public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).delete();
-        return "Successfully deleted shop with id: " + id;
+        Shop shop = getShopById(id);
+        return shop == null;
     }
 
     // in the refactor phase of the project this whole backend architecture is getting a makeover :P

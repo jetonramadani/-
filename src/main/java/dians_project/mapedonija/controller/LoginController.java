@@ -41,7 +41,7 @@ public class LoginController {
     public String isLoggedIn(HttpServletRequest request) {
         String token = request.getHeader("loginToken");
 
-        if (token == null || token.isEmpty() || !token.matches("(.*)###/^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?$/i")) {
+        if (token == null || token.isEmpty() || !token.matches(".+###\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
             return HttpStatus.TEMPORARY_REDIRECT.toString();
         }
 

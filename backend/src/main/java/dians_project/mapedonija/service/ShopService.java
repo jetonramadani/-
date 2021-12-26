@@ -28,7 +28,7 @@ public class ShopService {
 
     public DummyShop createShop(Shop shop) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentReference> addedDocRef = dbFirestore.collection("shops").add(shop);
-        wait(1000);
+        wait(100);
         return getDummyShopById(addedDocRef.get().getId());
     }
 
@@ -76,13 +76,13 @@ public class ShopService {
 
     public DummyShop updateShop(Map<String, Object> shop, String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).update(shop);
-        wait(1000);
+        wait(100);
         return getDummyShopById(id);
     }
 
     public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).delete();
-        wait(1000);
+        wait(100);
         Shop shop = getShopById(id);
         return shop == null;
     }
@@ -115,7 +115,7 @@ public class ShopService {
         reviews.add(review);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        wait(1000);
+        wait(100);
         return getDummyShopById(id);
     }
 
@@ -125,7 +125,7 @@ public class ShopService {
         reviews.remove(reviewId);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        wait(1000);
+        wait(100);
         DummyShop dShop = getDummyShopById(id);
         Map<String, Object> map = new HashMap<>();
         map.put("shop", dShop);

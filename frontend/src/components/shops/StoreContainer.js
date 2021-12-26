@@ -11,17 +11,22 @@ const StoreContainer = () => {
   const places = useSelector((state) => state.data.places);
   const [filteredPlaces, setFilteredPlaces] = useState([]);
   const translate = useTranslate();
+  const [filter, setFilter] = useState({});
+  // useEffect(() => {
+  //   setFilteredPlaces([...places]);
+  // }, [places?.length]);
   useEffect(() => {
-    setFilteredPlaces([...places]);
-  }, [places?.length]);
+    applyFilter(filter)
+  }, [places])
   const applyFilter = (filterData) => {
+    setFilter({ ...filterData })
     let helpArr = [...places];
-    if (filterData.categories.length) {
+    if (filterData.categories?.length) {
       helpArr = helpArr.filter((place) =>
         filterData.categories.some((cat) => cat === place.category)
       );
     }
-    if (filterData.cities.length) {
+    if (filterData.cities?.length) {
       helpArr = helpArr.filter((place) =>
         filterData.cities.some((city) => place.address.includes(city))
       );

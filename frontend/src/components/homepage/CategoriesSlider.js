@@ -11,7 +11,7 @@ import Icon from '@mdi/react'
 const mkCategries = [
     "Маркети",
     "Пекари",
-    "Бутицни",
+    "Бутици",
     "Електроника и компјутери",
     "Книжарници",
     "Мебел",
@@ -25,7 +25,7 @@ const mkCategries = [
 const categoryIcons = {
     "Маркети": <Icon path={mdiCart} size="4rem" />,
     "Пекари": <Icon path={mdiBaguette} size="4rem" />,
-    "Бутицни": <Icon path={mdiTshirtCrew} size="4rem" />,
+    "Бутици": <Icon path={mdiTshirtCrew} size="4rem" />,
     "Електроника и компјутери": <Icon path={mdiHeadphones} size="4rem" />,
     "Книжарници": <Icon path={mdiBookshelf} size="4rem" />,
     "Мебел": <Icon path={mdiBedKingOutline} size="4rem" />,

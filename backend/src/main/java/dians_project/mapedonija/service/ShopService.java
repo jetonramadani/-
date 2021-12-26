@@ -1,5 +1,6 @@
 package dians_project.mapedonija.service;
 
+import com.google.api.Http;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
@@ -116,26 +117,22 @@ public class ShopService {
         return shop.getReviewList();
     }
 
-    public double addReviews(String id, Review review) throws ExecutionException, InterruptedException {
+    public HttpStatus addReviews(String id, Review review) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         List<Review> reviews = shop.getReviewList();
         reviews.add(review);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        return shop.getAvgGrade();
+        return HttpStatus.OK;
     }
 
-    public Map<String, Object> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
+    public List<Review> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         List<Review> reviews = shop.getReviewList();
         reviews.remove(reviewId);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("avgGrade", shop.getAvgGrade());
-        map.put("reviews", reviews);
-        return map;
+        return reviews;
     }
 
     public void updateAvgGrade(Shop shop) {

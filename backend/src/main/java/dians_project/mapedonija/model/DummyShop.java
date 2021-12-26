@@ -17,4 +17,13 @@ public class DummyShop {
     private double avgGrade;
     private double lat;
     private double lon;
+
+    public DummyShop(String address, String name, String category, double avgGrade, double lat, double lon) {
+        this.address = address;
+        this.name = name;
+        this.category = category;
+        this.avgGrade = avgGrade;
+        this.lat = lat;
+        this.lon = lon;
+    }
 }

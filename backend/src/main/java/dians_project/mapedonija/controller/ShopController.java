@@ -79,11 +79,11 @@ public class ShopController {
     }
 
     @PostMapping(value = "/{id}/add-review")
-    public DummyShop addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException{
+    public double addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException{
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             return shopService.addReviews(id,review);
         } else {
-            return null;
+            return 0.0;
         }
     }
 

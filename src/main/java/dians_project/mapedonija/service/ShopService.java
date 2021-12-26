@@ -79,18 +79,18 @@ public class ShopService {
 
         return new DummyShop
                 (
-                shop.get("address")==null?null:shop.get("address").toString(),
-                shop.get("name")==null?null:shop.get("name").toString(),
-                shop.get("category")==null?null:shop.get("category").toString(),
-                shop.get("avgGrade")==null?0.0:Double.parseDouble(shop.get("avgGrade").toString()),
-                shop.get("lat")==null?0.0:Double.parseDouble(shop.get("lat").toString()),
-                shop.get("lon")==null?0.0:Double.parseDouble(shop.get("lon").toString())
+                        id,
+                    shop.get("address")==null?null:shop.get("address").toString(),
+                    shop.get("name")==null?null:shop.get("name").toString(),
+                    shop.get("category")==null?null:shop.get("category").toString(),
+                    shop.get("avgGrade")==null?0.0:Double.parseDouble(shop.get("avgGrade").toString()),
+                    shop.get("lat")==null?0.0:Double.parseDouble(shop.get("lat").toString()),
+                    shop.get("lon")==null?0.0:Double.parseDouble(shop.get("lon").toString())
                 );
     }
 
     public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).delete();
-        wait(100);
         Shop shop = getShopById(id);
         return shop == null;
     }

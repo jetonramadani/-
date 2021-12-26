@@ -74,19 +74,19 @@ public class ShopController {
     }
 
     @GetMapping("/{id}/reviews")
-    public List<Review> getReviewList(@PathVariable String id) throws ExecutionException, InterruptedException{
+    public List<Review> getReviewList(@PathVariable String id) throws ExecutionException, InterruptedException {
         return shopService.reviewList(id);
     }
 
     @PostMapping(value = "/{id}/add-review")
-    public HttpStatus addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException{
-        return shopService.addReviews(id,review);
+    public HttpStatus addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException {
+        return shopService.addReviews(id, review);
     }
 
     @DeleteMapping("/{id}/delete-review")
-    public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request)  throws ExecutionException, InterruptedException{
+    public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request) throws ExecutionException, InterruptedException {
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
-            return shopService.deleteReview(id,reviewId);
+            return shopService.deleteReview(id, reviewId);
         } else {
             return null;
         }

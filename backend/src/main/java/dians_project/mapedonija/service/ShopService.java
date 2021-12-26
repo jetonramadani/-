@@ -26,10 +26,9 @@ public class ShopService {
         this.restTemplate = restTemplate;
     }
 
-    public String createShop(Shop shop) throws ExecutionException, InterruptedException {
+    public DummyShop createShop(Shop shop) throws ExecutionException, InterruptedException {
         ApiFuture<DocumentReference> addedDocRef = dbFirestore.collection("shops").add(shop);
-        System.out.println("Added document with ID: " + addedDocRef.get().getId());
-        return addedDocRef.get().getId();
+        return getDummyShopById(addedDocRef.get().getId());
     }
 
     public Shop getShopById(String id) throws ExecutionException, InterruptedException {
@@ -39,7 +38,6 @@ public class ShopService {
         Shop shop;
         if (document.exists()) {
             shop = document.toObject(Shop.class);
-            //assert shop != null;
             if (shop != null) {
                 shop.setId(id);
                 return shop;
@@ -48,16 +46,19 @@ public class ShopService {
         return null;
     }
 
-    public List<Shop> getShopByName(String name) throws ExecutionException, InterruptedException {
-        CollectionReference shops = dbFirestore.collection("shops");
-        /*
-        The character \uf8ff used in the query is a very high code point in the Unicode range (it is a Private Usage Area [PUA] code).
-        Because it is after most regular characters in Unicode, the query matches all values that start with queryText.
-         */
-        Query query = shops.orderBy("shopName").startAt(name).endAt(name + '~'); // '~' == \uf8ff
-        ApiFuture<QuerySnapshot> querySnapshot = query.get();
-        List<QueryDocumentSnapshot> documents = querySnapshot.get().getDocuments();
-        return documents.stream().map(i -> i.toObject(Shop.class)).collect(Collectors.toList());
+    public DummyShop getDummyShopById(String id) throws ExecutionException, InterruptedException {
+        DocumentReference documentReference = dbFirestore.collection("shops").document(id);
+        ApiFuture<DocumentSnapshot> future = documentReference.get();
+        DocumentSnapshot document = future.get();
+        DummyShop dummyShop;
+        if (document.exists()) {
+            dummyShop = document.toObject(DummyShop.class);
+            if (dummyShop != null) {
+                dummyShop.setId(id);
+                return dummyShop;
+            }
+        }
+        return null;
     }
 
     public List<DummyShop> getAllShops() throws Exception {
@@ -72,9 +73,9 @@ public class ShopService {
                 }).collect(Collectors.toList());
     }
 
-    public HttpStatus updateShop(Map<String, Object> shop, String id) {
+    public DummyShop updateShop(Map<String, Object> shop, String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).update(shop);
-        return HttpStatus.OK;
+        return getDummyShopById(id);
     }
 
     public String deleteShop(String id) {

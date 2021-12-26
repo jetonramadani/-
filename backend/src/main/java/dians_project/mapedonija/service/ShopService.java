@@ -75,11 +75,13 @@ public class ShopService {
 
     public DummyShop updateShop(Map<String, Object> shop, String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).update(shop);
+        wait(1000);
         return getDummyShopById(id);
     }
 
     public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).delete();
+        wait(1000);
         Shop shop = getShopById(id);
         return shop == null;
     }
@@ -133,6 +135,16 @@ public class ShopService {
 
     private void updateReviewList(String id, List<Review> reviews) {
         dbFirestore.collection("shops").document(id).update("reviewList", reviews);
+    }
+
+    private static void wait(int ms)
+    {
+        try {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
     }
 
 }

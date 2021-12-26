@@ -7,9 +7,11 @@ import dians_project.mapedonija.model.DummyShop;
 import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import dians_project.mapedonija.service.ShopService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -37,12 +39,6 @@ public class ShopController {
         return shopService.getShopById(id);
     }
 
-    // put the shop name in a query string
-    @GetMapping("/get")
-    public List<Shop> getShopByName(@RequestParam String name) throws ExecutionException, InterruptedException {
-        return shopService.getShopByName(name);
-    }
-
     @GetMapping("/categories")
     public List<String> getCategories() {
         return shopService.getCategories();
@@ -58,9 +54,11 @@ public class ShopController {
         return shopService.deleteShop(id);
     }
 
-    @PutMapping("/update")
-    public Shop updateShop(@RequestBody Shop shop) {
-        return shopService.updateShop(shop);
+    @PutMapping("/update/{id}")
+    public HttpStatus updateShop(@PathVariable String id, @RequestBody Map<String, Object> shop) {
+        shop.remove("id");
+        shop.remove("reviewList");
+        return shopService.updateShop(shop, id);
     }
 
     @GetMapping("/{id}/reviews")
@@ -74,7 +72,7 @@ public class ShopController {
     }
 
     @DeleteMapping("/{id}/delete-review")
-    public Shop deleteShopReview(@PathVariable String id, @RequestParam int reviewId)  throws ExecutionException, InterruptedException{
+    public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId)  throws ExecutionException, InterruptedException{
         return shopService.deleteReview(id,reviewId);
     }
 

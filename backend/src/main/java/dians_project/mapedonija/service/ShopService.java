@@ -6,11 +6,14 @@ import com.google.firebase.cloud.FirestoreClient;
 import dians_project.mapedonija.model.DummyShop;
 import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -69,9 +72,9 @@ public class ShopService {
                 }).collect(Collectors.toList());
     }
 
-    public Shop updateShop(Shop shop) {
-        dbFirestore.collection("shops").document(shop.getId()).set(shop);
-        return shop;
+    public HttpStatus updateShop(Map<String, Object> shop, String id) {
+        dbFirestore.collection("shops").document(id).update(shop);
+        return HttpStatus.OK;
     }
 
     public String deleteShop(String id) {
@@ -101,12 +104,11 @@ public class ShopService {
         return shop.getReviewList();
     }
 
-    //dali da se pravi proverka za dali se okej vneseni i prateni site atributi od review
     public String addReviews(String id, Review review) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
-        shop.getReviewList().add(review);
-        updateShop(shop); //da se snimi vo databaza ovoj nov objekt
-        updateAvgGrade(shop);
+        List<Review> reviews = shop.getReviewList();
+        reviews.add(review);
+        updateReviewList(id, reviews);
         return "Successfully added a review to the shop and updated its average grade";
     }
 
@@ -117,12 +119,16 @@ public class ShopService {
         dbFirestore.collection("shops").document(shop.getId()).update("avgGrade", avgGrade);
     }
 
-    public Shop deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
+    public List<Review> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
-        shop.getReviewList().remove(reviewId);
-        updateShop(shop);
-        return shop;
+        List<Review> reviews = shop.getReviewList();
+        reviews.remove(reviewId);
+        updateReviewList(id, reviews);
+        return reviews;
     }
 
-    //za createShop,
+    private void updateReviewList(String id, List<Review> reviews) {
+        dbFirestore.collection("shops").document(id).update("reviewList", reviews);
+    }
+
 }

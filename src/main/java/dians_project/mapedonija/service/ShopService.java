@@ -109,22 +109,28 @@ public class ShopService {
         return shop.getReviewList();
     }
 
-    public String addReviews(String id, Review review) throws ExecutionException, InterruptedException {
+    public DummyShop addReviews(String id, Review review) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         List<Review> reviews = shop.getReviewList();
         reviews.add(review);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        return "Successfully added a review to the shop and updated its average grade";
+        wait(1000);
+        return getDummyShopById(id);
     }
 
-    public List<Review> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
+    public Map<String, Object> deleteReview(String id, int reviewId) throws ExecutionException, InterruptedException {
         Shop shop = getShopById(id);
         List<Review> reviews = shop.getReviewList();
         reviews.remove(reviewId);
         updateReviewList(id, reviews);
         updateAvgGrade(shop);
-        return reviews;
+        wait(1000);
+        DummyShop dShop = getDummyShopById(id);
+        Map<String, Object> map = new HashMap<>();
+        map.put("shop", dShop);
+        map.put("reviews", reviews);
+        return map;
     }
 
     public void updateAvgGrade(Shop shop) {

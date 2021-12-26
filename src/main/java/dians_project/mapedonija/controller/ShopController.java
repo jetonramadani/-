@@ -79,20 +79,20 @@ public class ShopController {
     }
 
     @PostMapping(value = "/{id}/add-review")
-    public String addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException{
+    public DummyShop addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException{
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             return shopService.addReviews(id,review);
         } else {
-            return "User timed out";
+            return null;
         }
     }
 
     @DeleteMapping("/{id}/delete-review")
-    public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request)  throws ExecutionException, InterruptedException{
+    public Map<String, Object> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request)  throws ExecutionException, InterruptedException{
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
             return shopService.deleteReview(id,reviewId);
         } else {
-            return new ArrayList<>();
+            return null;
         }
     }
 

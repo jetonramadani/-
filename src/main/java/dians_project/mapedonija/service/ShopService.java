@@ -135,9 +135,12 @@ public class ShopService {
     }
 
     public void updateAvgGrade(Shop shop) {
-        double avgGrade;
-        int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
-        avgGrade = (double) grades / shop.getReviewList().size();
+        double avgGrade = 0.0;
+
+        if (shop.getReviewList().size() > 0) {
+            int grades = shop.getReviewList().stream().mapToInt(Review::getGrade).sum();
+            avgGrade = (double) grades / shop.getReviewList().size();
+        }
         dbFirestore.collection("shops").document(shop.getId()).update("avgGrade", avgGrade);
     }
 

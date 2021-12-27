@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import './Home.css'
 import {
-    mdiCart, mdiBaguette, mdiTshirtCrew,
-    mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
-    mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
+    // mdiCart, mdiBaguette, mdiTshirtCrew,
+    // mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
+    // mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
     mdiArrowLeftBox, mdiArrowRightBox
 } from '@mdi/js';
 import Icon from '@mdi/react'
@@ -22,22 +22,21 @@ const mkCategries = [
 ];
 
 
-const categoryIcons = {
-    "Маркети": <Icon path={mdiCart} size="4rem" />,
-    "Пекари": <Icon path={mdiBaguette} size="4rem" />,
-    "Бутици": <Icon path={mdiTshirtCrew} size="4rem" />,
-    "Електроника и компјутери": <Icon path={mdiHeadphones} size="4rem" />,
-    "Книжарници": <Icon path={mdiBookshelf} size="4rem" />,
-    "Мебел": <Icon path={mdiBedKingOutline} size="4rem" />,
-    "Спортска опрема": <Icon path={mdiBasketball} size="4rem" />,
-    "Авто-делови": <Icon path={mdiCarSeat} size="4rem" />,
-    "Обувки": <Icon path={mdiShoeFormal} size="4rem" />,
-    "Сувенири": <Icon path={mdiGiftOutline} size="4rem" />
-
-}
+// const categoryIcons = {
+//     "Маркети": <Icon path={mdiCart} size="4rem" />,
+//     "Пекари": <Icon path={mdiBaguette} size="4rem" />,
+//     "Бутици": <Icon path={mdiTshirtCrew} size="4rem" />,
+//     "Електроника и компјутери": <Icon path={mdiHeadphones} size="4rem" />,
+//     "Книжарници": <Icon path={mdiBookshelf} size="4rem" />,
+//     "Мебел": <Icon path={mdiBedKingOutline} size="4rem" />,
+//     "Спортска опрема": <Icon path={mdiBasketball} size="4rem" />,
+//     "Авто-делови": <Icon path={mdiCarSeat} size="4rem" />,
+//     "Обувки": <Icon path={mdiShoeFormal} size="4rem" />,
+//     "Сувенири": <Icon path={mdiGiftOutline} size="4rem" />
+// }
 const mapedCategories = mkCategries.map((category) =>
     <>
-        <div className='categories'>{categoryIcons[category]}</div>
+        {/* <div className='categories'>{categoryIcons[category]}</div> */}
         <div className='categories'>{category}</div>
     </>
 )

@@ -1,0 +1,61 @@
+body {
+  // background-color: #cffff6;
+}
+.main {
+  display: flex;
+  background: "#BDBDBD";
+  //   flex-direction: column; MEDIA QUERY FOR SMALL DEVICE
+  margin-left: 3%;
+  .mydata {
+    // background-color: "#CFFFF6";
+    flex: 1;
+    & .placesDiv {
+      height: 77vh;
+      overflow: auto;
+      margin-top: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
+  @media (max-width: 1120px) {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+}
+.topHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .topHeaderContent {
+    margin-right: 5%;
+  }
+}
+.searchBar {
+  .textField {
+    width: 98%;
+    margin-top: 10px;
+    background-color: rgb(253, 251, 251);
+    border-radius: 5px;
+    & p {
+      color: blue;
+      margin: 0;
+    }
+  }
+}
+.checkBoxes {
+  display: flex;
+  flex-direction: row;
+  margin-top: 11px;
+  margin-right: 2%;
+  column-gap: 0.5rem;
+  align-items: stretch;
+}
+.checkBoxStyle {
+  width: 35%;
+  margin-right: 5px;
+  background-color: rgb(253, 251, 251);
+  border-radius: 5px;
+  height: 100%;
+}

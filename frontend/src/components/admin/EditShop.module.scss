@@ -1,0 +1,43 @@
+.closedPart {
+  padding: 10px;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.editFields {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.4rem;
+  row-gap: 0.4rem;
+  & > div {
+    flex: 1 0 26%;
+    @media (max-width: 1080px) {
+      flex-basis: 34%;
+    }
+    @media (max-width: 700px) {
+      flex-basis: 51%;
+    }
+  }
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.2rem;
+}
+
+.openPart {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  background: linear-gradient(#f5f5f5, #d8d8d8);
+}
+
+.reviews {
+  max-height: 500px;
+  overflow-y: auto;
+}

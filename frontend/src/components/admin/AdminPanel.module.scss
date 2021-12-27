@@ -1,0 +1,11 @@
+.wrapper {
+  width: 90%;
+  background: white;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.4rem;
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
+}

@@ -91,8 +91,7 @@ public class ShopService {
 
     public boolean deleteShop(String id) throws ExecutionException, InterruptedException {
         dbFirestore.collection("shops").document(id).delete();
-        Shop shop = getShopById(id);
-        return shop == null;
+        return true;
     }
 
     // in the refactor phase of the project this whole backend architecture is getting a makeover :P

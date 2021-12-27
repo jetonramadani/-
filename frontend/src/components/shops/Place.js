@@ -8,13 +8,13 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { Link } from "react-router-dom";
-import { mdiStar } from '@mdi/js';
+// import { mdiStar } from '@mdi/js';
 // import {
 //   mdiCart, mdiBaguette, mdiTshirtCrew,
 //   mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
 //   mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
 // } from '@mdi/js';
-import Icon from '@mdi/react'
+// import Icon from '@mdi/react';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",
@@ -98,7 +98,9 @@ const Place = (props) => {
             <ListItemText
               secondary={
                 <React.Fragment >
-                  <span className={classes.kmAway}>{props.avgGrade}<Icon path={mdiStar} size={1.6} color="yellow" /></span>
+                  <span className={classes.kmAway}>{props.avgGrade}
+                    {/* <Icon path={mdiStar} size={1.6} color="yellow" /> */}
+                  </span>
                 </React.Fragment>
               }
             />

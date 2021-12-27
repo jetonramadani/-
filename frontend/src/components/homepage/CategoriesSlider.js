@@ -1,13 +1,13 @@
 /* eslint-disable */
 import React, { useEffect, useState } from 'react'
 import './Home.css'
-import {
-    // mdiCart, mdiBaguette, mdiTshirtCrew,
-    // mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
-    // mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
-    mdiArrowLeftBox, mdiArrowRightBox
-} from '@mdi/js';
-import Icon from '@mdi/react'
+// import {
+//     // mdiCart, mdiBaguette, mdiTshirtCrew,
+//     // mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
+//     // mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
+//     mdiArrowLeftBox, mdiArrowRightBox
+// } from '@mdi/js';
+// import Icon from '@mdi/react'
 const mkCategries = [
     "Маркети",
     "Пекари",
@@ -58,12 +58,12 @@ const CategoriesSlider = () => {
 
     return (
         <div className='slider'>
-            <Icon size={'4rem'} path={mdiArrowLeftBox} onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} className='prevnext' />
+            {/* <Icon size={'4rem'} path={mdiArrowLeftBox} onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} className='prevnext' /> */}
             {siteWidth > 1 && <span className='sliderElement'>{mapedCategories[currentPlace % categoryLength]}</span>}
             {siteWidth > 1 && <span className='sliderElements'>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
             {siteWidth > 2 && <span className='sliderElements'>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
             {siteWidth > 3 && <span className='sliderElement1'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
-            <Icon size={'4rem'} path={mdiArrowRightBox} onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} className='prevnext' />
+            {/* <Icon size={'4rem'} path={mdiArrowRightBox} onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} className='prevnext' /> */}
         </div>
     )
 }

@@ -1,17 +1,16 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react'
-import { GrCart } from 'react-icons/gr';
-import IconButton from '@mui/material/IconButton';
 import './Home.css'
-import { BsArrowLeftSquareFill, BsArrowRightSquareFill, BsHeadphones, BsFillGiftFill } from 'react-icons/bs'
-// import { MdOutlineBakeryDining, MdChair, MdSportsRugby } from 'react-icons/md'
-// import { GiClothes, GiSonicShoes } from 'react-icons/gi'
-// import { ImLibrary } from 'react-icons/im'
-// import { VscTools } from 'react-icons/vsc'
+import {
+    mdiCart, mdiBaguette, mdiTshirtCrew,
+    mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
+    mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
+    mdiArrowLeftBox, mdiArrowRightBox
+} from '@mdi/js';
+import Icon from '@mdi/react'
 const mkCategries = [
     "Маркети",
     "Пекари",
-    "Бутицни",
+    "Бутици",
     "Електроника и компјутери",
     "Книжарници",
     "Мебел",
@@ -23,21 +22,20 @@ const mkCategries = [
 
 
 const categoryIcons = {
-    "Маркети": <BsHeadphones size="4rem" />,
-    "Пекари": <BsHeadphones size="4rem" />,
-    "Бутицни": <BsHeadphones size="4rem" />,
-    "Електроника и компјутери": <BsHeadphones size="4rem" />,
-    "Книжарници": <BsHeadphones size="4rem" />,
-    "Мебел": <BsHeadphones size="4rem" />,
-    "Спортска опрема": <BsHeadphones size="4rem" />,
-    "Авто-делови": <BsHeadphones size="4rem" />,
-    "Обувки": <BsHeadphones size="4rem" />,
-    "Сувенири": <BsFillGiftFill size="4rem" />
-
+    "Маркети": <Icon path={mdiCart} size="4rem" />,
+    "Пекари": <Icon path={mdiBaguette} size="4rem" />,
+    "Бутици": <Icon path={mdiTshirtCrew} size="4rem" />,
+    "Електроника и компјутери": <Icon path={mdiHeadphones} size="4rem" />,
+    "Книжарници": <Icon path={mdiBookshelf} size="4rem" />,
+    "Мебел": <Icon path={mdiBedKingOutline} size="4rem" />,
+    "Спортска опрема": <Icon path={mdiBasketball} size="4rem" />,
+    "Авто-делови": <Icon path={mdiCarSeat} size="4rem" />,
+    "Обувки": <Icon path={mdiShoeFormal} size="4rem" />,
+    "Сувенири": <Icon path={mdiGiftOutline} size="4rem" />
 }
 const mapedCategories = mkCategries.map((category) =>
     <>
-        <div className='categories'>{categoryIcons[category] || "TSET"}</div>
+        <div className='categories'>{categoryIcons[category]}</div>
         <div className='categories'>{category}</div>
     </>
 )
@@ -59,13 +57,12 @@ const CategoriesSlider = () => {
 
     return (
         <div className='slider'>
-            <IconButton onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} className='prevnext'><BsArrowLeftSquareFill /></IconButton>
+            <Icon size={'4rem'} path={mdiArrowLeftBox} onClick={() => setCurentPlace((prev) => prev === 0 ? categoryLength - 1 : prev - 1)} className='prevnext' />
             {siteWidth > 1 && <span className='sliderElement'>{mapedCategories[currentPlace % categoryLength]}</span>}
             {siteWidth > 1 && <span className='sliderElements'>{mapedCategories[(currentPlace + 1) % categoryLength]}</span>}
             {siteWidth > 2 && <span className='sliderElements'>{mapedCategories[(currentPlace + 2) % categoryLength]}</span>}
             {siteWidth > 3 && <span className='sliderElement1'>{mapedCategories[(currentPlace + 3) % categoryLength]}</span>}
-            <IconButton onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} className='prevnext' ><BsArrowRightSquareFill /></IconButton>
-            TEST
+            <Icon size={'4rem'} path={mdiArrowRightBox} onClick={() => setCurentPlace((prev) => prev === (categoryLength - 1) ? 0 : prev + 1)} className='prevnext' />
         </div>
     )
 }

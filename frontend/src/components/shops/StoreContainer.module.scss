@@ -15,6 +15,14 @@ body {
       margin-top: 1rem;
     }
   }
+
+  @media (max-width: 768px) {
+    padding-top: 80px;
+  }
+  @media (max-width: 1120px) {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
 }
 .topHeader {
   display: flex;
@@ -26,11 +34,12 @@ body {
 }
 .searchBar {
   .textField {
-    width: 94%;
+    width: 98%;
     margin-top: 10px;
+    background-color: rgb(253, 251, 251);
+    border-radius: 5px;
     & p {
       color: blue;
-      background-color: wheat;
       margin: 0;
     }
   }
@@ -39,8 +48,14 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 11px;
+  margin-right: 2%;
+  column-gap: 0.5rem;
+  align-items: stretch;
 }
 .checkBoxStyle {
   width: 35%;
   margin-right: 5px;
+  background-color: rgb(253, 251, 251);
+  border-radius: 5px;
+  height: 100%;
 }

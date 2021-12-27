@@ -3,6 +3,7 @@ import React from 'react'
 import './Home.css'
 import CategoriesSlider from './CategoriesSlider'
 import photoImg1 from '../../assets/MapBackground.jpg'
+
 const Home = () => {
     return (
         <div>

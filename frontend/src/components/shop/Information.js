@@ -1,6 +1,6 @@
 import React from "react";
 
-const Information = ({label, value}) => {
+const Information = ({ label, value }) => {
   return (
     <div>
       <strong>{label}</strong>

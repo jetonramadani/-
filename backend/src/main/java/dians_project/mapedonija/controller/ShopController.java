@@ -1,11 +1,17 @@
 package dians_project.mapedonija.controller;
 
+
+import dians_project.mapedonija.model.DummyShop;
+import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import dians_project.mapedonija.service.ShopService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -19,24 +25,22 @@ public class ShopController {
     }
 
     @PostMapping("/create")
-    public String createShop(@RequestBody Shop shop) throws InterruptedException, ExecutionException {
-        return shopService.createShop(shop);
+    public DummyShop createShop(@RequestBody Shop shop, HttpServletRequest request) throws InterruptedException, ExecutionException {
+        if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
+            return shopService.createShop(shop);
+        } else {
+            return null;
+        }
     }
 
     @GetMapping("/all")
-    public List<Shop> getAllShops() throws Exception {
+    public List<DummyShop> getAllShops() throws Exception {
         return shopService.getAllShops();
     }
 
     @GetMapping("/get/{id}")
     public Shop getShopById(@PathVariable String id) throws InterruptedException, ExecutionException {
         return shopService.getShopById(id);
-    }
-
-    // put the shop name in a query string
-    @GetMapping("/get")
-    public List<Shop> getShopByName(@RequestParam String name) throws ExecutionException, InterruptedException {
-        return shopService.getShopByName(name);
     }
 
     @GetMapping("/categories")
@@ -50,12 +54,42 @@ public class ShopController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteShop(@PathVariable String id) {
-        return shopService.deleteShop(id);
+    public boolean deleteShop(@PathVariable String id, HttpServletRequest request) throws ExecutionException, InterruptedException {
+        if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
+            return shopService.deleteShop(id);
+        } else {
+            return false;
+        }
     }
 
     @PutMapping("/update/{id}")
-    public String updateShop(@RequestBody Shop shop) throws ExecutionException, InterruptedException {
-        return shopService.updateShop(shop);
+    public DummyShop updateShop(@PathVariable String id, @RequestBody Map<String, Object> shop, HttpServletRequest request) throws ExecutionException, InterruptedException {
+        if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
+            shop.remove("id");
+            shop.remove("reviewList");
+            return shopService.updateShop(shop, id);
+        } else {
+            return null;
+        }
     }
+
+    @GetMapping("/{id}/reviews")
+    public List<Review> getReviewList(@PathVariable String id) throws ExecutionException, InterruptedException {
+        return shopService.reviewList(id);
+    }
+
+    @PostMapping(value = "/{id}/add-review")
+    public HttpStatus addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException {
+        return shopService.addReviews(id, review);
+    }
+
+    @DeleteMapping("/{id}/delete-review")
+    public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request) throws ExecutionException, InterruptedException {
+        if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
+            return shopService.deleteReview(id, reviewId);
+        } else {
+            return null;
+        }
+    }
+
 }

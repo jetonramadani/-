@@ -56,7 +56,7 @@ const MobileHeader = (props) => {
                             size="large"
                             className='menu-button'
                         >
-                            Admin
+                            Админ
                         </Button>
 
                     </Link>

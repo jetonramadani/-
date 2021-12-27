@@ -66,7 +66,7 @@ const EditShop = (props) => {
     return (
         <div >
             <div className={classes.openPart}>
-                <div>
+                <div >
                     <h2>{props.name}</h2>
                     <h4>{props.category}</h4>
                     <p>{props.address}</p>

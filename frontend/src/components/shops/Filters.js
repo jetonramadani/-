@@ -20,13 +20,6 @@ const Filters = ({ applyFilter }) => {
   const translate = useTranslate();
   return (
     <>
-      {/* <div className={classes.topHeader}>
-        <h1 className={classes.topHeaderContent}>MAPedonija</h1>
-        <Button variant="contained" color="primary" size="large">
-          + Додади локација
-        </Button>
-      </div> */}
-
       <form noValidate autoComplete="off" className={classes.searchBar}>
         <TextField
           id="outlined-basic"
@@ -40,12 +33,8 @@ const Filters = ({ applyFilter }) => {
             }))
           }
           value={filterData.nameOrAddres}
+          fullWidth={true}
           className={classes.textField}
-        // helperText={
-        //   filterData.nameOrAddres
-        //     ? `Се бара: ${translate(filterData.nameOrAddres)}`
-        //     : ""
-        // }
         />
       </form>
       <div className={classes.checkBoxes}>
@@ -72,11 +61,23 @@ const Filters = ({ applyFilter }) => {
           listValue={categories}
 
         />
-        <div style={{ display: "flex", flexDirection: "column", width: "35%" }}>
+        <div style={{ display: "flex", flexDirection: "row", width: "50%" }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            style={{ width: "50%", marginTop: "1%" }}
+            size="large"
+            onClick={() => {
+              setFilterData({ ...defaultState });
+              applyFilter(defaultState);
+            }}
+          >
+            Поништи
+          </Button>
           <Button
             variant="contained"
             color="primary"
-            style={{ width: "80%", marginRight: "6%", marginTop: "1%" }}
+            style={{ width: "50%", marginLeft: '5%', marginTop: "1%" }}
             size="large"
             onClick={() =>
               applyFilter({
@@ -87,19 +88,7 @@ const Filters = ({ applyFilter }) => {
               })
             }
           >
-            Apply
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            style={{ width: "80%", marginRight: "6%", marginTop: "1%" }}
-            size="large"
-            onClick={() => {
-              setFilterData({ ...defaultState });
-              applyFilter(defaultState);
-            }}
-          >
-            CLEAR
+            Пребарај
           </Button>
         </div>
       </div>

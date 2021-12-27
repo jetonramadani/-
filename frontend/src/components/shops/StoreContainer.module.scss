@@ -34,7 +34,7 @@ body {
 }
 .searchBar {
   .textField {
-    width: 94%;
+    width: 98%;
     margin-top: 10px;
     background-color: rgb(253, 251, 251);
     border-radius: 5px;
@@ -48,6 +48,9 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 11px;
+  margin-right: 2%;
+  column-gap: 0.5rem;
+  align-items: stretch;
 }
 .checkBoxStyle {
   width: 35%;

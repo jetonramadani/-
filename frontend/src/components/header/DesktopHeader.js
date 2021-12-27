@@ -32,7 +32,7 @@ const Header = (props) => {
           //disabled={ }
           className="adminStyle"
         >
-          Admin
+          Админ
         </Button>
       </Link>
     </div>

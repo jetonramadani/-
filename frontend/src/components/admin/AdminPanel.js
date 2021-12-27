@@ -10,6 +10,7 @@ import { dataActions } from '../../store/data-slice';
 import { useDispatch } from 'react-redux';
 import Filters from '../shops/Filters';
 import useTranslate from '../../hooks/useTranslate';
+import { Button } from '@mui/material';
 const AdminPanel = () => {
     const dispatch = useDispatch();
 
@@ -116,6 +117,19 @@ const AdminPanel = () => {
     return (
         <div className={classes.wrapper}>
             {loading ? <LoadingComponent /> : <>
+                <div>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        style={{ width: "25%", marginLeft: "73%", marginTop: "1%", border: "1px dashed gray" }}
+                        onClick={() => {
+                            document.cookie = `loginToken="";path=/;`
+                            setRedirectToLogin(true);
+                        }}
+                    >
+                        Одјави се
+                    </Button>
+                </div>
                 <Filters applyFilter={applyFilter} />
                 <AddShop redirect={() => setRedirectToLogin(true)} />
                 {filteredPlaces?.map((shop) => <EditShop key={shop.id} {...shop} update={updateShop} delete={deleteShop} redirect={() => setRedirectToLogin(true)} />)}

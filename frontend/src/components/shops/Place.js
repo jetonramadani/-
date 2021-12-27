@@ -7,11 +7,16 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import photo from "../../assets/supermarket.jpg";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { Link } from "react-router-dom";
-import Icon from '@mdi/react'
 import { mdiStar } from '@mdi/js';
+import {
+  mdiCart, mdiBaguette, mdiTshirtCrew,
+  mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
+  mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
+  mdiArrowLeftBox, mdiArrowRightBox
+} from '@mdi/js';
+import Icon from '@mdi/react'
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",
@@ -48,9 +53,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const categoryIcons = {
+  "Маркети": <Icon path={mdiCart} size="3rem" />,
+  "Пекари": <Icon path={mdiBaguette} size="3rem" />,
+  "Бутици": <Icon path={mdiTshirtCrew} size="3rem" />,
+  "Електроника и компјутери": <Icon path={mdiHeadphones} size="3rem" />,
+  "Книжарници": <Icon path={mdiBookshelf} size="3rem" />,
+  "Мебел": <Icon path={mdiBedKingOutline} size="3rem" />,
+  "Спортска опрема": <Icon path={mdiBasketball} size="3rem" />,
+  "Авто-делови": <Icon path={mdiCarSeat} size="3rem" />,
+  "Обувки": <Icon path={mdiShoeFormal} size="3rem" />,
+  "Сувенири": <Icon path={mdiGiftOutline} size="3rem" />
+
+}
 const Place = (props) => {
   const classes = useStyles();
-
   return (
     <Link
       to={`/stores/${props.id}`}
@@ -59,7 +76,8 @@ const Place = (props) => {
       <List className={classes.root}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            <Avatar alt="Remy Sharp" src={photo} />
+            {categoryIcons[props.category]}
+
           </ListItemAvatar>
           <ListItemText
             primary={<span className={classes.titleName}>{props.name}</span>}

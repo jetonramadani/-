@@ -63,13 +63,12 @@ const AddShop = (props) => {
         return formData.name === "" || formData.lat === null || formData.lon === null;
     }
     return (
-        <div className={classes.allShop}>
+        <div className={classes.padding}>
             {!addButton && <div>
                 <Button
                     variant="contained"
-                    color="primary"
                     size="large"
-                    style={{ width: "40%", marginLeft: "25%" }}
+                    style={{ width: "40%", marginLeft: "25%", border: "1px dashed gray" }}
                     onClick={() => setAddButton(true)}
                 >
                     Додади нова продавница

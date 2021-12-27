@@ -20,7 +20,7 @@ const Filters = ({ applyFilter }) => {
   const translate = useTranslate();
   return (
     <>
-      <form noValidate autoComplete="off" className={classes.searchBar}>
+      <div noValidate autoComplete="off" className={classes.searchBar}>
         <TextField
           id="outlined-basic"
           label="Барај продавница по име или адреса"
@@ -36,7 +36,7 @@ const Filters = ({ applyFilter }) => {
           fullWidth={true}
           className={classes.textField}
         />
-      </form>
+      </div>
       <div className={classes.checkBoxes}>
         <MultipleCheckboxes
           onChange={(event, values) => {

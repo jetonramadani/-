@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "93%",
     backgroundColor: '#DEF6FC',
     boxShadow:
-      "rgba(0, 0, 0, 0.3) 0px 5px 20px, rgba(0, 0, 0, 0.22) 0px 2px 2px",
+      "rgba(0, 0, 0, 0.3) 0px 5px 20px, rgba(0, 0, 0t, 0.22) 0px 2px 2px",
     "&:hover": {
       boxShadow:
         "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
@@ -98,7 +98,7 @@ const Place = (props) => {
               secondary={
                 <React.Fragment >
                   <span className={classes.kmAway}>{props.avgGrade}
-                    {/* <Icon path={mdiStar} size={1.6} color="yellow" /> */}
+                    <Icon path={mdiStar} size={1.6} color="yellow" />
                   </span>
                 </React.Fragment>
               }

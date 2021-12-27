@@ -1,52 +1,21 @@
 .main {
   display: flex;
-  background: linear-gradient(-45deg, #e0dddd, #f7ddfd, #f4d2fc, #f1c6fb);
-  background-size: 400% 400%;
-  animation: gradient 5s ease infinite;
+  background: "#BDBDBD";
   //   flex-direction: column; MEDIA QUERY FOR SMALL DEVICE
-
+  margin-left: 3%;
   .mydata {
     // background-color: "#CFFFF6";
+    > div:first-of-type {
+      min-width: 55vw;
+    }
     > div:last-of-type {
-      min-width: 48vw;
+      min-width: 41vw;
     }
     .submain {
       display: flex;
-      flex-direction: column;
-      border: 3px solid #333333;
-      font-size: 1rem;
-      padding: 1rem 0rem;
-      border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
-      text-transform: uppercase;
-      letter-spacing: 0.2ch;
-      background: #ffffff;
-      margin-left: 5px;
-      width: 96% !important;
-      column-gap: 0.5rem;
-      div {
-        min-width: 90%;
-        word-break: break-all;
-        margin: auto;
+      > div {
+        margin: 1rem;
       }
     }
-    width: 100%;
-  }
-  @media (max-width: 768px) {
-    padding-top: 80px;
-  }
-  @media (max-width: 1120px) {
-    flex-direction: column;
-    row-gap: 1rem;
-  }
-}
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
   }
 }

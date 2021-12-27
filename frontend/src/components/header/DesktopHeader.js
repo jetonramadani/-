@@ -2,15 +2,14 @@
 import React from "react";
 import "./desktopHeader.css";
 import photoImg from "../../assets/logo.png";
-import { Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
+import {Link} from "react-router-dom";
 const Header = (props) => {
   return (
-    <div className="headerStyle">
+    <>
       <Link to="/" onClick={() => props.onClick("home")}>
-        <img src={photoImg} className="imgStyle" alt="logo" />
+        <img src={photoImg} className="imgStyle" />
       </Link>
-      <nav >
+      <nav className="backgroundHeader">
         <Link to="/" onClick={() => props.onClick("home")}>
           ДОМА
         </Link>
@@ -22,20 +21,7 @@ const Header = (props) => {
         </Link>
         <div id="indicator"></div>
       </nav>
-      <Link to="/admin" onClick={() => props.onClick("admin")} >
-        <Button
-          variant="contained"
-          color='secondary'
-
-          size="large"
-          // onClick={ }
-          //disabled={ }
-          className="adminStyle"
-        >
-          Админ
-        </Button>
-      </Link>
-    </div>
+    </>
   );
 };
 

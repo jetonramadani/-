@@ -2,24 +2,27 @@
   width: 100%;
   z-index: 0;
 }
-@media (max-width: 768px) {
-  .MapBackgroundStyle {
-    margin-top: 80px;
-  }
+.sliderElements {
+  width: 20%;
+  display: inline-block;
 }
-
 .slider {
-  width: 80%;
-  margin: auto;
+  margin-left: 10%;
   margin-top: 2%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
-
+.sliderElement {
+  width: 20%;
+  display: inline-block;
+}
+.sliderElement1 {
+  width: 20%;
+  display: inline-block;
+}
 .categories {
   text-align: center;
 }
 .prevnext {
-  cursor: pointer;
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -70%);
 }

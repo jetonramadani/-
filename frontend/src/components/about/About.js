@@ -4,8 +4,8 @@ import "./About.css";
 import photoImg from "../../assets/mail.png";
 const About = () => {
   return (
-    <div class="wrapperAbout">
-      <h1>За нас:</h1> {/**className="header" */}
+    <div>
+      <h1 className="header">За нас:</h1>
       <div className="textHeader">
         <div className="textContent">
           <h3>КОИ СМЕ НИЕ</h3>
@@ -39,11 +39,11 @@ const About = () => {
           </p>
         </div>
       </div>
-      <h1>Контакт:</h1> {/**className="header" */}
+      <h1 className="header">Контакт:</h1>
       <div className="textHeader">
         <div className="textContent">
           <div className="textRow">
-            <img src={photoImg} alt="Mail" style={{ width: "60px" }} />
+            <img src={photoImg} alt="Mail" style={{width: "60px"}} />
             <p>techtitansdians@gmail.com</p>
           </div>
         </div>

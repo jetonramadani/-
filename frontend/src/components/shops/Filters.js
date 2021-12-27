@@ -1,12 +1,12 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Button from "@material-ui/core/Button";
 import classes from "./StoreContainer.module.scss";
 import TextField from "@material-ui/core/TextField";
 import MultipleCheckboxes from "./MultipleCheckboxes";
 import useTranslate from "../../hooks/useTranslate";
-import { useSelector } from "react-redux";
-const Filters = ({ applyFilter }) => {
+import {useSelector} from "react-redux";
+const Filters = ({applyFilter}) => {
   const defaultState = {
     nameOrAddres: "",
     categories: [],
@@ -20,6 +20,13 @@ const Filters = ({ applyFilter }) => {
   const translate = useTranslate();
   return (
     <>
+      {/* <div className={classes.topHeader}>
+        <h1 className={classes.topHeaderContent}>MAPedonija</h1>
+        <Button variant="contained" color="primary" size="large">
+          + Додади локација
+        </Button>
+      </div> */}
+
       <form noValidate autoComplete="off" className={classes.searchBar}>
         <TextField
           id="outlined-basic"
@@ -33,8 +40,12 @@ const Filters = ({ applyFilter }) => {
             }))
           }
           value={filterData.nameOrAddres}
-          fullWidth={true}
           className={classes.textField}
+          // helperText={
+          //   filterData.nameOrAddres
+          //     ? `Се бара: ${translate(filterData.nameOrAddres)}`
+          //     : ""
+          // }
         />
       </form>
       <div className={classes.checkBoxes}>
@@ -59,25 +70,12 @@ const Filters = ({ applyFilter }) => {
           label="Категорија"
           value={filterData.categories}
           listValue={categories}
-
         />
-        <div style={{ display: "flex", flexDirection: "row", width: "50%" }}>
-          <Button
-            variant="contained"
-            color="secondary"
-            style={{ width: "50%", marginTop: "1%" }}
-            size="large"
-            onClick={() => {
-              setFilterData({ ...defaultState });
-              applyFilter(defaultState);
-            }}
-          >
-            Поништи
-          </Button>
+        <div style={{display: "flex", flexDirection: "column", width: "35%"}}>
           <Button
             variant="contained"
             color="primary"
-            style={{ width: "50%", marginLeft: '5%', marginTop: "1%" }}
+            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
             size="large"
             onClick={() =>
               applyFilter({
@@ -88,7 +86,19 @@ const Filters = ({ applyFilter }) => {
               })
             }
           >
-            Пребарај
+            Apply
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            style={{width: "80%", marginRight: "6%", marginTop: "1%"}}
+            size="large"
+            onClick={() => {
+              setFilterData({...defaultState});
+              applyFilter(defaultState);
+            }}
+          >
+            CLEAR
           </Button>
         </div>
       </div>

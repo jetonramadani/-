@@ -1,29 +1,23 @@
 /* eslint-disable */
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+
+import React, {useState, useEffect} from "react";
+import {makeStyles} from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import photo from "../../assets/supermarket.jpg";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import { Link } from "react-router-dom";
-import { mdiStar } from '@mdi/js';
-import {
-  mdiCart, mdiBaguette, mdiTshirtCrew,
-  mdiHeadphones, mdiBookshelf, mdiBasketball, mdiBedKingOutline,
-  mdiCarSeat, mdiShoeFormal, mdiGiftOutline,
-  mdiArrowLeftBox, mdiArrowRightBox
-} from '@mdi/js';
-import Icon from '@mdi/react'
+import {Link} from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: "0.8rem",
     width: "100%",
     border: "1px solid black",
     maxWidth: "93%",
-    backgroundColor: '#DEF6FC',
+    // backgroundColor: '#CFFFF6',
     boxShadow:
       "rgba(0, 0, 0, 0.3) 0px 5px 20px, rgba(0, 0, 0, 0.22) 0px 2px 2px",
     "&:hover": {
@@ -48,36 +42,21 @@ const useStyles = makeStyles((theme) => ({
   },
   kmAway: {
     fontSize: "2rem",
-    display: 'flex',
-    flexDirection: 'row'
   },
 }));
 
-const categoryIcons = {
-  "Маркети": <Icon path={mdiCart} size="3rem" />,
-  "Пекари": <Icon path={mdiBaguette} size="3rem" />,
-  "Бутици": <Icon path={mdiTshirtCrew} size="3rem" />,
-  "Електроника и компјутери": <Icon path={mdiHeadphones} size="3rem" />,
-  "Книжарници": <Icon path={mdiBookshelf} size="3rem" />,
-  "Мебел": <Icon path={mdiBedKingOutline} size="3rem" />,
-  "Спортска опрема": <Icon path={mdiBasketball} size="3rem" />,
-  "Авто-делови": <Icon path={mdiCarSeat} size="3rem" />,
-  "Обувки": <Icon path={mdiShoeFormal} size="3rem" />,
-  "Сувенири": <Icon path={mdiGiftOutline} size="3rem" />
-
-}
 const Place = (props) => {
   const classes = useStyles();
+
   return (
     <Link
       to={`/stores/${props.id}`}
-      style={{ textDecoration: "none", color: "inherit" }}
+      style={{textDecoration: "none", color: "inherit"}}
     >
       <List className={classes.root}>
         <ListItem alignItems="flex-start">
           <ListItemAvatar>
-            {categoryIcons[props.category]}
-
+            <Avatar alt="Remy Sharp" src={photo} />
           </ListItemAvatar>
           <ListItemText
             primary={<span className={classes.titleName}>{props.name}</span>}
@@ -96,11 +75,11 @@ const Place = (props) => {
               </React.Fragment>
             }
           />
-          <ListItemAvatar >
+          <ListItemAvatar>
             <ListItemText
               secondary={
-                <React.Fragment >
-                  <span className={classes.kmAway}>{props.avgGrade}<Icon path={mdiStar} size={1.6} color="yellow" /></span>
+                <React.Fragment>
+                  <span className={classes.kmAway}>15 km</span>
                 </React.Fragment>
               }
             />

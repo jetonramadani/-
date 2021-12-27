@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
 import data2 from "../dataWithAddress.json";
-import { dataActions } from "../store/data-slice";
-import { default as axios } from "../axiosConfig";
+import {dataActions} from "../store/data-slice";
+import {default as axios} from "../axiosConfig";
 const AddDataToDb = () => {
   const pick = (obj, keys) =>
-    Object.keys(obj)
-      .filter((i) => keys.includes(i))
-      .reduce((acc, key) => {
-        acc[key] = obj[key];
-        return acc;
-      }, {});
+  Object.keys(obj)
+    .filter((i) => keys.includes(i))
+    .reduce((acc, key) => {
+      acc[key] = obj[key];
+      return acc;
+    }, {});
   const getNeededData = () => {
     const tags =
       "lat|lon|category|name|phone|email|website|opening_hours|address".split(
@@ -19,7 +19,7 @@ const AddDataToDb = () => {
     const mkCategries = {
       supermarket: "Маркети",
       bakery: "Пекари",
-      clothes: "Бутици",
+      clothes: "Бутицни",
       convenience: "Маркети",
       computer: "Електроника и компјутери",
       electronics: "Електроника и компјутери",
@@ -51,8 +51,8 @@ const AddDataToDb = () => {
   };
   useEffect(() => {
 
-
-
+    
+    
     // dispatch(dataActions.addPlaces(getNeededData()));
   }, []);
   const dispatch = useDispatch();

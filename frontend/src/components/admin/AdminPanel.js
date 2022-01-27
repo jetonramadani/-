@@ -79,9 +79,6 @@ const AdminPanel = () => {
     const [filteredPlaces, setFilteredPlaces] = useState([]);
     const translate = useTranslate();
     const [filter, setFilter] = useState({});
-    // useEffect(() => {
-    //   setFilteredPlaces([...places]);
-    // }, [places?.length]);
     useEffect(() => {
         applyFilter(filter);
     }, [places])

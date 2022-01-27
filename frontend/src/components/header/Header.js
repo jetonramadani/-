@@ -4,8 +4,8 @@ import MobileHeader from "./MobileHeader";
 const Header = (props) => {
     return (
         <>
-            <DesktopHeader onClick={props.onClick} />
-            <MobileHeader onClick={props.onClick} />
+            <DesktopHeader />
+            <MobileHeader />
         </>
     )
 }

@@ -20,22 +20,9 @@ import About from "./components/about/About";
 import Header from "./components/header/Header";
 import Login from "./components/login/Login";
 function App() {
-  const location = useLocation();
-  const [activeTab, setActiveTab] = useState("home");
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (location.pathname.startsWith("/store")) {
-      setActiveTab("store");
-    } else if (location.pathname.startsWith("/404")) {
-      setActiveTab("404");
-    } else if (location.pathname.startsWith("/about")) {
-      setActiveTab("about");
-    } else if (location.pathname === "/") {
-      setActiveTab("home");
-    } else {
-      setActiveTab("");
-    }
     const loadEffect = async () => {
       setIsLoading(true);
       const cities = await axios.get("/shop/cities");
@@ -56,9 +43,7 @@ function App() {
   return (
     <>
       <div>
-        {activeTab !== "404" && (
-          <Header onClick={(value) => setActiveTab(value)} />
-        )}
+        <Header />
       </div>
       {/* <AddDataToDb />  SO OVA SE DODADOA SITE PODATOCI U BAZA */}
       <Routes>

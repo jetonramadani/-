@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import React from "react";
 import "./desktopHeader.css";
 import photoImg from "../../assets/logo.png";
@@ -7,22 +7,22 @@ import Button from "@material-ui/core/Button";
 const Header = (props) => {
   return (
     <div className="headerStyle">
-      <Link to="/" onClick={() => props.onClick("home")}>
+      <Link to="/">
         <img src={photoImg} className="imgStyle" alt="logo" />
       </Link>
       <nav >
-        <Link to="/" onClick={() => props.onClick("home")}>
+        <Link to="/">
           ДОМА
         </Link>
-        <Link to="/stores" onClick={() => props.onClick("store")}>
+        <Link to="/stores">
           ПРОДАВНИЦИ
         </Link>
-        <Link to="/about" onClick={() => props.onClick("about")}>
+        <Link to="/about">
           ЗА НАС
         </Link>
         <div id="indicator"></div>
       </nav>
-      <Link to="/admin" onClick={() => props.onClick("admin")} >
+      <Link to="/admin">
         <Button
           variant="contained"
           color='secondary'

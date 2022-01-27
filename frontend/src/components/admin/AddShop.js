@@ -203,7 +203,7 @@ const AddShop = (props) => {
                             }}
                         >
                             Додади
-                        </Button> {/** TO BE IMPLEMENTED */}
+                        </Button>
                     </div>
                 </div> : <LoadingComponent />)
             }

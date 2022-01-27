@@ -1,4 +1,4 @@
-/* eslint-disable */
+
 import React from 'react'
 import './Home.css'
 import CategoriesSlider from './CategoriesSlider'

@@ -134,3 +134,10 @@ nav a:nth-child(3):hover ~ #indicator {
   top: 20%;
   right: 2%;
 }
+
+.activeLink {
+  color: white;
+}
+.inactiveLink {
+  color: black;
+}

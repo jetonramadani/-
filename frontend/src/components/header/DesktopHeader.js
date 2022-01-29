@@ -1,14 +1,14 @@
 
 import React from "react";
-import "./desktopHeader.css";
+import classes from "./desktopHeader.module.scss";
 import photoImg from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 const Header = (props) => {
   return (
-    <div className="headerStyle">
+    <div className={classes.headerStyle}>
       <Link to="/">
-        <img src={photoImg} className="imgStyle" alt="logo" />
+        <img src={photoImg} className={classes.imgStyle} alt="logo" />
       </Link>
       <nav >
         <Link to="/">
@@ -20,7 +20,7 @@ const Header = (props) => {
         <Link to="/about">
           ЗА НАС
         </Link>
-        <div id="indicator"></div>
+        <div id={classes.indicator}></div>
       </nav>
       <Link to="/admin">
         <Button
@@ -30,7 +30,7 @@ const Header = (props) => {
           size="large"
           // onClick={ }
           //disabled={ }
-          className="adminStyle"
+          className={classes.adminStyle}
         >
           Админ
         </Button>

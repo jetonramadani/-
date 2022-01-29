@@ -1,12 +1,12 @@
 import React from "react";
-import "./About.css";
+import classes from "./About.module.scss";
 import photoImg from "../../assets/mail.png";
 const About = () => {
   return (
-    <div class="wrapperAbout">
+    <div className={classes.wrapperAbout}>
       <h1>За нас:</h1>
-      <div className="textHeader">
-        <div className="textContent">
+      <div className={classes.textHeader}>
+        <div className={classes.textContent}>
           <h3>КОИ СМЕ НИЕ</h3>
           <p>
             Ние сме група студенти на Факултетот за информатички науки и
@@ -29,10 +29,10 @@ const About = () => {
         </div>
       </div>
       <h1>Контакт:</h1>
-      <div className="textHeader">
-        <div className="textContent">
-          <div className="textRow">
-            <img src={photoImg} alt="Mail" style={{ width: "60px" }} />
+      <div className={classes.textHeader}>
+        <div className={classes.textContent}>
+          <div className={classes.textRow}>
+            <img src={photoImg} alt="Mail" />
             <p>techtitansdians@gmail.com</p>
           </div>
         </div>

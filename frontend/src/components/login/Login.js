@@ -21,11 +21,7 @@ const Login = () => {
         const res = await axios.post("/login", {
             username: userRef.current.value,
             password: passRef.current.value
-        }, {
-            headers: {
-                loginToken: getCookie('loginToken'),
-            },
-        })
+        });
         if (res.data === "ACCEPTED") {
             var expires = (new Date(Date.now() + 20 * 60 * 1000)).toLocaleString("sv-SE").replace(" ", "T").split(".")[0];
             document.cookie = (`loginToken=${userRef.current.value}###${expires}; expires=` + expires) + ";path=/;"
@@ -34,11 +30,7 @@ const Login = () => {
     }
     useEffect(() => {
         const effect = async () => {
-            const res = await axios.get("/login/isLoggedIn", {
-                headers: {
-                    loginToken: getCookie("loginToken"),
-                }
-            });
+            const res = await axios.get("/login/isLoggedIn");
             if (res.data !== "307 TEMPORARY_REDIRECT") {
                 setRedirectToAdmin(true);
             }

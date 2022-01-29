@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { default as axios } from "../../axiosConfig";
 import { dataActions } from "../../store/data-slice";
 import LoadingComponent from '../loading/LoadingComponent';
+// инициален празен објект за продавница
 const initialFormData = {
     "address": "",
     "email": null,
@@ -20,35 +21,31 @@ const initialFormData = {
     "avgGrade": 0,
     "reviewList": []
 }
-function getCookie(cName) {
-    const name = cName + "=";
-    const cDecoded = decodeURIComponent(document.cookie); //to be careful
-    const cArr = cDecoded.split('; ');
-    let res;
-    cArr.forEach(val => {
-        if (val.indexOf(name) === 0) res = val.substring(name.length);
-    })
-    return res
-}
 const AddShop = (props) => {
-    const [addButton, setAddButton] = useState(false);
-    const [formData, setFormData] = useState({ ...initialFormData })
-    const [loading, setLoading] = useState(false);
+    // Се користи за динамичко покажување на секцијата за додавање продавница
+    const [addButton, setAddButton] = useState(false); // инциално не се покажува
+    const [formData, setFormData] = useState({ ...initialFormData }) // на почеток е празен инциален објект
+    const [loading, setLoading] = useState(false); // Дали се прави loading на податоци
+    // Се зимат од redux сите категории
     const categories = useSelector((state) => state.data.categories);
     const dispatch = useDispatch();
+
+    // Функција за update на статот на продавницата, changeHandler за инпут полињата
     const setValue = (dataName, value) => {
         setFormData((prev) => ({
             ...prev,
             [dataName]: value
         }))
     }
+
+    // Додавање на продавница, на почеток се сетира дека се лоаднува нешто, се прави повик до апи
+    // ако се враќа null значи корисникот не е логиран и не може да зачува продавница при што
+    // се редиректира во логин страницата, во спротивен случај се додава новата продавница и во 
+    // redux и се ресетира формата на нова празна продавница. На крај се става loading на false
+    // при што се трга спинерот за лоадирање.
     const postShop = async (shopData) => {
         setLoading(true);
-        const res = await axios.post(`/shop/create`, shopData, {
-            headers: {
-                loginToken: getCookie("loginToken"),
-            }
-        });
+        const res = await axios.post(`/shop/create`, shopData);
         if (!res.data) {
             props.redirect();
         } else {
@@ -59,6 +56,8 @@ const AddShop = (props) => {
         setLoading(false);
     }
 
+    // Функција која проверува дали се внесени задолжителните податоци
+    // Се користи за дизејблирање на копчето Додади продавница се додека не се внесени задолжителните податоци
     const hasError = () => {
         return formData.name === "" || formData.lat === null || formData.lon === null;
     }
@@ -69,11 +68,14 @@ const AddShop = (props) => {
                     variant="contained"
                     size="large"
                     style={{ width: "40%", marginLeft: "25%", border: "1px dashed gray" }}
-                    onClick={() => setAddButton(true)}
+                    onClick={setAddButton.bind(null, true)} // се дава параметар true кој што ќе се користи при повик на сетерот за стате
                 >
                     Додади нова продавница
                 </Button>
             </div>}
+            {/**Ако секцијата за нова продавница е видлива провери дали се прави некој повик и врз 
+             * основа на тоа правиприкажување на спинер или форма
+             */}
             {addButton && (!loading ?
                 <div className={classes.filters}>
                     <div className={classes.editFields}>
@@ -180,7 +182,6 @@ const AddShop = (props) => {
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button
                             variant="contained"
-                            // color="secondary"
                             size="medium"
                             style={{ width: "45%" }}
                             onClick={() => {

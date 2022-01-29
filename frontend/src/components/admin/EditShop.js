@@ -43,11 +43,7 @@ const EditShop = (props) => {
 
     const removeReview = async (reviewId) => {
         setReviewLoading(true);
-        const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`, {
-            headers: {
-                loginToken: getCookie("loginToken"),
-            }
-        });
+        const res = await axios.delete(`/shop/${props.id}/delete-review?reviewId=${reviewId}`);
 
         if (!res.data) {
             props.redirect();
@@ -191,6 +187,7 @@ const EditShop = (props) => {
                         </div>
 
                     </div>
+                    {/** Hide/Show на коментарите за одредена продавница се покажува само ако има продавници */}
                     {formData?.reviewList?.length > 0 && <Button variant="contained" size="large" color="" onClick={() => setShowReviews((prev) => !prev)}>{showReviews ? "Затвори" : "Прикажи"} секција за мислења</Button>}
                     {showReviews &&
                         (reviewLoading ? <LoadingComponent /> : <div className={classes.reviews}>

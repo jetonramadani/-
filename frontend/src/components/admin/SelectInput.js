@@ -11,8 +11,8 @@ const SelectInput = (props) => {
         <FormControl sx={{ width: "100%" }}>
             <InputLabel id="demo-multiple-name-label">{props.name}</InputLabel>
             <Select
-                labelId="demo-multiple-name-label"
-                id="demo-multiple-name"
+                // labelId="demo-multiple-name-label"
+                // id="demo-multiple-name"
                 // multiple
                 value={props.value}
                 onChange={props.onChange}

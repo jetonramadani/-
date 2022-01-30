@@ -17,7 +17,7 @@ public class TokenGenerator {
     }
 
     public String generateToken(String username) {
-        return username + "###" + LocalDateTime.now();
+        return username + "###" + LocalDateTime.now().plusMinutes(20);
     }
 
 }

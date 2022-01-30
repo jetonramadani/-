@@ -6,6 +6,7 @@ import com.dians_project.mapedonija.authentication.model.User;
 import com.dians_project.mapedonija.authentication.service.AuthService;
 import org.apache.http.auth.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +28,14 @@ public class LoginController {
     }
 
     @PostMapping
-    public HttpStatus login(@RequestBody User userBody) throws ExecutionException, InterruptedException {
+    public ResponseEntity<String> login(@RequestBody User userBody) throws ExecutionException, InterruptedException {
         try {
             this.authService.login(userBody.getUsername(), userBody.getPassword());
             String token = TokenGenerator.getInstance().generateToken(userBody.getUsername());
-            AESEncryptionDecryption.getInstance().encrypt(token);
-
-            return HttpStatus.ACCEPTED;
+            String encrypted = AESEncryptionDecryption.getInstance().encrypt(token);
+            return ResponseEntity.ok(encrypted);
         } catch (InvalidCredentialsException e) {
-            return HttpStatus.NOT_ACCEPTABLE;
+            return ResponseEntity.status(401).build();
         }
     }
 

@@ -99,7 +99,6 @@ const ShopReview = ({ shopId, onAddReview }) => {
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button
                             variant="contained"
-                            // color="secondary"
                             size="medium"
                             style={{ width: "45%" }}
                             onClick={() => {
@@ -123,7 +122,7 @@ const ShopReview = ({ shopId, onAddReview }) => {
                             }}
                         >
                             Додади
-                        </Button> {/** TO BE IMPLEMENTED */}
+                        </Button>
                     </div>
                 </div>)
             }

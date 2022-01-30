@@ -12,6 +12,11 @@ const SingleShop = (props) => {
   const [showMap, setShowMap] = useState(false);
   const { id } = useParams();
 
+  /**
+   * 
+   * @param {*} dateParser Функција која ги парсира (конвертира) објектите за според во содветен тип
+   * @returns Враќа функција што се користи за сортирање на елементи
+   */
   function createSorter(dateParser) {
     return function (a, b) {
       var aDate = dateParser(a.timestamp);
@@ -23,7 +28,7 @@ const SingleShop = (props) => {
   useEffect(() => {
     const loadShop = async () => {
       const data = await axios.get(`/shop/get/${id}`);
-      data.data?.reviewList?.sort(createSorter(function (dateString) {
+      data.data?.reviewList?.sort(createSorter(function (dateString) { // Функцијата која парсира стринг во датум
         return new Date(dateString);
       }));
       setShopData(data.data);

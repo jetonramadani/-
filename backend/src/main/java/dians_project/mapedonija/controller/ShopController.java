@@ -6,7 +6,6 @@ import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
 import dians_project.mapedonija.service.ReviewService;
 import dians_project.mapedonija.service.ShopService;
-import dians_project.mapedonija.service.implementation.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

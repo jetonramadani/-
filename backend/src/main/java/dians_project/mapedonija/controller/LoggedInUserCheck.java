@@ -1,10 +1,15 @@
 package dians_project.mapedonija.controller;
 
-import dians_project.mapedonija.repository.DbConnection;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+
+/**
+ * The purpose of this class is to check if a user's token is valid. A token is made up of a user's username, special characters
+ * and an expiration date. A token is valid only if the current date is not past the token's expiration date.
+ * If a token is invalid, that means the user's session has expired and he is not allowed to access certain methods
+ */
+
 
 public class LoggedInUserCheck {
 
@@ -13,7 +18,7 @@ public class LoggedInUserCheck {
     private LoggedInUserCheck() {}
 
     public static LoggedInUserCheck getInstance() {
-       synchronized (DbConnection.class) {
+       synchronized (LoggedInUserCheck.class) {
             if (instance == null) {
                 instance = new LoggedInUserCheck();
             }

@@ -1,4 +1,6 @@
-package dians_project.mapedonija.controller;
+package dians_project.mapedonija.model;
+
+import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -28,11 +30,19 @@ public class LoggedInUserCheck {
     }
 
     public boolean check(String token) {
-        if (token == null || token.isEmpty() || !token.matches(".+###\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
+        String decryptedToken;
+
+        if (token != null && !token.isEmpty()) {
+            decryptedToken = AESEncryptionDecryption.getInstance().decrypt(token);
+        } else {
             return false;
         }
 
-        String[] tokenTime = token.split("###", 2);
+        if (!decryptedToken.matches(".+###\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d")) {
+            return false;
+        }
+
+        String[] tokenTime = decryptedToken.split("###", 2);
         LocalDateTime tokenDateTime = LocalDateTime.parse(tokenTime[1], DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 
         return !tokenDateTime.isBefore(LocalDateTime.now(ZoneId.of("GMT+1")));

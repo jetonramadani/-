@@ -1,3 +1,7 @@
+/**
+ * 
+ * @returns Custom Hook што враќа функција на конвертирање на латинични букви во кирилица
+ */
 const useTranslate = () => {
   const latcyr = (car) => {
     car = car.replace(/q/g, "ќ");

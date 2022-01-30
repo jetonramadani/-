@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @SpringBootApplication
-@ServletComponentScan
 public class MapedonijaApplication {
 
     public static void main(String[] args) throws IOException {

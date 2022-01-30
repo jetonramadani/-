@@ -1,6 +1,6 @@
 package dians_project.mapedonija.controller;
 
-import org.springframework.http.HttpStatus;
+import dians_project.mapedonija.repository.DbConnection;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -13,10 +13,13 @@ public class LoggedInUserCheck {
     private LoggedInUserCheck() {}
 
     public static LoggedInUserCheck getInstance() {
-        if (instance == null) {
-            instance = new LoggedInUserCheck();
+       synchronized (DbConnection.class) {
+            if (instance == null) {
+                instance = new LoggedInUserCheck();
+            }
+
+            return instance;
         }
-        return  instance;
     }
 
     public boolean check(String token) {

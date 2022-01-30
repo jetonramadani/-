@@ -4,12 +4,13 @@ package dians_project.mapedonija.controller;
 import dians_project.mapedonija.model.DummyShop;
 import dians_project.mapedonija.model.Review;
 import dians_project.mapedonija.model.Shop;
+import dians_project.mapedonija.service.ReviewService;
 import dians_project.mapedonija.service.ShopService;
+import dians_project.mapedonija.service.implementation.ReviewServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -19,9 +20,11 @@ import java.util.concurrent.ExecutionException;
 public class ShopController {
 
     private final ShopService shopService;
+    private final ReviewService reviewService;
 
-    public ShopController(ShopService shopService) {
+    public ShopController(ShopService shopService, ReviewService reviewService) {
         this.shopService = shopService;
+        this.reviewService = reviewService;
     }
 
     @PostMapping("/create")
@@ -75,18 +78,18 @@ public class ShopController {
 
     @GetMapping("/{id}/reviews")
     public List<Review> getReviewList(@PathVariable String id) throws ExecutionException, InterruptedException {
-        return shopService.reviewList(id);
+        return reviewService.reviewList(id);
     }
 
     @PostMapping(value = "/{id}/add-review")
     public HttpStatus addShopReview(@PathVariable String id, @RequestBody Review review, HttpServletRequest request) throws ExecutionException, InterruptedException {
-        return shopService.addReviews(id, review);
+        return reviewService.addReviews(id, review);
     }
 
     @DeleteMapping("/{id}/delete-review")
     public List<Review> deleteShopReview(@PathVariable String id, @RequestParam int reviewId, HttpServletRequest request) throws ExecutionException, InterruptedException {
         if (LoggedInUserCheck.getInstance().check(request.getHeader("loginToken"))) {
-            return shopService.deleteReview(id, reviewId);
+            return reviewService.deleteReview(id, reviewId);
         } else {
             return null;
         }

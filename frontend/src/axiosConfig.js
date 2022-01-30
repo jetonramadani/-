@@ -17,10 +17,19 @@ function getCookie(cName) {
 const instance = axios.create({
   // .. where we make our configurations
   baseURL: "https://mapedonija-backend.herokuapp.com/",
-  headers: {
-    loginToken: `${getCookie("loginToken")}`,
-  }
 });
+
+
+instance.interceptors.request.use(
+  async (config) => {
+    config.headers.loginToken = getCookie("loginToken");
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 
 // Where you would set stuff like your 'Authorization' header, etc ...
 // # instance.defaults.headers.common['Authorization'] = 'AUTH TOKEN FROM INSTANCE';

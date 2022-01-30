@@ -1,18 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import "./Login.css";
+import classes from "./Login.module.scss";
 import photoImage from '../../assets/MacedoniaMap.png'
 import { default as axios } from '../../axiosConfig';
 import { Navigate } from "react-router";
-function getCookie(cName) {
-    const name = cName + "=";
-    const cDecoded = decodeURIComponent(document.cookie); //to be careful
-    const cArr = cDecoded.split('; ');
-    let res;
-    cArr.forEach(val => {
-        if (val.indexOf(name) === 0) res = val.substring(name.length);
-    })
-    return res;
-}
+
 const Login = () => {
     const userRef = useRef();
     const passRef = useRef();
@@ -42,15 +33,15 @@ const Login = () => {
     }
     return (
         <div >
-            {<img src={photoImage} className='imgBackground' />}
-            <div className="login-box">
+            {<img src={photoImage} className={classes.imgBackground} />}
+            <div className={classes["login-box"]}>
                 <h2>Login</h2>
                 <form>
-                    <div className="user-box">
+                    <div className={classes["user-box"]}>
                         <input type="text" name="" required="" ref={userRef} />
                         <label>Корисничко име</label>
                     </div>
-                    <div className="user-box">
+                    <div className={classes["user-box"]}>
                         <input type="password" name="" required="" ref={passRef} />
                         <label>Лозинка</label>
                     </div>

@@ -36,4 +36,5 @@ public class AuthServiceImpl implements AuthService {
                 .findFirst()
                 .orElseThrow(InvalidCredentialsException::new);
     }
+
 }

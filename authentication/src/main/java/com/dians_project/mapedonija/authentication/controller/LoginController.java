@@ -22,7 +22,6 @@ public class LoginController {
 
     private final AuthService authService;
 
-
     public LoginController(AuthService authService) {
         this.authService = authService;
     }
@@ -63,4 +62,5 @@ public class LoginController {
             return decryptedToken;
         }
     }
+
 }

@@ -58,6 +58,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>auth-container</finalName>
     </build>
 
 </project>

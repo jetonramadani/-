@@ -5,22 +5,20 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.ServletComponentScan;
-
-import java.io.File;
-import java.io.FileInputStream;
+import org.springframework.core.io.ClassPathResource;
 import java.io.IOException;
+import java.io.InputStream;
+
 
 @SpringBootApplication
-@ServletComponentScan
 public class MapedonijaApplication {
 
     public static void main(String[] args) throws IOException {
-        File file = new File("src/main/resources/serviceAccountKey/serviceAccountKey.json");
-        FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
+
+        InputStream is = new ClassPathResource("/serviceAccountKey/serviceAccountKey.json").getInputStream();
 
         FirebaseOptions options = new FirebaseOptions.Builder()
-                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .setCredentials(GoogleCredentials.fromStream(is))
                 .setDatabaseUrl("https://mapedonija-default-rtdb.europe-west1.firebasedatabase.app/")
                 .build();
 

@@ -59,7 +59,7 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>mapedonija-backend-container</finalName>
+        <finalName>mapedonija-backend</finalName>
     </build>
 
 </project>
